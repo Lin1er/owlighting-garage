@@ -49,7 +49,19 @@ export const companyStory = [
 // Keunggulan perusahaan
 export const whyChooseUs = [
   {
-    icon: "🔬",
+    icon: "�",
+    title: "Perkabelan Aman & Rapih",
+    description:
+      "Instalasi wiring profesional dengan kabel original, relay proteksi, dan fuse box. Dijamin tidak terbakar, aman untuk aki, dan rapih seperti factory install. Semua sambungan dilindungi heatshrink & taping waterproof.",
+  },
+  {
+    icon: "🛡️",
+    title: "Safety First - Anti Soak Aki",
+    description:
+      "Sistem kelistrikan dengan relay dan socket proper untuk melindungi aki dari konslet. Tidak ada kabel yang langsung ke aki tanpa pengaman. Pemasangan sesuai SOP keamanan elektrikal otomotif.",
+  },
+  {
+    icon: "�🔬",
     title: "Teknologi Presisi",
     description:
       "In-house CNC Laser & 3D Printer untuk fabrikasi bracket dan shroud custom. Presisi hingga milimeter.",
@@ -58,31 +70,31 @@ export const whyChooseUs = [
     icon: "⚡",
     title: "Garansi Kualitas",
     description:
-      "Semua hasil pekerjaan dijamin. Fokus cahaya rapi, cut-off sempurna, tidak menyilaukan.",
+      "Semua hasil pekerjaan dijamin. Fokus cahaya rapi, cut-off sempurna, tidak menyilaukan. Termasuk garansi instalasi kelistrikan.",
   },
   {
     icon: "🎯",
     title: "Konsultasi Gratis",
     description:
-      "Tim kami siap membantu memilih solusi terbaik untuk kendaraan Anda. Dari BILED hingga custom DRL.",
+      "Tim kami siap membantu memilih solusi terbaik untuk kendaraan Anda. Dari BILED hingga custom DRL. Edukasi lengkap tentang keamanan retrofit.",
   },
   {
     icon: "🛠️",
     title: "Pengalaman 5+ Tahun",
     description:
-      "Ratusan mobil dan motor telah kami kerjakan. Dari retrofit standar hingga project custom extreme.",
+      "Ratusan mobil dan motor telah kami kerjakan tanpa kasus terbakar atau aki soak. Dari retrofit standar hingga project custom extreme.",
   },
   {
     icon: "💡",
     title: "Original Parts",
     description:
-      "Kami hanya menggunakan komponen original dan berkualitas. No KW, no compromise.",
+      "Kami hanya menggunakan komponen original dan berkualitas. Ballast branded, kabel tembaga murni, relay Bosch/Tyco. No KW, no compromise.",
   },
   {
     icon: "🚀",
     title: "Inovasi Terus Menerus",
     description:
-      "Selalu update dengan teknologi lighting terbaru. Dari D2 Laser hingga Matrix LED.",
+      "Selalu update dengan teknologi lighting terbaru. Dari D2 Laser hingga Matrix LED dengan sistem kelistrikan tercanggih.",
   },
 ];
 

@@ -162,6 +162,125 @@ export default function ServicesPage() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="py-20 px-6 lg:px-20">
+        <div className="max-w-4xl mx-auto">
+          <AnimatedSection>
+            <h2 className="text-4xl font-black text-center mb-4 text-glow">
+              Pertanyaan Seputar BILED & Retrofit
+            </h2>
+            <p className="text-center text-muted mb-12">
+              Jawaban untuk kekhawatiran umum tentang keamanan retrofit lampu
+            </p>
+          </AnimatedSection>
+
+          <div className="space-y-6">
+            <AnimatedSection delay={0.2}>
+              <div className="glass rounded-xl p-6">
+                <h3 className="text-xl font-bold text-primary mb-3">
+                  🔥 Apakah BILED Aman? Tidak Akan Terbakar?
+                </h3>
+                <p className="text-muted leading-relaxed">
+                  Sangat aman jika instalasi dilakukan dengan benar! Di
+                  Owlighting, kami menggunakan relay proteksi, fuse, dan kabel
+                  proper gauge (sesuai ampere). Semua sambungan dilindungi
+                  heatshrink waterproof.{" "}
+                  <span className="text-white font-semibold">
+                    5+ tahun beroperasi, ratusan kendaraan, 0 kasus terbakar.
+                  </span>
+                </p>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.3}>
+              <div className="glass rounded-xl p-6">
+                <h3 className="text-xl font-bold text-primary mb-3">
+                  🔋 Apakah Aki Bisa Soak/Tekor?
+                </h3>
+                <p className="text-muted leading-relaxed">
+                  Tidak! Kami pakai sistem relay yang memisahkan beban dari aki
+                  langsung. Plus socket & fuse untuk proteksi maksimal. Konsumsi
+                  daya BILED bahkan lebih rendah dari halogen biasa (35W vs
+                  55W).{" "}
+                  <span className="text-white font-semibold">
+                    Instalasi sesuai SOP keamanan elektrikal otomotif.
+                  </span>
+                </p>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.4}>
+              <div className="glass rounded-xl p-6">
+                <h3 className="text-xl font-bold text-primary mb-3">
+                  ⚡ Apa Bedanya Instalasi Owlighting dengan Tempat Lain?
+                </h3>
+                <p className="text-muted leading-relaxed">
+                  <strong className="text-white">Owlighting:</strong> Kabel
+                  tembaga murni, relay Bosch/Tyco, ballast branded
+                  (Morimoto/AC/Osram), wiring rapih seperti factory install,
+                  heatshrink waterproof, garansi instalasi.
+                  <br />
+                  <strong className="text-red-400">
+                    Tempat Asal-asalan:
+                  </strong>{" "}
+                  Kabel asal nyambung, tidak pakai relay/fuse, ballast KW,
+                  sambungan lakban, rawan konslet.
+                </p>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.5}>
+              <div className="glass rounded-xl p-6">
+                <h3 className="text-xl font-bold text-primary mb-3">
+                  💡 Berapa Lama Garansi?
+                </h3>
+                <p className="text-muted leading-relaxed">
+                  Garansi 1 tahun untuk komponen (ballast, bulb) dan instalasi
+                  kelistrikan. Jika ada masalah dalam periode garansi, kami
+                  perbaiki atau ganti gratis.{" "}
+                  <span className="text-white font-semibold">
+                    After-sales support siap membantu kapan pun.
+                  </span>
+                </p>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.6}>
+              <div className="glass rounded-xl p-6">
+                <h3 className="text-xl font-bold text-primary mb-3">
+                  🚗 Mobil Saya Bisa Dipasang BILED?
+                </h3>
+                <p className="text-muted leading-relaxed">
+                  Hampir semua kendaraan bisa! Dari mobil Jepang, Eropa, Korea,
+                  hingga motor. Kami akan survey headlamp Anda terlebih dahulu
+                  untuk menentukan projector yang cocok dan bracket yang
+                  dibutuhkan.{" "}
+                  <span className="text-white font-semibold">
+                    Konsultasi gratis via WhatsApp!
+                  </span>
+                </p>
+              </div>
+            </AnimatedSection>
+
+            <AnimatedSection delay={0.7}>
+              <div className="glass rounded-xl p-6">
+                <h3 className="text-xl font-bold text-primary mb-3">
+                  📐 Berapa Lama Pengerjaan?
+                </h3>
+                <p className="text-muted leading-relaxed">
+                  Retrofit standar: 1-2 hari. Custom project (DRL, lazy eyes,
+                  dll): 3-5 hari tergantung kompleksitas. Kami tidak buru-buru
+                  karena detail dan keamanan adalah prioritas.{" "}
+                  <span className="text-white font-semibold">
+                    Quality over speed!
+                  </span>
+                </p>
+              </div>
+            </AnimatedSection>
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="py-20 px-6 lg:px-20">
         <div className="max-w-4xl mx-auto text-center">

@@ -2,6 +2,7 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import TechSection from "./components/TechSection";
 import ServicesSection from "./components/ServicesSection";
+import SafetySection from "./components/SafetySection";
 import GallerySection from "./components/GallerySection";
 import ReservationSection from "./components/ReservationSection";
 import Footer from "./components/Footer";
@@ -18,6 +19,7 @@ export default function Home() {
       <Hero />
       <TechSection />
       <ServicesSection />
+      <SafetySection />
       <GallerySection />
       <ReservationSection />
       <Footer />
