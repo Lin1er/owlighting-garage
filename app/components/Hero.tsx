@@ -93,7 +93,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 text-glow"
+          className="text-4xl md:text-7xl lg:text-8xl font-black mb-6 text-glow"
         >
           #MENOLAKGELAP
         </motion.h1>
@@ -102,13 +102,13 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="text-lg md:text-xl text-muted mb-4 max-w-3xl mx-auto leading-relaxed"
+          className="text-sm md:text-xl text-muted mb-4 max-w-3xl mx-auto leading-relaxed"
         >
           <span className="text-primary font-bold">
             BILED Retrofit Lampung Timur
           </span>{" "}
           - Custom pencahayaan presisi dengan teknologi CNC & 3D Printing.
-          <br />
+          <br className="hidden lg:block" />
           Slimframe • Custom Akrilik • Neonbox Huruf Timbul
         </motion.p>
 
