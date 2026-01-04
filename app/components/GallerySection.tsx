@@ -4,12 +4,8 @@ import AnimatedSection from "./AnimatedSection";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { galleryImages, stats } from "@/data";
-import StatsSection from "./StatsSection";
 
-// Dynamic import to avoid SSR issues
-const ReactCompareImage = dynamic(() => import("react-compare-image"), {
-  ssr: false,
-});
+import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider";
 
 export default function GallerySection() {
   return (
@@ -41,13 +37,12 @@ export default function GallerySection() {
                 whileHover={{ scale: 1.02 }}
                 className="relative rounded-2xl overflow-hidden shadow-2xl h-100 md:h-180 compare-container"
               >
-                <ReactCompareImage
-                  leftImage={item.beforeImage}
-                  rightImage={item.afterImage}
-                  sliderLineColor={item.sliderColor}
-                  sliderLineWidth={4}
-                  handleSize={40}
-                  hover={true}
+                <ReactCompareSlider
+                  itemOne={<ReactCompareSliderImage src={item.beforeImage} alt="Before" />}
+                  itemTwo={<ReactCompareSliderImage src={item.afterImage} alt="After" />}
+                  // @ts-ignore
+                  className="h-100 md:h-180"
+                  style={{ width: "100%", height: "100%" }}
                 />
                 <div className="absolute bottom-4 left-4 bg-black/60 backdrop-blur-sm px-4 py-2 rounded-lg z-10">
                   <span className="text-sm font-semibold">{item.title}</span>

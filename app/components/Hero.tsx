@@ -31,7 +31,7 @@ export default function Hero() {
           className="absolute inset-0 bg-cover bg-center"
           style={{
             backgroundImage:
-              "url(https://images.unsplash.com/photo-1614200187524-dc4b892acf16?w=1920&auto=format&fit=crop)",
+              "url(https://i.pinimg.com/1200x/aa/8c/59/aa8c59af08030bf767a16f053cb78d1c.jpg",
           }}
         />
         <div className="absolute inset-0 bg-linear-to-b from-black/80 via-black/60 to-background" />
