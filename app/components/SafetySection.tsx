@@ -43,12 +43,12 @@ export default function SafetySection() {
             Banyak yang takut pasang BILED karena kasus kabel terbakar & aki
             soak. Di Owlighting, keamanan adalah prioritas utama.
           </p>
-          <p className="text-center text-muted text-xl mb-16 w-full bg-linear-to-r  from-[#050505]  via-[#000000]  to-[#050505]">
+          <p className="absolute text-center left-0 text-muted text-xl mb-16 w-screen bg-linear-to-r  from-[#050505]  via-[#000000]  to-[#050505]">
             Pengalaman 5+ Tahun • Ratusan Kendaraan • 0 Kasus Terbakar
           </p>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-3 md:mt-20 mt-25 gap-8">
           {safetyPoints.map((point, index) => (
             <AnimatedSection key={index} delay={index * 0.2}>
               <motion.div

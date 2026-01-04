@@ -108,7 +108,7 @@ export default function Hero() {
             BILED Retrofit Lampung Timur
           </span>{" "}
           - Custom pencahayaan presisi dengan teknologi CNC & 3D Printing.
-          <br className="hidden lg:block" />
+          <br className="" />
           Slimframe • Custom Akrilik • Neonbox Huruf Timbul
         </motion.p>
 
@@ -135,7 +135,7 @@ export default function Hero() {
           </button>
           <button
             onClick={() => scrollToSection("reservation")}
-            className="px-8 py-4 bg-linear-to-r from-primary to-cyan-400 text-black font-bold rounded-lg glow-primary hover:scale-105 transition-transform"
+            className="px-8 py-4 bg-cyan-400 text-black font-bold rounded-lg glow-primary hover:scale-105 transition-transform"
           >
             Konsultasi Gratis
           </button>
