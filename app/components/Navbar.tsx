@@ -72,17 +72,17 @@ export default function Navbar() {
             animate={
               mobileMenuOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }
             }
-            className="w-6 h-0.5 bg-primary block"
+            className="w-6 h-0.5 bg-white block"
           />
           <motion.span
             animate={mobileMenuOpen ? { opacity: 0 } : { opacity: 1 }}
-            className="w-6 h-0.5 bg-primary block"
+            className="w-6 h-0.5 bg-white block"
           />
           <motion.span
             animate={
               mobileMenuOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }
             }
-            className="w-6 h-0.5 bg-primary block"
+            className="w-6 h-0.5 bg-white block"
           />
         </button>
 
