@@ -5,7 +5,7 @@ export const services = [
     title: "BILED Retrofit",
     description:
       "Fokus cahaya tajam dengan cut-off RHD rapi. Tidak menyilaukan lawan arah. Terang maksimal, aman untuk semua kondisi jalan. Instalasi wiring profesional - DIJAMIN TIDAK TERBAKAR & AMAN UNTUK AKI. #MenolakGelap",
-    icon: "💡",
+    icon: "BiSolidBulb",
     features: [
       "Cut-off RHD presisi",
       "Beam pattern tajam 6000K-8000K",
@@ -23,7 +23,7 @@ export const services = [
     title: "D2 Laser / Foglamp",
     description:
       "Tambahan cahaya tembak untuk medan kabut dan hujan. Mode putih & kuning untuk visibilitas ekstrem. Instalasi dengan relay & fuse protection untuk keamanan maksimal.",
-    icon: "🔦",
+    icon: "IoFlashOutline",
     features: [
       "Dual color (white/yellow)",
       "Waterproof IP67",
@@ -38,7 +38,7 @@ export const services = [
     title: "Custom CNC & 3D",
     description:
       "Punya ide gila? DRL custom, lazy eyes, atau setup unik untuk kendaraan spesial. Kami wujudkan dengan teknologi presisi.",
-    icon: "⚙️",
+    icon: "FaCog",
     features: [
       "Design konsultasi gratis",
       "CNC laser precision",
@@ -51,7 +51,7 @@ export const services = [
     title: "Slimframe",
     description:
       "Frame custom ultra tipis untuk tampilan headlight yang lebih modern dan elegan. Cocok untuk berbagai jenis kendaraan.",
-    icon: "🖼️",
+    icon: "HiOutlinePhoto",
     features: [
       "Ultra slim design",
       "Material premium",
@@ -64,7 +64,7 @@ export const services = [
     title: "Custom Akrilik",
     description:
       "Produksi custom akrilik untuk berbagai keperluan otomotif. Dari cover lampu hingga aksesoris interior.",
-    icon: "✨",
+    icon: "IoSparkles",
     features: [
       "Akrilik grade A",
       "Laser cutting presisi",
@@ -77,7 +77,7 @@ export const services = [
     title: "Neon Box",
     description:
       "Pembuatan neon box untuk branding bengkel, showroom, atau toko aksesoris otomotif Anda.",
-    icon: "📦",
+    icon: "MdBuild",
     features: [
       "LED neon tahan lama",
       "Weatherproof outdoor",
@@ -90,7 +90,7 @@ export const services = [
     title: "Neonbox Huruf Timbul",
     description:
       "Signage premium dengan huruf timbul dan lampu neon untuk tampilan yang lebih eksklusif dan eye-catching.",
-    icon: "🔠",
+    icon: "FaStar",
     features: [
       "3D raised letters",
       "Backlit LED neon",

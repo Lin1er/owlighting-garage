@@ -49,49 +49,49 @@ export const companyStory = [
 // Keunggulan perusahaan
 export const whyChooseUs = [
   {
-    icon: "�",
+    icon: "FaPlug",
     title: "Perkabelan Aman & Rapih",
     description:
       "Instalasi wiring profesional dengan kabel original, relay proteksi, dan fuse box. Dijamin tidak terbakar, aman untuk aki, dan rapih seperti factory install. Semua sambungan dilindungi heatshrink & taping waterproof.",
   },
   {
-    icon: "🛡️",
+    icon: "FaShieldAlt",
     title: "Safety First - Anti Soak Aki",
     description:
       "Sistem kelistrikan dengan relay dan socket proper untuk melindungi aki dari konslet. Tidak ada kabel yang langsung ke aki tanpa pengaman. Pemasangan sesuai SOP keamanan elektrikal otomotif.",
   },
   {
-    icon: "�🔬",
+    icon: "FaMicroscope",
     title: "Teknologi Presisi",
     description:
       "In-house CNC Laser & 3D Printer untuk fabrikasi bracket dan shroud custom. Presisi hingga milimeter.",
   },
   {
-    icon: "⚡",
+    icon: "FaBolt",
     title: "Garansi Kualitas",
     description:
       "Semua hasil pekerjaan dijamin. Fokus cahaya rapi, cut-off sempurna, tidak menyilaukan. Termasuk garansi instalasi kelistrikan.",
   },
   {
-    icon: "🎯",
+    icon: "FaBullseye",
     title: "Konsultasi Gratis",
     description:
       "Tim kami siap membantu memilih solusi terbaik untuk kendaraan Anda. Dari BILED hingga custom DRL. Edukasi lengkap tentang keamanan retrofit.",
   },
   {
-    icon: "🛠️",
+    icon: "FaTools",
     title: "Pengalaman 5+ Tahun",
     description:
       "Ratusan mobil dan motor telah kami kerjakan tanpa kasus terbakar atau aki soak. Dari retrofit standar hingga project custom extreme.",
   },
   {
-    icon: "💡",
+    icon: "FaLightbulb",
     title: "Original Parts",
     description:
       "Kami hanya menggunakan komponen original dan berkualitas. Ballast branded, kabel tembaga murni, relay Bosch/Tyco. No KW, no compromise.",
   },
   {
-    icon: "🚀",
+    icon: "FaRocket",
     title: "Inovasi Terus Menerus",
     description:
       "Selalu update dengan teknologi lighting terbaru. Dari D2 Laser hingga Matrix LED dengan sistem kelistrikan tercanggih.",

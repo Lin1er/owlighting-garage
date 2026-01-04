@@ -38,7 +38,7 @@ export default function ServiceCard({
             {icon}
           </div>
           <h3 className="text-2xl font-bold mb-3 text-primary">{title}</h3>
-          <p className="text-muted leading-relaxed">{description}</p>
+          <p className="text-muted text-justify leading-relaxed">{description}</p>
         </div>
       </Tilt>
     </motion.div>

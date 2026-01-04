@@ -5,6 +5,7 @@ import AnimatedSection from "../components/AnimatedSection";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Image from "next/image";
+import { DynamicIcon } from "../components/DynamicIcon";
 import { companyInfo, companyStory, whyChooseUs, facilities } from "@/data";
 
 export default function AboutPage() {
@@ -85,7 +86,9 @@ export default function AboutPage() {
                   whileHover={{ y: -10 }}
                   className="glass rounded-2xl p-6 h-full"
                 >
-                  <div className="text-5xl mb-4">{item.icon}</div>
+                  <div className="text-primary mb-4">
+                    <DynamicIcon name={item.icon} size={48} />
+                  </div>
                   <h3 className="text-xl font-bold mb-3 text-primary">
                     {item.title}
                   </h3>

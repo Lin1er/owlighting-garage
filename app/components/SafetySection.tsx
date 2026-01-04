@@ -2,11 +2,12 @@
 
 import { motion } from "framer-motion";
 import AnimatedSection from "./AnimatedSection";
+import { DynamicIcon } from "./DynamicIcon";
 
 export default function SafetySection() {
   const safetyPoints = [
     {
-      icon: "🔥",
+      icon: "FaFire",
       title: "Takut Kabel Terbakar?",
       problem:
         "Banyak kasus retrofit BILED asal-asalan yang bikin kabel terbakar dan merusak kendaraan.",
@@ -14,7 +15,7 @@ export default function SafetySection() {
         "Di Owlighting, semua instalasi menggunakan relay proteksi, fuse, dan kabel proper gauge. Dijamin aman!",
     },
     {
-      icon: "🔋",
+      icon: "FaBatteryFull",
       title: "Khawatir Aki Soak?",
       problem:
         "Instalasi yang salah bisa bikin aki cepat tekor karena beban berlebih atau konslet.",
@@ -22,7 +23,7 @@ export default function SafetySection() {
         "Kami pakai sistem relay yang memisahkan beban dari aki. Plus socket & fuse untuk proteksi maksimal.",
     },
     {
-      icon: "⚡",
+      icon: "FaBolt",
       title: "Kabel Berantakan?",
       problem:
         "Kabel kusut & sambungan alakadarnya rawan konslet dan tidak tahan lama.",
@@ -54,7 +55,13 @@ export default function SafetySection() {
                 whileHover={{ y: -10 }}
                 className="glass rounded-2xl p-6 h-full"
               >
-                <div className="text-5xl mb-4">{point.icon}</div>
+                <div className="mb-4">
+                  <DynamicIcon
+                    name={point.icon}
+                    size={48}
+                    className="text-primary"
+                  />
+                </div>
                 <h3 className="text-xl font-bold mb-3 text-primary">
                   {point.title}
                 </h3>
@@ -89,7 +96,13 @@ export default function SafetySection() {
             </h3>
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               <div className="text-center">
-                <div className="text-3xl mb-2">🔌</div>
+                <div className="mb-2 flex justify-center">
+                  <DynamicIcon
+                    name="FaPlug"
+                    size={32}
+                    className="text-primary"
+                  />
+                </div>
                 <p className="font-semibold text-primary mb-1">
                   Kabel Original
                 </p>
@@ -98,21 +111,39 @@ export default function SafetySection() {
                 </p>
               </div>
               <div className="text-center">
-                <div className="text-3xl mb-2">🛡️</div>
+                <div className="mb-2 flex justify-center">
+                  <DynamicIcon
+                    name="FaShieldAlt"
+                    size={32}
+                    className="text-primary"
+                  />
+                </div>
                 <p className="font-semibold text-primary mb-1">Relay & Fuse</p>
                 <p className="text-sm text-muted">
                   Bosch/Tyco relay + fuse proteksi
                 </p>
               </div>
               <div className="text-center">
-                <div className="text-3xl mb-2">💧</div>
+                <div className="mb-2 flex justify-center">
+                  <DynamicIcon
+                    name="FaTint"
+                    size={32}
+                    className="text-primary"
+                  />
+                </div>
                 <p className="font-semibold text-primary mb-1">Waterproof</p>
                 <p className="text-sm text-muted">
                   Heatshrink & taping weather resistant
                 </p>
               </div>
               <div className="text-center">
-                <div className="text-3xl mb-2">📐</div>
+                <div className="mb-2 flex justify-center">
+                  <DynamicIcon
+                    name="FaRuler"
+                    size={32}
+                    className="text-primary"
+                  />
+                </div>
                 <p className="font-semibold text-primary mb-1">
                   Cable Management
                 </p>

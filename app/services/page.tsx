@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import AnimatedSection from "../components/AnimatedSection";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import { DynamicIcon } from "../components/DynamicIcon";
 import { services } from "@/data";
 import Image from "next/image";
 
@@ -60,7 +61,13 @@ export default function ServicesPage() {
                   className="glass rounded-2xl p-8 h-full"
                 >
                   <div className="flex items-start gap-4 mb-4">
-                    <div className="text-5xl">{service.icon}</div>
+                    <div>
+                      <DynamicIcon
+                        name={service.icon}
+                        size={48}
+                        className="text-primary"
+                      />
+                    </div>
                     <div>
                       <h2 className="text-2xl font-bold text-primary mb-2">
                         {service.title}
@@ -122,7 +129,13 @@ export default function ServicesPage() {
           <div className="grid md:grid-cols-3 gap-8">
             <AnimatedSection delay={0.2}>
               <div className="text-center">
-                <div className="text-6xl mb-4">🏆</div>
+                <div className="mb-4 flex justify-center">
+                  <DynamicIcon
+                    name="FaTrophy"
+                    size={64}
+                    className="text-primary"
+                  />
+                </div>
                 <h3 className="text-xl font-bold mb-3 text-primary">
                   Pengalaman 5+ Tahun
                 </h3>
@@ -135,7 +148,13 @@ export default function ServicesPage() {
 
             <AnimatedSection delay={0.3}>
               <div className="text-center">
-                <div className="text-6xl mb-4">⚙️</div>
+                <div className="mb-4 flex justify-center">
+                  <DynamicIcon
+                    name="FaCog"
+                    size={64}
+                    className="text-primary"
+                  />
+                </div>
                 <h3 className="text-xl font-bold mb-3 text-primary">
                   Teknologi In-House
                 </h3>
@@ -148,7 +167,13 @@ export default function ServicesPage() {
 
             <AnimatedSection delay={0.4}>
               <div className="text-center">
-                <div className="text-6xl mb-4">✅</div>
+                <div className="mb-4 flex justify-center">
+                  <DynamicIcon
+                    name="FaCheckCircle"
+                    size={64}
+                    className="text-primary"
+                  />
+                </div>
                 <h3 className="text-xl font-bold mb-3 text-primary">
                   Garansi & Support
                 </h3>
@@ -177,8 +202,13 @@ export default function ServicesPage() {
           <div className="space-y-6">
             <AnimatedSection delay={0.2}>
               <div className="glass rounded-xl p-6">
-                <h3 className="text-xl font-bold text-primary mb-3">
-                  🔥 Apakah BILED Aman? Tidak Akan Terbakar?
+                <h3 className="text-xl font-bold text-primary mb-3 flex items-center gap-3">
+                  <DynamicIcon
+                    name="FaFire"
+                    size={24}
+                    className="text-primary"
+                  />
+                  Apakah BILED Aman? Tidak Akan Terbakar?
                 </h3>
                 <p className="text-muted leading-relaxed">
                   Sangat aman jika instalasi dilakukan dengan benar! Di
@@ -194,8 +224,13 @@ export default function ServicesPage() {
 
             <AnimatedSection delay={0.3}>
               <div className="glass rounded-xl p-6">
-                <h3 className="text-xl font-bold text-primary mb-3">
-                  🔋 Apakah Aki Bisa Soak/Tekor?
+                <h3 className="text-xl font-bold text-primary mb-3 flex items-center gap-3">
+                  <DynamicIcon
+                    name="FaBatteryFull"
+                    size={24}
+                    className="text-primary"
+                  />
+                  Apakah Aki Bisa Soak/Tekor?
                 </h3>
                 <p className="text-muted leading-relaxed">
                   Tidak! Kami pakai sistem relay yang memisahkan beban dari aki
@@ -211,8 +246,13 @@ export default function ServicesPage() {
 
             <AnimatedSection delay={0.4}>
               <div className="glass rounded-xl p-6">
-                <h3 className="text-xl font-bold text-primary mb-3">
-                  ⚡ Apa Bedanya Instalasi Owlighting dengan Tempat Lain?
+                <h3 className="text-xl font-bold text-primary mb-3 flex items-center gap-3">
+                  <DynamicIcon
+                    name="FaBolt"
+                    size={24}
+                    className="text-primary"
+                  />
+                  Apa Bedanya Instalasi Owlighting dengan Tempat Lain?
                 </h3>
                 <p className="text-muted leading-relaxed">
                   <strong className="text-white">Owlighting:</strong> Kabel
@@ -231,8 +271,13 @@ export default function ServicesPage() {
 
             <AnimatedSection delay={0.5}>
               <div className="glass rounded-xl p-6">
-                <h3 className="text-xl font-bold text-primary mb-3">
-                  💡 Berapa Lama Garansi?
+                <h3 className="text-xl font-bold text-primary mb-3 flex items-center gap-3">
+                  <DynamicIcon
+                    name="FaLightbulb"
+                    size={24}
+                    className="text-primary"
+                  />
+                  Berapa Lama Garansi?
                 </h3>
                 <p className="text-muted leading-relaxed">
                   Garansi 1 tahun untuk komponen (ballast, bulb) dan instalasi
@@ -247,8 +292,13 @@ export default function ServicesPage() {
 
             <AnimatedSection delay={0.6}>
               <div className="glass rounded-xl p-6">
-                <h3 className="text-xl font-bold text-primary mb-3">
-                  🚗 Mobil Saya Bisa Dipasang BILED?
+                <h3 className="text-xl font-bold text-primary mb-3 flex items-center gap-3">
+                  <DynamicIcon
+                    name="FaCar"
+                    size={24}
+                    className="text-primary"
+                  />
+                  Mobil Saya Bisa Dipasang BILED?
                 </h3>
                 <p className="text-muted leading-relaxed">
                   Hampir semua kendaraan bisa! Dari mobil Jepang, Eropa, Korea,
@@ -264,8 +314,13 @@ export default function ServicesPage() {
 
             <AnimatedSection delay={0.7}>
               <div className="glass rounded-xl p-6">
-                <h3 className="text-xl font-bold text-primary mb-3">
-                  📐 Berapa Lama Pengerjaan?
+                <h3 className="text-xl font-bold text-primary mb-3 flex items-center gap-3">
+                  <DynamicIcon
+                    name="FaRuler"
+                    size={24}
+                    className="text-primary"
+                  />
+                  Berapa Lama Pengerjaan?
                 </h3>
                 <p className="text-muted leading-relaxed">
                   Retrofit standar: 1-2 hari. Custom project (DRL, lazy eyes,
@@ -298,9 +353,10 @@ export default function ServicesPage() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-4 bg-linear-to-r from-primary to-cyan-400 text-black font-bold rounded-lg glow-primary text-lg inline-block"
+                className="px-10 py-4 bg-linear-to-r from-primary to-cyan-400 text-black font-bold rounded-lg glow-primary text-lg inline-flex items-center gap-3 justify-center"
               >
-                💬 WhatsApp Kami
+                <DynamicIcon name="FaComments" size={24} />
+                WhatsApp Kami
               </motion.a>
               <motion.a
                 href="https://maps.app.goo.gl/MvXVMty2vPcaZEB28"
@@ -308,9 +364,10 @@ export default function ServicesPage() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-4 border-2 border-primary/30 text-white font-semibold rounded-lg hover:bg-primary/10 hover:border-primary transition-all inline-block"
+                className="px-10 py-4 border-2 border-primary/30 text-white font-semibold rounded-lg hover:bg-primary/10 hover:border-primary transition-all inline-flex items-center gap-3 justify-center"
               >
-                📍 Lokasi Workshop
+                <DynamicIcon name="FaMapMarkerAlt" size={24} />
+                Lokasi Workshop
               </motion.a>
             </div>
           </AnimatedSection>
