@@ -22,6 +22,7 @@ export default function Navbar() {
   const navLinks = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About" },
+    { href: "/services", label: "Services" },
     { href: "/portfolio", label: "Portfolio" },
   ];
 
@@ -54,12 +55,6 @@ export default function Navbar() {
               </Link>
             </li>
           ))}
-          <li
-            className="cursor-pointer hover:text-primary transition-colors text-muted"
-            onClick={() => scrollToSection("services")}
-          >
-            Services
-          </li>
           <li
             className="cursor-pointer hover:text-primary transition-colors text-muted"
             onClick={() => scrollToSection("contact")}

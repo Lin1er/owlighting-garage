@@ -7,10 +7,12 @@ import ReservationSection from "./components/ReservationSection";
 import Footer from "./components/Footer";
 import ScrollProgress from "./components/ScrollProgress";
 import FloatingCTA from "./components/FloatingCTA";
+import StructuredData from "./components/StructuredData";
 
 export default function Home() {
   return (
     <main className="relative">
+      <StructuredData />
       <ScrollProgress />
       <Navbar />
       <Hero />

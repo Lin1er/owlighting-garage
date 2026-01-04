@@ -1,10 +1,12 @@
 // Data kontak dan informasi bisnis
 export const contactInfo = {
-  phone: "+62 812-3456-7890",
+  phone: "+62 856-5864-8413",
   email: "hello@owlighting.com",
-  address: "Jl. Danau, Way Jepara, Lampung Timur, Lampung 35154",
+  address:
+    "Jl. Danau Km.1, Sumberjo, Way Jepara, Kabupaten Lampung Timur, Lampung 34396",
   workingHours: "Senin - Sabtu: 09.00 - 18.00",
-  whatsappNumber: "6281234567890", // tanpa + dan -
+  whatsappNumber: "6285658648413", // tanpa + dan -
+  googleMapsUrl: "https://maps.app.goo.gl/MvXVMty2vPcaZEB28",
   socialMedia: {
     instagram: "https://instagram.com/owlighting",
     facebook: "https://facebook.com/owlighting",
@@ -15,11 +17,26 @@ export const contactInfo = {
 // Data perusahaan
 export const companyInfo = {
   name: "Owlighting",
-  tagline: "Custom Pencahayaan Kendaraan Presisi",
+  tagline: "Custom Pencahayaan Kendaraan Presisi - BILED Lampung Timur",
   description:
-    "Spesialis custom pencahayaan kendaraan dengan teknologi CNC & 3D Printing. Presisi tanpa kompromi.",
+    "Spesialis custom pencahayaan kendaraan dengan teknologi CNC & 3D Printing. Presisi tanpa kompromi. #MenolakGelap",
   established: "2019",
   location: "Lampung Timur, Indonesia",
+  keywords: [
+    "biled lampung timur",
+    "owlighting",
+    "owlighting garage",
+    "retrofit lampu lampung",
+    "custom headlight lampung",
+    "bengkel lampu way jepara",
+    "cnc laser lampung",
+    "3d printing lampung",
+    "d2 laser lampung",
+    "custom drl lampung",
+    "biled retrofit lampung timur",
+    "upgrade lampu mobil lampung",
+    "lampu motor custom lampung",
+  ],
 };
 
 // Story perusahaan untuk About page

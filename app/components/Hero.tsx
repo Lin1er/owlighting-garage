@@ -2,6 +2,7 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
+import { contactInfo } from "@/data";
 
 export default function Hero() {
   const ref = useRef<HTMLDivElement>(null);
@@ -94,18 +95,30 @@ export default function Hero() {
           transition={{ duration: 1, delay: 0.2 }}
           className="text-5xl md:text-7xl lg:text-8xl font-black mb-6 text-glow"
         >
-          MENEMBUS KEGELAPAN
+          #MENOLAKGELAP
         </motion.h1>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="text-lg md:text-xl text-muted mb-8 max-w-3xl mx-auto leading-relaxed"
+          className="text-lg md:text-xl text-muted mb-4 max-w-3xl mx-auto leading-relaxed"
         >
-          Custom pencahayaan presisi dengan teknologi CNC & 3D Printing.
+          <span className="text-primary font-bold">
+            BILED Retrofit Lampung Timur
+          </span>{" "}
+          - Custom pencahayaan presisi dengan teknologi CNC & 3D Printing.
           <br />
-          Dari jalan raya hingga imajinasi tanpa batas.
+          Slimframe • Custom Akrilik • Neonbox Huruf Timbul
+        </motion.p>
+
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="text-sm text-muted/70 mb-8"
+        >
+          📍 Way Jepara, Lampung Timur | 📱 {contactInfo.phone}
         </motion.p>
 
         <motion.div

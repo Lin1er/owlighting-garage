@@ -58,17 +58,19 @@ export default function Footer() {
               </li>
               <li>
                 <Link
+                  href="/services"
+                  className="hover:text-primary cursor-pointer transition-colors"
+                >
+                  Services
+                </Link>
+              </li>
+              <li>
+                <Link
                   href="/portfolio"
                   className="hover:text-primary cursor-pointer transition-colors"
                 >
                   Portfolio
                 </Link>
-              </li>
-              <li
-                className="hover:text-primary cursor-pointer transition-colors"
-                onClick={() => scrollToSection("services")}
-              >
-                Services
               </li>
               <li
                 className="hover:text-primary cursor-pointer transition-colors"
@@ -83,9 +85,36 @@ export default function Footer() {
           <div>
             <h3 className="font-bold mb-4 text-primary">Contact Us</h3>
             <ul className="space-y-2 text-sm text-muted">
-              <li>📍 {contactInfo.address}</li>
-              <li>📱 {contactInfo.phone}</li>
-              <li>📧 {contactInfo.email}</li>
+              <li>
+                <a
+                  href={contactInfo.googleMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-primary transition-colors flex items-start gap-2"
+                >
+                  <span>📍</span>
+                  <span>{contactInfo.address}</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`tel:${contactInfo.phone}`}
+                  className="hover:text-primary transition-colors"
+                >
+                  📱 {contactInfo.phone}
+                </a>
+              </li>
+              <li>
+                <a
+                  href={`mailto:${contactInfo.email}`}
+                  className="hover:text-primary transition-colors"
+                >
+                  📧 {contactInfo.email}
+                </a>
+              </li>
+              <li className="mt-3 pt-3 border-t border-primary/10">
+                <span className="text-accent font-semibold">#MenolakGelap</span>
+              </li>
             </ul>
           </div>
         </div>
