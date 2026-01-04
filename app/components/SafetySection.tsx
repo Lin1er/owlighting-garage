@@ -36,14 +36,14 @@ export default function SafetySection() {
     <section className="relative py-24 px-6 lg:px-20 bg-surface/30">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection>
-          <h2 className="text-4xl lg:text-5xl font-black text-center mb-4">
-            Mengapa Harus <span className="text-glow">Aman</span>?
+          <h2 className="text-4xl lg:text-5xl font-black text-center mb-4 text-glow">
+            Mengapa Harus Aman?
           </h2>
           <p className="text-center text-muted mb-4 max-w-2xl mx-auto">
             Banyak yang takut pasang BILED karena kasus kabel terbakar & aki
             soak. Di Owlighting, keamanan adalah prioritas utama.
           </p>
-          <p className="text-center text-muted opacity-70 text-xl mb-16 w-full bg-linear-to-r from-[#050505]/50 via-[#000000]/50 to-[#050505]/50">
+          <p className="text-center text-muted text-xl mb-16 w-full bg-linear-to-r  from-[#050505]  via-[#000000]  to-[#050505]">
             Pengalaman 5+ Tahun • Ratusan Kendaraan • 0 Kasus Terbakar
           </p>
         </AnimatedSection>
