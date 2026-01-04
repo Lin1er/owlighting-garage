@@ -33,8 +33,8 @@ export default function ServiceCard({
         scale={1.05}
         transitionSpeed={2000}
       >
-        <div className="bg-surface border border-primary/10 rounded-2xl p-6 h-full hover:border-primary/30 transition-all group">
-          <div className="text-5xl mb-4 group-hover:scale-110 transition-transform">
+        <div className="bg-surface border border-primary/10 rounded-2xl p-6 h-full max-w-[calc(100vw-2rem)] hover:border-primary/30 transition-all group">
+          <div className="md:text-5xl text-4xl mb-4 group-hover:scale-110 transition-transform">
             {icon}
           </div>
           <h3 className="text-2xl font-bold mb-3 text-primary">{title}</h3>
