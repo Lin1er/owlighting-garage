@@ -3,11 +3,13 @@
 import AnimatedSection from "./AnimatedSection";
 import ServiceCard from "./ServiceCard";
 import { services } from "@/data";
+import StatsSection from "./StatsSection";
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="relative py-24 px-6 lg:px-20">
-      <div className="max-w-7xl mx-auto">
+    <section id="services" className="relative px-6 lg:px-20">
+      <StatsSection />
+      <div className="max-w-7xl mx-auto mt-10">
         <AnimatedSection>
           <h2 className="text-4xl lg:text-5xl font-black text-center mb-4 text-glow">
             Layanan Unggulan

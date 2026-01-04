@@ -43,8 +43,8 @@ export default function SafetySection() {
             Banyak yang takut pasang BILED karena kasus kabel terbakar & aki
             soak. Di Owlighting, keamanan adalah prioritas utama.
           </p>
-          <p className="text-center text-accent font-bold text-xl mb-16">
-            5+ Tahun • Ratusan Kendaraan • 0 Kasus Terbakar
+          <p className="text-center text-muted opacity-70 text-xl mb-16 w-full bg-linear-to-r from-[#050505]/50 via-[#000000]/50 to-[#050505]/50">
+            Pengalaman 5+ Tahun • Ratusan Kendaraan • 0 Kasus Terbakar
           </p>
         </AnimatedSection>
 

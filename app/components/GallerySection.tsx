@@ -4,6 +4,7 @@ import AnimatedSection from "./AnimatedSection";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { galleryImages, stats } from "@/data";
+import StatsSection from "./StatsSection";
 
 // Dynamic import to avoid SSR issues
 const ReactCompareImage = dynamic(() => import("react-compare-image"), {
@@ -55,28 +56,6 @@ export default function GallerySection() {
             </AnimatedSection>
           ))}
         </div>
-
-        {/* Stats */}
-        <AnimatedSection delay={0.6}>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.id}
-                whileHover={{ scale: 1.1 }}
-                className="glass rounded-xl p-6"
-              >
-                <div
-                  className={`text-4xl font-black ${
-                    index % 2 === 0 ? "text-primary" : "text-accent"
-                  } mb-2`}
-                >
-                  {stat.value}
-                </div>
-                <div className="text-sm text-muted">{stat.label}</div>
-              </motion.div>
-            ))}
-          </div>
-        </AnimatedSection>
       </div>
     </section>
   );
