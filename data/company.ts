@@ -82,7 +82,7 @@ export const facilities = [
     title: "3D Printing Studio",
     description: "Prototyping & custom shroud",
     image:
-      "https://images.unsplash.com/photo-1606557761934-e7058d9c2481?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1611117775350-ac3950990985?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     color: "accent",
   },
   {
