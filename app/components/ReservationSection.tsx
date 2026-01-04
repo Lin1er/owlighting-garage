@@ -143,7 +143,7 @@ export default function ReservationSection() {
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
                   }
-                  className="w-full px-4 py-3 bg-surface border border-primary/20 rounded-lg focus:border-primary outline-none transition-colors"
+                  className="w-full px-4 py-3 bg-surface border border-primary/20 rounded-lg focus:border-primary outline-none transition-colors bg-[#0d0d0d]"
                   placeholder="Masukkan nama Anda"
                 />
               </div>
@@ -157,7 +157,7 @@ export default function ReservationSection() {
                   onChange={(e) =>
                     setFormData({ ...formData, vehicle: e.target.value })
                   }
-                  className="w-full px-4 py-3 bg-surface border border-primary/20 rounded-lg focus:border-primary outline-none transition-colors"
+                  className="w-full px-4 py-3 bg-surface border border-primary/20 rounded-lg focus:border-primary outline-none transition-colors bg-[#0d0d0d]"
                 >
                   <option>Mobil</option>
                   <option>Motor</option>
@@ -175,7 +175,7 @@ export default function ReservationSection() {
                   onChange={(e) =>
                     setFormData({ ...formData, service: e.target.value })
                   }
-                  className="w-full px-4 py-3 bg-surface border border-primary/20 rounded-lg focus:border-primary outline-none transition-colors"
+                  className="w-full px-4 py-3 bg-surface border border-primary/20 rounded-lg focus:border-primary outline-none transition-colors bg-[#0d0d0d]"
                 >
                   <option>BILED Retrofit</option>
                   <option>D2 Laser / Foglamp</option>
@@ -195,7 +195,7 @@ export default function ReservationSection() {
                   onChange={(e) =>
                     setFormData({ ...formData, date: e.target.value })
                   }
-                  className="w-full px-4 py-3 bg-surface border border-primary/20 rounded-lg focus:border-primary outline-none transition-colors"
+                  className="w-full px-4 py-3 bg-surface border border-primary/20 rounded-lg focus:border-primary outline-none transition-colors bg-[#0d0d0d]"
                 />
               </div>
 
