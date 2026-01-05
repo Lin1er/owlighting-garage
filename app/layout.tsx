@@ -4,6 +4,7 @@ import "./globals.css";
 import InteractiveBackground from "./components/InteractiveBackground";
 import AnimatedGridBackground from "./components/AnimatedGridBackground";
 import FloatingParticles from "./components/FloatingParticles";
+import LoadingScreen from "./components/LoadingScreen";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -111,19 +112,20 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        {/* Loading Screen */}
+        <LoadingScreen />
+
         {/* Animated Grid Background */}
         <AnimatedGridBackground />
-        
+
         {/* Floating Light Particles */}
         <FloatingParticles />
-        
+
         {/* Interactive Highbeam Spotlight */}
         <InteractiveBackground />
-        
+
         {/* Main Content */}
-        <div className="relative z-10">
-          {children}
-        </div>
+        <div className="relative z-10">{children}</div>
       </body>
     </html>
   );
