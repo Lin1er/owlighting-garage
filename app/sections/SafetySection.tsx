@@ -1,8 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
-import AnimatedSection from "./AnimatedSection";
-import { DynamicIcon } from "./DynamicIcon";
+import AnimatedSection from "../components/AnimatedSection";
+import { DynamicIcon } from "../components/DynamicIcon";
 
 export default function SafetySection() {
   const safetyPoints = [
@@ -43,7 +43,7 @@ export default function SafetySection() {
             Banyak yang takut pasang BILED karena kasus kabel terbakar & aki
             soak. Di Owlighting, keamanan adalah prioritas utama.
           </p>
-          <p className="absolute text-center left-0 text-muted text-xl mb-16 w-screen bg-linear-to-r  from-[#050505]  via-[#000000]  to-[#050505]">
+          <p className="absolute text-center left-0 text-muted text-xl mb-16 w-screen bg-linear-to-r opacity-70 text-glow from-[#050505]  via-[#000000]  to-[#050505]">
             Pengalaman 5+ Tahun • Ratusan Kendaraan • 0 Kasus Terbakar
           </p>
         </AnimatedSection>

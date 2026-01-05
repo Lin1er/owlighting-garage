@@ -1,17 +1,20 @@
 "use client";
 
-import AnimatedSection from "./AnimatedSection";
+import AnimatedSection from "../components/AnimatedSection";
 import { motion } from "framer-motion";
 import dynamic from "next/dynamic";
 import { galleryImages, stats } from "@/data";
 
-import { ReactCompareSlider, ReactCompareSliderImage } from "react-compare-slider";
+import {
+  ReactCompareSlider,
+  ReactCompareSliderImage,
+} from "react-compare-slider";
 
 export default function GallerySection() {
   return (
     <section
       id="gallery"
-      className="relative py-24 px-6 lg:px-20 overflow-hidden"
+      className="relative sm:py-24 px-6 lg:px-20 overflow-hidden"
     >
       {/* Background effects */}
       <div className="absolute inset-0">
@@ -38,8 +41,18 @@ export default function GallerySection() {
                 className="relative rounded-2xl overflow-hidden shadow-2xl h-100 md:h-180 compare-container"
               >
                 <ReactCompareSlider
-                  itemOne={<ReactCompareSliderImage src={item.beforeImage} alt="Before" />}
-                  itemTwo={<ReactCompareSliderImage src={item.afterImage} alt="After" />}
+                  itemOne={
+                    <ReactCompareSliderImage
+                      src={item.beforeImage}
+                      alt="Before"
+                    />
+                  }
+                  itemTwo={
+                    <ReactCompareSliderImage
+                      src={item.afterImage}
+                      alt="After"
+                    />
+                  }
                   // @ts-ignore
                   className="h-100 md:h-180"
                   style={{ width: "100%", height: "100%" }}

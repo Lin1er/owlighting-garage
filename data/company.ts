@@ -1,16 +1,16 @@
 // Data kontak dan informasi bisnis
 export const contactInfo = {
   phone: "+62 856-5864-8413",
-  email: "hello@owlighting.com",
+  email: "owlightinggarage@gmail.com",
   address:
     "Jl. Danau Km.1, Sumberjo, Way Jepara, Kabupaten Lampung Timur, Lampung 34396",
   workingHours: "Senin - Sabtu: 09.00 - 18.00",
   whatsappNumber: "6285658648413", // tanpa + dan -
   googleMapsUrl: "https://maps.app.goo.gl/MvXVMty2vPcaZEB28",
   socialMedia: {
-    instagram: "https://instagram.com/owlighting",
-    facebook: "https://facebook.com/owlighting",
-    tiktok: "https://tiktok.com/@owlighting",
+    instagram: "https://www.instagram.com/owlighting.garage/",
+    facebook: "https://web.facebook.com/el.sianakreggae?locale=id_ID",
+    tiktok: "https://www.tiktok.com/@owlighting_garage",
   },
 };
 

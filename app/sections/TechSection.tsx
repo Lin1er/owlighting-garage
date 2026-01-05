@@ -1,12 +1,12 @@
 "use client";
 
-import AnimatedSection from "./AnimatedSection";
+import AnimatedSection from "../components/AnimatedSection";
 import { motion } from "framer-motion";
 import Image from "next/image";
 
 export default function TechSection() {
   return (
-    <section id="tech" className="relative py-24 px-6 lg:px-20 overflow-hidden">
+    <section id="tech" className="relative sm:py-24 py-15 px-6 lg:px-20 overflow-hidden">
       {/* Background gradient */}
       <div className="absolute inset-0 bg-linear-to-b from-transparent via-surface/50 to-transparent pointer-events-none" />
 

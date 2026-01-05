@@ -88,7 +88,7 @@ export default function Navbar() {
 
         <button
           onClick={() => scrollToSection("reservation")}
-          className="hidden md:block px-5 py-2 bg-linear-to-r from-primary to-cyan-400 text-black font-semibold rounded-lg glow-primary hover:scale-105 transition-transform"
+          className="hidden md:block px-5 py-2 bg-cyan-400 text-black font-semibold rounded-lg glow-primary hover:scale-105 transition-transform"
         >
           Reservasi Sekarang
         </button>
@@ -119,12 +119,6 @@ export default function Navbar() {
                 </Link>
               ))}
               <button
-                onClick={() => scrollToSection("services")}
-                className="block w-full text-left py-2 text-muted hover:text-primary transition-colors"
-              >
-                Services
-              </button>
-              <button
                 onClick={() => scrollToSection("contact")}
                 className="block w-full text-left py-2 text-muted hover:text-primary transition-colors"
               >
@@ -132,7 +126,7 @@ export default function Navbar() {
               </button>
               <button
                 onClick={() => scrollToSection("reservation")}
-                className="w-full px-5 py-3 bg-linear-to-r from-primary to-cyan-400 text-black font-semibold rounded-lg glow-primary mt-4"
+                className="w-full px-5 py-3 bg-cyan-400 text-black font-semibold rounded-lg glow-primary mt-4"
               >
                 Reservasi Sekarang
               </button>

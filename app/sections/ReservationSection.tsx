@@ -1,6 +1,6 @@
 "use client";
 
-import AnimatedSection from "./AnimatedSection";
+import AnimatedSection from "../components/AnimatedSection";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import { contactInfo } from "@/data";
@@ -24,7 +24,7 @@ export default function ReservationSection() {
   };
 
   return (
-    <section id="reservation" className="relative py-24 px-6 lg:px-20">
+    <section id="reservation" className="relative sm:py-24 px-6 lg:px-20">
       {/* Background image */}
       <div className="absolute inset-0 opacity-10">
         <div
@@ -103,20 +103,20 @@ export default function ReservationSection() {
                   <h3 className="font-bold mb-1 text-primary">Social Media</h3>
                   <div className="flex gap-4 mt-2">
                     <a
-                      href="#"
-                      className="text-muted hover:text-primary transition-colors"
+                      href={contactInfo.socialMedia.instagram}
+                      className="text-muted hover:text-glow hover:underline transition-colors"
                     >
                       Instagram
                     </a>
                     <a
-                      href="#"
-                      className="text-muted hover:text-primary transition-colors"
+                      href={contactInfo.socialMedia.facebook}
+                      className="text-muted hover:text-glow hover:underline transition-colors"
                     >
                       Facebook
                     </a>
                     <a
-                      href="#"
-                      className="text-muted hover:text-primary transition-colors"
+                      href={contactInfo.socialMedia.tiktok}
+                      className="text-muted hover:text-glow hover:underline transition-colors"
                     >
                       TikTok
                     </a>

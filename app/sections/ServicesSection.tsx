@@ -1,7 +1,7 @@
 "use client";
 
-import AnimatedSection from "./AnimatedSection";
-import ServiceCard from "./ServiceCard";
+import AnimatedSection from "../components/AnimatedSection";
+import ServiceCard from "../components/ServiceCard";
 import { services } from "@/data";
 import StatsSection from "./StatsSection";
 
