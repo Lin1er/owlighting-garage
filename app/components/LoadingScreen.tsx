@@ -104,39 +104,97 @@ export default function LoadingScreen() {
             </motion.div>
 
             {/* Headlight beam animation */}
-            <div className="relative w-80 h-2 bg-surface/50 rounded-full overflow-hidden">
-              {/* Background track */}
-              <div className="absolute inset-0 bg-linear-to-r from-transparent via-primary/20 to-transparent" />
-
-              {/* Progress fill */}
+            <div className="relative w-80 md:w-96 h-3 bg-surface/50 rounded-full overflow-hidden shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+              {/* Background track with animated stripes */}
               <motion.div
-                className="absolute left-0 top-0 h-full bg-linear-to-r from-primary via-accent to-primary rounded-full"
-                style={{ width: `${Math.min(progress, 100)}%` }}
-                transition={{ duration: 0.3 }}
-              >
-                {/* Glow effect */}
-                <motion.div
-                  className="absolute right-0 top-1/2 -translate-y-1/2 w-20 h-20 bg-primary/50 rounded-full blur-xl"
-                  animate={{
-                    scale: [1, 1.2, 1],
-                    opacity: [0.5, 0.8, 0.5],
-                  }}
-                  transition={{ duration: 1, repeat: Infinity }}
-                />
-              </motion.div>
-
-              {/* Scanning beam effect */}
-              <motion.div
-                className="absolute top-0 w-1 h-full bg-white/80 shadow-[0_0_10px_rgba(255,255,255,0.8)]"
+                className="absolute inset-0 opacity-30"
+                style={{
+                  backgroundImage:
+                    "repeating-linear-gradient(90deg, transparent, transparent 20px, rgba(59,130,246,0.1) 20px, rgba(59,130,246,0.1) 40px)",
+                }}
                 animate={{
-                  left: ["0%", "100%"],
+                  backgroundPosition: ["0px 0px", "40px 0px"],
                 }}
                 transition={{
-                  duration: 2,
+                  duration: 1,
                   repeat: Infinity,
                   ease: "linear",
                 }}
               />
+
+              {/* Progress fill with gradient */}
+              <motion.div
+                className="absolute left-0 top-0 h-full rounded-full"
+                style={{
+                  width: `${Math.min(progress, 100)}%`,
+                  background:
+                    "linear-gradient(90deg, #3b82f6 0%, #06b6d4 50%, #3b82f6 100%)",
+                  boxShadow: "0 0 20px rgba(59,130,246,0.8)",
+                }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Animated shine effect */}
+                <motion.div
+                  className="absolute inset-0 rounded-full"
+                  style={{
+                    background:
+                      "linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.4) 50%, transparent 100%)",
+                  }}
+                  animate={{
+                    x: ["-100%", "200%"],
+                  }}
+                  transition={{
+                    duration: 1.5,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+
+                {/* Pulsing glow at the edge */}
+                <motion.div
+                  className="absolute right-0 top-1/2 -translate-y-1/2 w-24 h-24 bg-primary/60 rounded-full blur-2xl"
+                  animate={{
+                    scale: [1, 1.3, 1],
+                    opacity: [0.6, 1, 0.6],
+                  }}
+                  transition={{ duration: 0.8, repeat: Infinity }}
+                />
+              </motion.div>
+
+              {/* Scanning beam effect (faster) */}
+              <motion.div
+                className="absolute top-0 w-0.5 h-full bg-white shadow-[0_0_15px_rgba(255,255,255,1)]"
+                animate={{
+                  left: ["0%", "100%"],
+                }}
+                transition={{
+                  duration: 1.5,
+                  repeat: Infinity,
+                  ease: "linear",
+                }}
+              />
+
+              {/* Particle effects */}
+              {[...Array(5)].map((_, i) => (
+                <motion.div
+                  key={`particle-${i}`}
+                  className="absolute w-1 h-1 bg-accent rounded-full"
+                  style={{
+                    left: `${20 * i}%`,
+                    top: "50%",
+                  }}
+                  animate={{
+                    y: [-10, 10, -10],
+                    opacity: [0, 1, 0],
+                    scale: [0, 1.5, 0],
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: i * 0.3,
+                  }}
+                />
+              ))}
             </div>
 
             {/* Progress percentage */}
