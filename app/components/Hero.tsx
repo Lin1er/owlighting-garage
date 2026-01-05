@@ -28,10 +28,9 @@ export default function Hero() {
       {/* Background image with parallax */}
       <motion.div style={{ y }} className="absolute inset-0 z-0">
         <div
-          className="md:absolute hidden inset-0 bg-cover bg-center"
+          className="absolute  inset-0 bg-cover bg-center"
           style={{
-            backgroundImage:
-              "url(https://i.pinimg.com/1200x/aa/8c/59/aa8c59af08030bf767a16f053cb78d1c.jpg)",
+            backgroundImage: "url(/background/desktop-hero.jpg)",
           }}
         />
         <div
