@@ -6,7 +6,10 @@ import Image from "next/image";
 
 export default function TechSection() {
   return (
-    <section id="tech" className="relative sm:py-24 py-15 px-6 lg:px-20 overflow-hidden">
+    <section
+      id="tech"
+      className="relative sm:py-24 py-15 px-6 lg:px-20 overflow-hidden"
+    >
       {/* Background gradient */}
       <div className="absolute inset-0 bg-linear-to-b from-transparent via-surface/50 to-transparent pointer-events-none" />
 
@@ -22,6 +25,7 @@ export default function TechSection() {
                 src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&auto=format&fit=crop"
                 alt="CNC Machine"
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                 className="object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent" />
@@ -111,6 +115,7 @@ export default function TechSection() {
                 src="https://images.unsplash.com/photo-1611117775350-ac3950990985?q=80&w=1171&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="3D Printer"
                 fill
+                sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                 className="object-cover group-hover:scale-110 transition-transform duration-700"
               />
               <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent" />

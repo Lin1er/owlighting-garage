@@ -98,7 +98,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="text-4xl md:text-7xl lg:text-8xl font-black mb-6 text-glow"
+          className="text-4xl md:text-7xl lg:text-8xl font-black mb-6 text-glow select-none"
         >
           #MENOLAKGELAP
         </motion.h1>

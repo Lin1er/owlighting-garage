@@ -49,6 +49,7 @@ export default function AboutPage() {
                   src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?w=800&auto=format&fit=crop"
                   alt="Workshop"
                   fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                   className="object-cover"
                 />
               </div>
@@ -119,6 +120,7 @@ export default function AboutPage() {
                     src={facility.image}
                     alt={facility.title}
                     fill
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 600px"
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent" />

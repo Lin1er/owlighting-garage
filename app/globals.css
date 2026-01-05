@@ -11,7 +11,12 @@
   --font-mono: var(--font-geist-mono);
 }
 
+html {
+  position: relative;
+}
+
 body {
+  position: relative;
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-sans), 'Inter', system-ui, sans-serif;
