@@ -46,19 +46,19 @@ export default function LoadingScreen() {
   }, []);
 
   return (
-    <AnimatePresence>
+    <AnimatePresence mode="wait">
       {isLoading && (
         <motion.div
           initial={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.5 }}
-          className="fixed inset-0 z-9999 bg-black flex items-center justify-center"
+          className="fixed inset-0 z-99999 bg-black flex items-center justify-center"
         >
           {/* Animated background grid */}
           <div className="absolute inset-0 opacity-20">
             {[...Array(20)].map((_, i) => (
               <motion.div
-                key={i}
+                key={`grid-${i}`}
                 className="absolute h-px bg-primary/30"
                 style={{
                   top: `${(i + 1) * 5}%`,
@@ -141,10 +141,10 @@ export default function LoadingScreen() {
 
             {/* Progress percentage */}
             <motion.div
-              key={Math.floor(progress)}
+              key={`progress-${Math.floor(progress)}`}
               initial={{ scale: 1.2, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              className="text-4xl font-black text-primary"
+              className="text-5xl md:text-6xl font-black text-primary drop-shadow-[0_0_20px_rgba(59,130,246,0.5)]"
             >
               {Math.floor(progress)}%
             </motion.div>
@@ -152,7 +152,7 @@ export default function LoadingScreen() {
             {/* Loading tips with game-style presentation */}
             <motion.div
               className="relative h-20 flex items-center justify-center"
-              key={currentTip}
+              key={`tip-${currentTip}`}
             >
               <motion.div
                 initial={{ y: 20, opacity: 0 }}
@@ -172,7 +172,7 @@ export default function LoadingScreen() {
             <div className="flex gap-2">
               {[0, 1, 2].map((i) => (
                 <motion.div
-                  key={i}
+                  key={`dot-${i}`}
                   className="w-2 h-2 bg-primary rounded-full"
                   animate={{
                     scale: [1, 1.5, 1],
