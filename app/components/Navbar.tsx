@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -35,10 +36,13 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-20 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 cursor-pointer">
-          <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center glow-primary">
-            <div className="w-6 h-6 rounded-full bg-primary"></div>
-          </div>
-          <span className="text-xl font-bold text-glow">OWLIGHTING</span>
+          {/* <span className="text-xl font-bold text-glow">OWLIGHTING</span> */}
+          <Image
+            src="/assets/logo.png"
+            alt="OWLIGHTING Logo"
+            width={200}
+            height={50}
+          />
         </Link>
 
         {/* Desktop Menu */}

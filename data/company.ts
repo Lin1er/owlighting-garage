@@ -1,16 +1,26 @@
 // Data kontak dan informasi bisnis
 export const contactInfo = {
-  phone: "+62 856-5864-8413",
-  email: "owlightinggarage@gmail.com",
+  phone: process.env.NEXT_PUBLIC_PHONE || "+62 856-5864-8413",
+  email: process.env.NEXT_PUBLIC_EMAIL || "owlightinggarage@gmail.com",
   address:
+    process.env.NEXT_PUBLIC_COMPANY_ADDRESS ||
     "Jl. Danau Km.1, Sumberjo, Way Jepara, Kabupaten Lampung Timur, Lampung 34396",
-  workingHours: "Senin - Sabtu: 09.00 - 18.00",
-  whatsappNumber: "6285658648413", // tanpa + dan -
-  googleMapsUrl: "https://maps.app.goo.gl/MvXVMty2vPcaZEB28",
+  workingHours:
+    process.env.NEXT_PUBLIC_WORKING_HOURS || "Senin - Sabtu: 09.00 - 18.00",
+  whatsappNumber: process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || "6285658648413", // tanpa + dan -
+  googleMapsUrl:
+    process.env.NEXT_PUBLIC_GOOGLE_MAPS_URL ||
+    "https://maps.app.goo.gl/MvXVMty2vPcaZEB28",
   socialMedia: {
-    instagram: "https://www.instagram.com/owlighting.garage/",
-    facebook: "https://web.facebook.com/el.sianakreggae?locale=id_ID",
-    tiktok: "https://www.tiktok.com/@owlighting_garage",
+    instagram:
+      process.env.NEXT_PUBLIC_INSTAGRAM_URL ||
+      "https://www.instagram.com/owlighting.garage/",
+    facebook:
+      process.env.NEXT_PUBLIC_FACEBOOK_URL ||
+      "https://web.facebook.com/el.sianakreggae?locale=id_ID",
+    tiktok:
+      process.env.NEXT_PUBLIC_TIKTOK_URL ||
+      "https://www.tiktok.com/@owlighting_garage",
   },
 };
 

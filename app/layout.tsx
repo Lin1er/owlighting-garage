@@ -5,6 +5,7 @@ import InteractiveBackground from "./components/InteractiveBackground";
 import AnimatedGridBackground from "./components/AnimatedGridBackground";
 import FloatingParticles from "./components/FloatingParticles";
 import LoadingScreen from "./components/LoadingScreen";
+import GoogleAnalytics from "./components/GoogleAnalytics";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -91,7 +92,9 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "your-google-verification-code", // Nanti ganti dengan kode verifikasi Google Search Console
+    google:
+      process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION ||
+      "your-google-verification-code",
   },
 };
 
@@ -104,10 +107,19 @@ export default function RootLayout({
     <html lang="id">
       <head>
         <link rel="canonical" href="https://owlighting.com" />
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#00C2FF" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta
+          name="apple-mobile-web-app-status-bar-style"
+          content="black-translucent"
+        />
+        <meta name="apple-mobile-web-app-title" content="Owlighting" />
         <meta name="geo.region" content="ID-LA" />
         <meta name="geo.placename" content="Lampung Timur" />
         <meta name="geo.position" content="-5.234567;105.678901" />
         <meta name="ICBM" content="-5.234567, 105.678901" />
+        <GoogleAnalytics />
       </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}

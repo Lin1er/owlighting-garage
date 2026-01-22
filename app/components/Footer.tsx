@@ -72,6 +72,14 @@ export default function Footer() {
                   Portfolio
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/blog"
+                  className="hover:text-primary cursor-pointer transition-colors"
+                >
+                  TikTok Videos
+                </Link>
+              </li>
               <li
                 className="hover:text-primary cursor-pointer transition-colors"
                 onClick={() => scrollToSection("reservation")}

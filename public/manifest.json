@@ -1,0 +1,62 @@
+{
+  "name": "Owlighting - BILED Retrofit Lampung Timur",
+  "short_name": "Owlighting",
+  "description": "Spesialis BILED retrofit & custom headlight di Lampung Timur. CNC Precision • Anti Terbakar • Anti Soak Aki",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050505",
+  "theme_color": "#00C2FF",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "/screenshot-mobile.png",
+      "sizes": "540x720",
+      "type": "image/png",
+      "form_factor": "narrow"
+    },
+    {
+      "src": "/screenshot-desktop.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide"
+    }
+  ],
+  "categories": ["automotive", "business", "lifestyle"],
+  "shortcuts": [
+    {
+      "name": "WhatsApp Konsultasi",
+      "short_name": "Chat",
+      "description": "Chat langsung via WhatsApp",
+      "url": "https://wa.me/6281377722316",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Lihat Harga",
+      "short_name": "Harga",
+      "description": "Daftar harga layanan",
+      "url": "/price-list",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Portfolio",
+      "short_name": "Galeri",
+      "description": "Lihat hasil pekerjaan",
+      "url": "/portfolio",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}

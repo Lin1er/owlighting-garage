@@ -2,12 +2,13 @@ import Navbar from "./components/Navbar";
 import Hero from "./sections/Hero";
 import TechSection from "./sections/TechSection";
 import ServicesSection from "./sections/ServicesSection";
+import BeforeAfterSection from "./sections/BeforeAfterSection";
 import SafetySection from "./sections/SafetySection";
 import GallerySection from "./sections/GallerySection";
 import ReservationSection from "./sections/ReservationSection";
 import Footer from "./components/Footer";
 import ScrollProgress from "./components/ScrollProgress";
-import FloatingCTA from "./components/FloatingCTA";
+import WhatsAppWidget from "./components/WhatsAppWidget";
 import StructuredData from "./components/StructuredData";
 
 export default function Home() {
@@ -19,11 +20,12 @@ export default function Home() {
       <Hero />
       <TechSection />
       <ServicesSection />
+      <BeforeAfterSection />
       <SafetySection />
       <GallerySection />
       <ReservationSection />
       <Footer />
-      <FloatingCTA />
+      <WhatsAppWidget />
     </main>
   );
 }
