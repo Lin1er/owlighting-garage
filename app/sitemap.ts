@@ -1,7 +1,7 @@
 import { MetadataRoute } from "next";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://owlighting.com";
+  const baseUrl = "https://owlighting-garage.vercel.app";
 
   return [
     {

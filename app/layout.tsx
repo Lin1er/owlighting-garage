@@ -52,7 +52,7 @@ export const metadata: Metadata = {
     address: false,
     telephone: false,
   },
-  metadataBase: new URL("https://owlighting.com"),
+  metadataBase: new URL("https://owlighting-garage.vercel.app"),
   alternates: {
     canonical: "/",
   },
@@ -60,7 +60,7 @@ export const metadata: Metadata = {
     title: "Owlighting - BILED Retrofit Lampung Timur | #MenolakGelap",
     description:
       "Spesialis BILED retrofit, D2 Laser, custom headlight di Lampung Timur. CNC & 3D Printing. Slimframe, Custom Akrilik, Neonbox Huruf Timbul. Way Jepara, Lampung.",
-    url: "https://owlighting.com",
+    url: "https://owlighting-garage.vercel.app",
     siteName: "Owlighting Garage",
     locale: "id_ID",
     type: "website",
