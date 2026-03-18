@@ -135,21 +135,32 @@ export default function Hero() {
           di Lampung Timur.
         </motion.p>
 
+        <motion.p
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.5 }}
+          className="text-sm text-muted/70 mb-8 flex flex-col md:flex-row items-center justify-center gap-2"
+        >
+          <span>📍 Way Jepara, Lampung Timur</span>
+          <span className="hidden md:inline">|</span>
+          <span>📱 {contactInfo.phone}</span>
+        </motion.p>
+
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.6 }}
-          className="flex flex-col sm:flex-row gap-4 justify-center items-center"
+          className="flex flex-col sm:flex-row gap-4 justify-center items-center w-full"
         >
           <button
             onClick={() => scrollToSection("reservation")}
-            className="px-8 py-4 bg-cyan-400 text-black font-bold rounded-lg glow-primary hover:scale-105 transition-transform w-full sm:w-auto"
+            className="w-full sm:w-auto px-8 py-4 bg-cyan-400 text-black font-bold rounded-lg glow-primary hover:scale-105 transition-transform"
           >
             Tanya Harga & Konsultasi
           </button>
           <button
             onClick={() => scrollToSection("gallery")}
-            className="px-8 py-4 border-2 border-primary/30 text-white font-semibold rounded-lg hover:bg-primary/10 hover:border-primary transition-all hover:scale-105 w-full sm:w-auto"
+            className="w-full sm:w-auto px-8 py-4 border-2 border-primary/30 text-white font-semibold rounded-lg hover:bg-primary/10 hover:border-primary transition-all hover:scale-105"
           >
             Lihat Bukti Pengerjaan
           </button>

@@ -27,22 +27,22 @@ export default function GallerySection() {
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               PORTFOLIO KAMI
             </div>
-            <h2 className="text-4xl lg:text-5xl font-black mb-4 text-glow">
+            <h2 className="text-3xl md:text-5xl font-black mb-4 text-glow">
               Hasil Modifikasi Terbaik
             </h2>
-            <p className="text-muted mb-12 max-w-2xl mx-auto">
+            <p className="text-sm md:text-base text-muted mb-10 max-w-2xl mx-auto px-4">
               Berbagai karya pencahayaan custom, retrofit BILED gahar, hingga
               kreasi DRL Matrix menggunakan CNC & 3D Print.
             </p>
           </div>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
           {featuredProjects.map((item, index) => (
             <AnimatedSection key={item.id} delay={0.2 + index * 0.1}>
               <motion.div
                 whileHover={{ y: -10, scale: 1.02 }}
-                className="relative rounded-2xl overflow-hidden shadow-2xl h-80 group glass"
+                className="relative rounded-2xl overflow-hidden shadow-xl h-[300px] sm:h-80 group glass mx-auto w-full max-w-[350px] sm:max-w-none"
               >
                 <Image
                   src={item.image}

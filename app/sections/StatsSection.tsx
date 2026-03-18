@@ -11,11 +11,11 @@ export default function StatsSection() {
         {stats.map((stat, index) => (
           <motion.div
             key={stat.id}
-            whileHover={{ scale: 1.1 }}
-            className="glass rounded-xl p-6"
+            whileHover={{ scale: 1.05 }}
+            className="glass rounded-xl p-4 md:p-6"
           >
             <div
-              className={`text-4xl font-black ${
+              className={`text-3xl md:text-4xl font-black ${
                 index % 2 === 0 ? "text-primary" : "text-accent"
               } mb-2`}
             >
