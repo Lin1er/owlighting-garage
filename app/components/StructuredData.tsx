@@ -5,11 +5,12 @@ import { contactInfo, companyInfo } from "@/data";
 export default function StructuredData() {
   const localBusinessSchema = {
     "@context": "https://schema.org",
-    "@type": "AutomotiveBusiness",
+    "@type": ["AutomotiveBusiness", "AutoRepair"],
     "@id": "https://owlighting-garage.vercel.app",
     name: "Owlighting Garage",
     alternateName: "Owlighting",
-    description: companyInfo.description,
+    description:
+      "Bengkel Spesialis Custom Lampu, Pasang BILED retrofit Mobil / Motor, Poles Kaca Lampu (Nano Burn), DRL Matrix, D2 Laser, dan Servis Headlamp.",
     url: "https://owlighting-garage.vercel.app",
     telephone: contactInfo.phone,
     email: contactInfo.email,

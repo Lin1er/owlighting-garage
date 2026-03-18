@@ -19,12 +19,24 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title:
-    "Owlighting - BILED Retrofit Lampung Timur | Custom Lampu Mobil & Motor #MenolakGelap",
+    "Owlighting - Pasang Custom BILED & Bengkel Lampu Kendaraan Lampung Timur | #MenolakGelap",
   description:
-    "Owlighting Garage - Spesialis BILED retrofit, D2 Laser, custom headlight di Lampung Timur. Teknologi CNC & 3D Printing untuk lampu mobil & motor. Way Jepara, Lampung. Slimframe, Custom Akrilik, Neonbox. Konsultasi Gratis!",
+    "Bengkel spesialis lampu kendaraan: Pasang Custom BILED, servis headlamp motor/mobil, pasang projie, poles kaca lampu (nano burn), custom DRL Matrix, D2 Laser di Lampung Timur. Konsultasi Gratis!",
   keywords: [
+    "custom biled",
+    "pasang biled terdekat",
+    "bengkel lampu mobil",
+    "bengkel lampu motor",
+    "pasang projie motor",
+    "bengkel lampu kendaraan",
+    "poles kaca lampu mobil",
+    "nano burn coating",
+    "servis lampu mobil",
+    "servis headlamp",
+    "biled matrix",
+    "drl matrix",
+    "lampu projie mobil",
     "biled lampung timur",
-    "owlighting",
     "owlighting garage",
     "retrofit lampu lampung",
     "custom headlight lampung",
@@ -39,10 +51,7 @@ export const metadata: Metadata = {
     "slimframe",
     "custom akrilik",
     "neon box lampung",
-    "neonbox huruf timbul",
     "menolak gelap",
-    "bengkel lampu terbaik lampung",
-    "retrofit hid lampung",
   ],
   authors: [{ name: "Owlighting Garage" }],
   creator: "Owlighting",
@@ -57,9 +66,9 @@ export const metadata: Metadata = {
     canonical: "/",
   },
   openGraph: {
-    title: "Owlighting - BILED Retrofit Lampung Timur | #MenolakGelap",
+    title: "Owlighting Garage - Pasang Custom BILED & Bengkel Lampu Terdekat",
     description:
-      "Spesialis BILED retrofit, D2 Laser, custom headlight di Lampung Timur. CNC & 3D Printing. Slimframe, Custom Akrilik, Neonbox Huruf Timbul. Way Jepara, Lampung.",
+      "Spesialis custom lampu kendaraan: Pasang BILED retrofit, D2 Laser, Nano Burn Coating, DRL Matrix untuk motor & mobil. #MenolakGelap Lampung Timur.",
     url: "https://owlighting-garage.vercel.app",
     siteName: "Owlighting Garage",
     locale: "id_ID",
@@ -107,7 +116,10 @@ export default function RootLayout({
     <html lang="id">
       <head>
         <link rel="canonical" href="https://owlighting-garage.vercel.app" />
-        <meta name="google-site-verification" content="jJHGCMuoy94jnBqTSb921m99iNlXYSH5YDjl1YJnpxI" />
+        <meta
+          name="google-site-verification"
+          content="jJHGCMuoy94jnBqTSb921m99iNlXYSH5YDjl1YJnpxI"
+        />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#00C2FF" />
         <meta name="apple-mobile-web-app-capable" content="yes" />

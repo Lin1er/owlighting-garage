@@ -9,6 +9,6 @@ export default function robots(): MetadataRoute.Robots {
         disallow: ["/api/", "/admin/"],
       },
     ],
-    sitemap: "owlighting-garage.vercel.app",
+    sitemap: "https://owlighting-garage.vercel.app/sitemap.xml",
   };
 }
