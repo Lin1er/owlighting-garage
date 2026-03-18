@@ -106,7 +106,7 @@ export default function ServicesPage() {
                         "_blank"
                       );
                     }}
-                    className="mt-6 w-full py-3 bg-linear-to-r from-primary to-cyan-400 text-black font-bold rounded-lg glow-primary"
+                    className="mt-6 w-full py-3 bg-cyan-400 hover:bg-cyan-300 text-black font-bold rounded-lg glow-primary"
                   >
                     Konsultasi Sekarang
                   </motion.button>
@@ -353,7 +353,7 @@ export default function ServicesPage() {
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-10 py-4 bg-linear-to-r from-primary to-cyan-400 text-black font-bold rounded-lg glow-primary text-lg inline-flex items-center gap-3 justify-center"
+                className="px-10 py-4 bg-cyan-400 hover:bg-cyan-300 text-black font-bold rounded-lg glow-primary text-lg inline-flex items-center gap-3 justify-center"
               >
                 <DynamicIcon name="FaComments" size={24} />
                 WhatsApp Kami

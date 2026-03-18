@@ -214,7 +214,7 @@ export default function ReservationSection() {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full px-8 py-4 bg-linear-to-r from-primary to-cyan-400 text-black font-bold rounded-lg glow-primary hover:shadow-2xl transition-all"
+                className="w-full px-8 py-4 bg-cyan-400 hover:bg-cyan-300 text-black font-bold rounded-lg glow-primary hover:shadow-2xl transition-all"
               >
                 Kirim via WhatsApp
               </motion.button>

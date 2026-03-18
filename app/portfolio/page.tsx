@@ -169,7 +169,7 @@ export default function PortfolioPage() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => (window.location.href = "/#reservation")}
-              className="px-10 py-4 bg-linear-to-r from-primary to-cyan-400 text-black font-bold rounded-lg glow-primary text-lg"
+              className="px-10 py-4 bg-cyan-400 hover:bg-cyan-300 text-black font-bold rounded-lg glow-primary text-lg"
             >
               Mulai Project Anda
             </motion.button>

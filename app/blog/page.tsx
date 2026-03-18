@@ -198,7 +198,7 @@ export default function BlogPage() {
               }
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-10 py-4 bg-linear-to-r from-primary to-cyan-400 text-black font-bold rounded-lg glow-primary text-lg hover:scale-105 transition-transform"
+              className="inline-flex items-center gap-3 px-10 py-4 bg-cyan-400 hover:bg-cyan-300 text-black font-bold rounded-lg glow-primary text-lg hover:scale-105 transition-transform"
             >
               <FaTiktok className="text-2xl" />
               <span>@owlighting_garage</span>

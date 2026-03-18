@@ -28,7 +28,7 @@ export default function FloatingCTA() {
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.9 }}
           onClick={scrollToReservation}
-          className="fixed bottom-8 right-8 z-40 px-6 py-4 bg-linear-to-r from-primary to-cyan-400 text-black font-bold rounded-full glow-primary shadow-2xl flex items-center gap-2"
+          className="fixed bottom-8 right-8 z-40 px-6 py-4 bg-cyan-400 hover:bg-cyan-300 text-black font-bold rounded-full glow-primary shadow-2xl flex items-center gap-2"
         >
           <span className="text-2xl">💬</span>
           <span className="hidden sm:inline">Chat Sekarang</span>

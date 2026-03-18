@@ -74,7 +74,7 @@ export default function GallerySection() {
               href="/portfolio"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block px-8 py-4 bg-linear-to-r from-primary to-cyan-400 text-black font-bold rounded-lg glow-primary shadow-xl"
+              className="inline-block px-8 py-4 bg-cyan-400 hover:bg-cyan-300 text-black font-bold rounded-lg glow-primary shadow-xl"
             >
               Lihat Galeri Lengkap
             </motion.a>
