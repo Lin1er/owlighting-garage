@@ -92,38 +92,47 @@ export default function Hero() {
       {/* Content */}
       <motion.div
         style={{ opacity }}
-        className="relative z-10 text-center px-6 max-w-5xl"
+        className="relative z-10 text-center px-6 max-w-5xl mt-16 md:mt-0"
       >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.8 }}
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs md:text-sm font-semibold mb-6 backdrop-blur-sm"
+        >
+          <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+          BENGKEL SPESIALIS CUSTOM LAMPU & BILED
+        </motion.div>
+
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
-          className="text-4xl md:text-7xl lg:text-8xl font-black mb-6 text-glow select-none"
+          className="text-4xl md:text-6xl lg:text-8xl font-black mb-6 text-glow leading-tight tracking-tight select-none"
+        >
+          UPGRADE TERANG <br className="hidden md:block" /> LAMPU KENDARAANMU
+        </motion.h1>
+
+        <motion.h2
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.3 }}
+          className="text-xl md:text-2xl font-bold text-white mb-3"
         >
           #MENOLAKGELAP
-        </motion.h1>
+        </motion.h2>
 
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
-          className="text-sm md:text-xl text-muted mb-4 max-w-3xl mx-auto leading-relaxed"
+          className="text-sm md:text-lg text-muted mb-8 max-w-3xl mx-auto leading-relaxed"
         >
-          <span className="text-primary font-bold">
-            BILED Retrofit Lampung Timur
-          </span>{" "}
-          - Custom pencahayaan presisi dengan teknologi CNC & 3D Printing.
-          <br className="" />
-          Slimframe • Custom Akrilik • Neonbox Huruf Timbul
-        </motion.p>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.5 }}
-          className="text-sm text-muted/70 mb-8"
-        >
-          📍 Way Jepara, Lampung Timur | 📱 {contactInfo.phone}
+          Solusi pencahayaan presisi, fokus, tidak menyilaukan, dan aman. Mulai
+          dari pasang{" "}
+          <span className="text-primary font-bold">BILED Retrofit</span>, Poles
+          Kaca Lampu, hingga Custom DRL/Matrix. Pengerjaan rapi dan profesional
+          di Lampung Timur.
         </motion.p>
 
         <motion.div
@@ -133,16 +142,16 @@ export default function Hero() {
           className="flex flex-col sm:flex-row gap-4 justify-center items-center"
         >
           <button
-            onClick={() => scrollToSection("gallery")}
-            className="px-8 py-4 border-2 border-primary/30 text-white font-semibold rounded-lg hover:bg-primary/10 hover:border-primary transition-all hover:scale-105"
+            onClick={() => scrollToSection("reservation")}
+            className="px-8 py-4 bg-cyan-400 text-black font-bold rounded-lg glow-primary hover:scale-105 transition-transform w-full sm:w-auto"
           >
-            Lihat Hasil Karya
+            Tanya Harga & Konsultasi
           </button>
           <button
-            onClick={() => scrollToSection("reservation")}
-            className="px-8 py-4 bg-cyan-400 text-black font-bold rounded-lg glow-primary hover:scale-105 transition-transform"
+            onClick={() => scrollToSection("gallery")}
+            className="px-8 py-4 border-2 border-primary/30 text-white font-semibold rounded-lg hover:bg-primary/10 hover:border-primary transition-all hover:scale-105 w-full sm:w-auto"
           >
-            Konsultasi Gratis
+            Lihat Bukti Pengerjaan
           </button>
         </motion.div>
 

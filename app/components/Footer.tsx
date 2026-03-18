@@ -38,14 +38,14 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h3 className="font-bold mb-4 text-primary">Quick Links</h3>
+            <h3 className="font-bold mb-4 text-primary">Tautan Cepat</h3>
             <ul className="space-y-2 text-sm text-muted">
               <li>
                 <Link
                   href="/"
                   className="hover:text-primary cursor-pointer transition-colors"
                 >
-                  Home
+                  Beranda
                 </Link>
               </li>
               <li>
@@ -53,7 +53,7 @@ export default function Footer() {
                   href="/about"
                   className="hover:text-primary cursor-pointer transition-colors"
                 >
-                  About
+                  Tentang Kami
                 </Link>
               </li>
               <li>
@@ -61,7 +61,7 @@ export default function Footer() {
                   href="/services"
                   className="hover:text-primary cursor-pointer transition-colors"
                 >
-                  Services
+                  Layanan Bengkel
                 </Link>
               </li>
               <li>
@@ -69,7 +69,7 @@ export default function Footer() {
                   href="/portfolio"
                   className="hover:text-primary cursor-pointer transition-colors"
                 >
-                  Portfolio
+                  Hasil Karya
                 </Link>
               </li>
               <li>
@@ -77,21 +77,21 @@ export default function Footer() {
                   href="/blog"
                   className="hover:text-primary cursor-pointer transition-colors"
                 >
-                  TikTok Videos
+                  Video Edukasi & Review
                 </Link>
               </li>
               <li
                 className="hover:text-primary cursor-pointer transition-colors"
                 onClick={() => scrollToSection("reservation")}
               >
-                Contact
+                Konsultasi & Kontak
               </li>
             </ul>
           </div>
 
           {/* Contact */}
           <div>
-            <h3 className="font-bold mb-4 text-primary">Contact Us</h3>
+            <h3 className="font-bold mb-4 text-primary">Hubungi Kami</h3>
             <ul className="space-y-2 text-sm text-muted">
               <li>
                 <a

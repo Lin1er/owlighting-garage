@@ -31,14 +31,19 @@ export default function BeforeAfterSection() {
     <section className="py-20 px-6 lg:px-20 bg-surface/30">
       <div className="max-w-7xl mx-auto">
         <AnimatedSection>
-          <div className="text-center mb-12">
+          <div className="flex flex-col items-center text-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-semibold mb-4 backdrop-blur-sm">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              BUKTI HASIL PENGERJAAN
+            </div>
             <h2 className="text-4xl lg:text-5xl font-black mb-4">
-              <span className="text-glow">Before</span> vs{" "}
-              <span className="text-glow">After</span>
+              <span className="text-glow">Sebelum</span> &{" "}
+              <span className="text-glow">Sesudah</span> Upgrade
             </h2>
-            <p className="text-muted max-w-2xl mx-auto">
-              Lihat transformasi dramatis dari lampu standar ke custom lighting
-              presisi. Geser untuk membandingkan!
+            <p className="text-muted max-w-2xl mx-auto mb-12">
+              Buktikan sendiri bedanya! Cahaya kuning / buram bawaan pabrik bisa
+              disulap jadi jauh lebih tebal, terang, putih bersih (6000K), dan
+              ber-cutoff rapi sehingga tidak menyilaukan orang lain.
             </p>
           </div>
         </AnimatedSection>
@@ -50,10 +55,7 @@ export default function BeforeAfterSection() {
                 <div className="relative h-80">
                   <ReactCompareSlider
                     itemOne={
-                      <ReactCompareSliderImage
-                        src={item.before}
-                        alt="Before"
-                      />
+                      <ReactCompareSliderImage src={item.before} alt="Before" />
                     }
                     itemTwo={
                       <ReactCompareSliderImage src={item.after} alt="After" />

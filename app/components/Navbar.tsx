@@ -21,10 +21,10 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { href: "/", label: "Home" },
-    { href: "/about", label: "About" },
-    { href: "/services", label: "Services" },
-    { href: "/portfolio", label: "Portfolio" },
+    { href: "/", label: "Beranda" },
+    { href: "/about", label: "Tentang" },
+    { href: "/services", label: "Layanan" },
+    { href: "/portfolio", label: "Karya" },
   ];
 
   return (
@@ -63,7 +63,7 @@ export default function Navbar() {
             className="cursor-pointer hover:text-primary transition-colors text-muted"
             onClick={() => scrollToSection("contact")}
           >
-            Contact
+            Kontak
           </li>
         </ul>
 
@@ -126,7 +126,7 @@ export default function Navbar() {
                 onClick={() => scrollToSection("contact")}
                 className="block w-full text-left py-2 text-muted hover:text-primary transition-colors"
               >
-                Contact
+                Kontak
               </button>
               <button
                 onClick={() => scrollToSection("reservation")}

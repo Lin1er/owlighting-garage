@@ -38,12 +38,23 @@ export default function ReservationSection() {
 
       <div className="max-w-7xl mx-auto relative z-10">
         <AnimatedSection>
-          <h2 className="text-4xl lg:text-5xl font-black text-center mb-4 text-glow">
-            Ready to Shine?
-          </h2>
-          <p className="text-center text-muted mb-16 max-w-2xl mx-auto">
-            Hubungi kami untuk konsultasi gratis dan reservasi waktu pengerjaan
-          </p>
+          <div className="flex flex-col items-center text-center">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-semibold mb-4 backdrop-blur-sm">
+              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+              TANYA-TANYA DULU BOLEH
+            </div>
+            <h2 className="text-4xl lg:text-5xl font-black mb-4 text-glow">
+              Konsultasi & Reservasi
+            </h2>
+            <p className="text-muted mb-10 max-w-2xl mx-auto text-sm lg:text-base">
+              Punya kendala dengan lampu kendaraan yang kurang terang? Atau
+              ingin pasang BILED custom? <br />
+              Hubungi kami untuk mendapatkan <strong>
+                konsultasi gratis
+              </strong>{" "}
+              dan estimasi harga pengerjaan.
+            </p>
+          </div>
         </AnimatedSection>
 
         <div className="grid md:grid-cols-2 gap-12 items-start">
