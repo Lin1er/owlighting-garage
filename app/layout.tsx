@@ -106,7 +106,8 @@ export default function RootLayout({
   return (
     <html lang="id">
       <head>
-        <link rel="canonical" href="https://owlighting.com" />
+        <link rel="canonical" href="https://owlighting-garage.vercel.app" />
+        <meta name="google-site-verification" content="jJHGCMuoy94jnBqTSb921m99iNlXYSH5YDjl1YJnpxI" />
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#00C2FF" />
         <meta name="apple-mobile-web-app-capable" content="yes" />
