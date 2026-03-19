@@ -5,6 +5,7 @@ import ServicesSection from "./sections/ServicesSection";
 import BeforeAfterSection from "./sections/BeforeAfterSection";
 import SafetySection from "./sections/SafetySection";
 import GallerySection from "./sections/GallerySection";
+import TestimonialsSection from "./sections/TestimonialsSection";
 import ReservationSection from "./sections/ReservationSection";
 import Footer from "./components/Footer";
 import ScrollProgress from "./components/ScrollProgress";
@@ -23,6 +24,7 @@ export default function Home() {
       <BeforeAfterSection />
       <SafetySection />
       <GallerySection />
+      <TestimonialsSection />
       <ReservationSection />
       <Footer />
       <WhatsAppWidget />

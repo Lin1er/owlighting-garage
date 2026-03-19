@@ -65,7 +65,7 @@ export default function TechSection() {
                   in-house CNC Laser
                 </span>{" "}
                 dan{" "}
-                <span className="text-accent font-semibold">3D Printer</span>,
+                <span className="text-primary font-semibold">3D Printer</span>,
                 kami membuat bracket, shroud, dan dudukan custom yang mustahil
                 ditemukan di pasaran. Presisi milimeter untuk kendaraan apapun.
               </motion.p>
@@ -81,7 +81,7 @@ export default function TechSection() {
                 viewport={{ once: true }}
                 className="text-4xl lg:text-5xl font-black mb-6"
               >
-                <span className="text-accent text-glow">3D Printing</span>{" "}
+                <span className="text-primary text-glow">3D Printing</span>{" "}
                 Revolution
               </motion.h2>
               <motion.p
@@ -120,11 +120,7 @@ export default function TechSection() {
               />
               <div className="absolute inset-0 bg-linear-to-t from-black/80 to-transparent" />
               <div
-                className="absolute bottom-6 right-6 text-2xl font-bold"
-                style={{
-                  color: "#FFB800",
-                  textShadow: "0 0 20px rgba(255,184,0,0.5)",
-                }}
+                className="absolute bottom-6 right-6 text-2xl font-bold text-primary text-glow"
               >
                 3D PRINTER
               </div>

@@ -3,11 +3,13 @@
 import AnimatedSection from "../components/AnimatedSection";
 import { motion } from "framer-motion";
 import { useState } from "react";
-import { contactInfo } from "@/data";
+import { contactInfo, services } from "@/data";
+import { FaMapMarkerAlt, FaPhone, FaEnvelope, FaInstagram, FaFacebook, FaTiktok, FaArrowRight } from "react-icons/fa";
 
 export default function ReservationSection() {
   const [formData, setFormData] = useState({
     name: "",
+    phone: "",
     vehicle: "Mobil",
     service: "BILED Retrofit",
     date: "",
@@ -15,8 +17,8 @@ export default function ReservationSection() {
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const { name, vehicle, service, date } = formData;
-    const message = `Reservasi Owlighting\n\nNama: ${name}\nJenis: ${vehicle}\nLayanan: ${service}\nTanggal: ${date}`;
+    const { name, phone, vehicle, service, date } = formData;
+    const message = `Reservasi Owlighting\n\nNama: ${name}\nNo HP: ${phone}\nJenis: ${vehicle}\nLayanan: ${service}\nTanggal: ${date}`;
     const whatsappUrl = `https://wa.me/${
       contactInfo.whatsappNumber
     }?text=${encodeURIComponent(message)}`;
@@ -24,9 +26,9 @@ export default function ReservationSection() {
   };
 
   return (
-    <section id="reservation" className="relative sm:py-24 px-6 lg:px-20">
+    <section id="reservation" className="relative py-20 sm:py-24 px-6 lg:px-20">
       {/* Background image */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-5">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{
@@ -36,6 +38,9 @@ export default function ReservationSection() {
         />
       </div>
 
+      {/* Section divider */}
+      <div className="section-divider mb-16 md:mb-20" />
+
       <div className="max-w-7xl mx-auto relative z-10">
         <AnimatedSection>
           <div className="flex flex-col items-center text-center">
@@ -43,97 +48,121 @@ export default function ReservationSection() {
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
               TANYA-TANYA DULU BOLEH
             </div>
-            <h2 className="text-4xl lg:text-5xl font-black mb-4 text-glow">
-              Konsultasi & Reservasi
+            <h2 className="text-4xl lg:text-5xl font-black mb-4">
+              <span className="gradient-text">Konsultasi</span> & Reservasi
             </h2>
             <p className="text-muted mb-10 max-w-2xl mx-auto text-sm lg:text-base">
               Punya kendala dengan lampu kendaraan yang kurang terang? Atau
-              ingin pasang BILED custom? <br />
-              Hubungi kami untuk mendapatkan <strong>
-                konsultasi gratis
-              </strong>{" "}
-              dan estimasi harga pengerjaan.
+              ingin pasang BILED custom? Hubungi kami untuk mendapatkan{" "}
+              <strong className="text-white">konsultasi gratis</strong> dan estimasi harga.
             </p>
           </div>
         </AnimatedSection>
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
+        <div className="grid md:grid-cols-2 gap-10 md:gap-12 items-start">
           {/* Contact Info */}
           <AnimatedSection delay={0.2}>
-            <div className="space-y-6">
-              <motion.div
-                whileHover={{ x: 10 }}
-                className="flex items-start gap-4 glass rounded-xl p-6"
+            <div className="space-y-4">
+              <motion.a
+                href={contactInfo.googleMapsUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ x: 8 }}
+                className="flex items-start gap-4 glass-strong rounded-xl p-5 border border-white/5 hover:border-primary/20 transition-colors block"
               >
-                <div className="text-3xl">📍</div>
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                  <FaMapMarkerAlt size={20} className="text-primary" />
+                </div>
                 <div>
-                  <h3 className="font-bold mb-1 text-primary">
+                  <h3 className="font-bold mb-1 text-white">
                     Alamat Workshop
                   </h3>
-                  <p className="text-muted">{contactInfo.address}</p>
-                  <p className="text-sm text-muted mt-2">
+                  <p className="text-muted text-sm">{contactInfo.address}</p>
+                  <p className="text-xs text-primary/70 mt-2">
                     {contactInfo.workingHours}
                   </p>
                 </div>
-              </motion.div>
+              </motion.a>
 
-              <motion.div
-                whileHover={{ x: 10 }}
-                className="flex items-start gap-4 glass rounded-xl p-6"
+              <motion.a
+                href={`https://wa.me/${contactInfo.whatsappNumber}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                whileHover={{ x: 8 }}
+                className="flex items-start gap-4 glass-strong rounded-xl p-5 border border-white/5 hover:border-primary/20 transition-colors block"
               >
-                <div className="text-3xl">📱</div>
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                  <FaPhone size={18} className="text-primary" />
+                </div>
                 <div>
-                  <h3 className="font-bold mb-1 text-primary">WhatsApp</h3>
-                  <p className="text-muted">{contactInfo.phone}</p>
-                  <p className="text-sm text-muted mt-2">
+                  <h3 className="font-bold mb-1 text-white">WhatsApp</h3>
+                  <p className="text-muted text-sm">{contactInfo.phone}</p>
+                  <p className="text-xs text-primary/70 mt-2">
                     Fast response untuk konsultasi
                   </p>
                 </div>
-              </motion.div>
+              </motion.a>
 
-              <motion.div
-                whileHover={{ x: 10 }}
-                className="flex items-start gap-4 glass rounded-xl p-6"
+              <motion.a
+                href={`mailto:${contactInfo.email}`}
+                whileHover={{ x: 8 }}
+                className="flex items-start gap-4 glass-strong rounded-xl p-5 border border-white/5 hover:border-primary/20 transition-colors block"
               >
-                <div className="text-3xl">📧</div>
+                <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center shrink-0">
+                  <FaEnvelope size={18} className="text-primary" />
+                </div>
                 <div>
-                  <h3 className="font-bold mb-1 text-primary">Email</h3>
-                  <p className="text-muted">{contactInfo.email}</p>
-                  <p className="text-sm text-muted mt-2">
+                  <h3 className="font-bold mb-1 text-white">Email</h3>
+                  <p className="text-muted text-sm">{contactInfo.email}</p>
+                  <p className="text-xs text-primary/70 mt-2">
                     Untuk pertanyaan detail & penawaran
                   </p>
                 </div>
-              </motion.div>
+              </motion.a>
 
-              <motion.div
-                whileHover={{ x: 10 }}
-                className="flex items-start gap-4 glass rounded-xl p-6"
-              >
-                <div className="text-3xl">🌐</div>
-                <div>
-                  <h3 className="font-bold mb-1 text-primary">Social Media</h3>
-                  <div className="flex gap-4 mt-2">
-                    <a
-                      href={contactInfo.socialMedia.instagram}
-                      className="text-muted hover:text-glow hover:underline transition-colors"
-                    >
-                      Instagram
-                    </a>
-                    <a
-                      href={contactInfo.socialMedia.facebook}
-                      className="text-muted hover:text-glow hover:underline transition-colors"
-                    >
-                      Facebook
-                    </a>
-                    <a
-                      href={contactInfo.socialMedia.tiktok}
-                      className="text-muted hover:text-glow hover:underline transition-colors"
-                    >
-                      TikTok
-                    </a>
-                  </div>
+              {/* Social Media */}
+              <div className="glass-strong rounded-xl p-5 border border-white/5">
+                <h3 className="font-bold mb-3 text-white">Follow Kami</h3>
+                <div className="flex gap-3">
+                  <a
+                    href={contactInfo.socialMedia.instagram}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-11 h-11 rounded-xl bg-white/5 flex items-center justify-center hover:bg-primary/15 transition-all border border-white/5 hover:border-primary/30"
+                  >
+                    <FaInstagram size={20} className="text-white/70 hover:text-primary" />
+                  </a>
+                  <a
+                    href={contactInfo.socialMedia.facebook}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-11 h-11 rounded-xl bg-white/5 flex items-center justify-center hover:bg-primary/15 transition-all border border-white/5 hover:border-primary/30"
+                  >
+                    <FaFacebook size={20} className="text-white/70" />
+                  </a>
+                  <a
+                    href={contactInfo.socialMedia.tiktok}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="w-11 h-11 rounded-xl bg-white/5 flex items-center justify-center hover:bg-primary/15 transition-all border border-white/5 hover:border-primary/30"
+                  >
+                    <FaTiktok size={20} className="text-white/70" />
+                  </a>
                 </div>
-              </motion.div>
+              </div>
+
+              {/* Google Maps iframe */}
+              <div className="rounded-xl overflow-hidden border border-white/5 h-48">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3973.4828234435536!2d105.69069977576999!3d-5.18651375232907!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e408b56d808543d%3A0xfe041c69b4ae9a81!2sOWLighting%20Garage!5e0!3m2!1sen!2sus!4v1773880081745!5m2!1sen!2sus"
+                  width="100%"
+                  height="100%"
+                  style={{ border: 0, filter: "invert(90%) hue-rotate(180deg)" }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </div>
             </div>
           </AnimatedSection>
 
@@ -141,10 +170,17 @@ export default function ReservationSection() {
           <AnimatedSection delay={0.4}>
             <form
               onSubmit={handleSubmit}
-              className="glass rounded-2xl p-8 space-y-6"
+              className="glass-strong gradient-border-card rounded-2xl p-6 md:p-8 space-y-5 border border-white/5"
             >
+              <h3 className="text-xl font-bold text-white mb-2">
+                Kirim Pesan via WhatsApp
+              </h3>
+              <p className="text-xs text-muted mb-4">
+                Isi form di bawah, Anda akan diarahkan ke WhatsApp kami
+              </p>
+
               <div>
-                <label className="block text-sm font-semibold mb-2">
+                <label className="block text-sm font-semibold mb-2 text-white/80">
                   Nama Lengkap
                 </label>
                 <input
@@ -154,31 +190,63 @@ export default function ReservationSection() {
                   onChange={(e) =>
                     setFormData({ ...formData, name: e.target.value })
                   }
-                  className="w-full px-4 py-3 bg-surface border border-primary/20 rounded-lg focus:border-primary outline-none transition-colors bg-[#0d0d0d]"
-                  placeholder="Masukkan nama Anda"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-primary focus:bg-white/8 outline-none transition-all text-white placeholder-muted/50"
+                  placeholder="Nama Anda"
                 />
               </div>
 
               <div>
-                <label className="block text-sm font-semibold mb-2">
-                  Jenis Kendaraan
+                <label className="block text-sm font-semibold mb-2 text-white/80">
+                  No. HP / WhatsApp
                 </label>
-                <select
-                  value={formData.vehicle}
+                <input
+                  type="tel"
+                  value={formData.phone}
                   onChange={(e) =>
-                    setFormData({ ...formData, vehicle: e.target.value })
+                    setFormData({ ...formData, phone: e.target.value })
                   }
-                  className="w-full px-4 py-3 bg-surface border border-primary/20 rounded-lg focus:border-primary outline-none transition-colors bg-[#0d0d0d]"
-                >
-                  <option>Mobil</option>
-                  <option>Motor</option>
-                  <option>Truk</option>
-                  <option>Lainnya</option>
-                </select>
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-primary focus:bg-white/8 outline-none transition-all text-white placeholder-muted/50"
+                  placeholder="08xxxxxxxxxx"
+                />
+              </div>
+
+              <div className="grid grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-semibold mb-2 text-white/80">
+                    Jenis Kendaraan
+                  </label>
+                  <select
+                    value={formData.vehicle}
+                    onChange={(e) =>
+                      setFormData({ ...formData, vehicle: e.target.value })
+                    }
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-primary outline-none transition-all text-white"
+                  >
+                    <option className="bg-surface text-white">Mobil</option>
+                    <option className="bg-surface text-white">Motor</option>
+                    <option className="bg-surface text-white">Truk</option>
+                    <option className="bg-surface text-white">Lainnya</option>
+                  </select>
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold mb-2 text-white/80">
+                    Rencana Tanggal
+                  </label>
+                  <input
+                    type="date"
+                    required
+                    value={formData.date}
+                    onChange={(e) =>
+                      setFormData({ ...formData, date: e.target.value })
+                    }
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-primary outline-none transition-all text-white"
+                  />
+                </div>
               </div>
 
               <div>
-                <label className="block text-sm font-semibold mb-2">
+                <label className="block text-sm font-semibold mb-2 text-white/80">
                   Layanan yang Diinginkan
                 </label>
                 <select
@@ -186,42 +254,26 @@ export default function ReservationSection() {
                   onChange={(e) =>
                     setFormData({ ...formData, service: e.target.value })
                   }
-                  className="w-full px-4 py-3 bg-surface border border-primary/20 rounded-lg focus:border-primary outline-none transition-colors bg-[#0d0d0d]"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-primary outline-none transition-all text-white"
                 >
-                  <option>BILED Retrofit</option>
-                  <option>D2 Laser / Foglamp</option>
-                  <option>Custom CNC & 3D</option>
-                  <option>Konsultasi</option>
+                  {services.map((svc) => (
+                    <option key={svc.id} className="bg-surface text-white">
+                      {svc.title}
+                    </option>
+                  ))}
+                  <option className="bg-surface text-white">Konsultasi</option>
                 </select>
-              </div>
-
-              <div>
-                <label className="block text-sm font-semibold mb-2">
-                  Rencana Tanggal
-                </label>
-                <input
-                  type="date"
-                  required
-                  value={formData.date}
-                  onChange={(e) =>
-                    setFormData({ ...formData, date: e.target.value })
-                  }
-                  className="w-full px-4 py-3 bg-surface border border-primary/20 rounded-lg focus:border-primary outline-none transition-colors bg-[#0d0d0d]"
-                />
               </div>
 
               <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 type="submit"
-                className="w-full px-8 py-4 bg-cyan-400 hover:bg-cyan-300 text-black font-bold rounded-lg glow-primary hover:shadow-2xl transition-all"
+                className="group w-full px-8 py-4 bg-gradient-to-r from-cyan-400 to-cyan-500 hover:from-cyan-300 hover:to-cyan-400 text-black font-bold rounded-xl glow-primary-strong hover:shadow-2xl transition-all flex items-center justify-center gap-2"
               >
                 Kirim via WhatsApp
+                <FaArrowRight size={14} className="group-hover:translate-x-1 transition-transform" />
               </motion.button>
-
-              <p className="text-xs text-muted text-center">
-                Dengan mengirim form ini, Anda akan diarahkan ke WhatsApp kami
-              </p>
             </form>
           </AnimatedSection>
         </div>

@@ -1,14 +1,24 @@
 "use client";
 
-import { motion, AnimatePresence } from "framer-motion";
+import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Navbar() {
   const pathname = usePathname();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  // Track scroll for background opacity
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const scrollToSection = (id: string) => {
     if (pathname !== "/") {
@@ -32,11 +42,14 @@ export default function Navbar() {
       initial={{ y: -100 }}
       animate={{ y: 0 }}
       transition={{ duration: 0.6 }}
-      className="fixed top-0 left-0 right-0 z-50 glass"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "glass-strong border-b border-white/5 shadow-lg shadow-black/20"
+          : "bg-transparent"
+      }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-20 py-4 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-3 cursor-pointer">
-          {/* <span className="text-xl font-bold text-glow">OWLIGHTING</span> */}
           <Image
             src="/assets/logo.png"
             alt="OWLIGHTING Logo"
@@ -51,16 +64,24 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className={`cursor-pointer hover:text-primary transition-colors ${
-                  pathname === link.href ? "text-primary" : "text-muted"
+                className={`cursor-pointer transition-colors relative group ${
+                  pathname === link.href ? "text-primary" : "text-muted hover:text-white"
                 }`}
               >
                 {link.label}
+                {/* Active indicator line */}
+                {pathname === link.href && (
+                  <motion.div
+                    layoutId="activeNav"
+                    className="absolute -bottom-1 left-0 right-0 h-0.5 bg-primary rounded-full"
+                    transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  />
+                )}
               </Link>
             </li>
           ))}
           <li
-            className="cursor-pointer hover:text-primary transition-colors text-muted"
+            className="cursor-pointer hover:text-white transition-colors text-muted"
             onClick={() => scrollToSection("contact")}
           >
             Kontak
@@ -92,7 +113,7 @@ export default function Navbar() {
 
         <button
           onClick={() => scrollToSection("reservation")}
-          className="hidden md:block px-5 py-2 bg-cyan-400 text-black font-semibold rounded-lg glow-primary hover:scale-105 transition-transform"
+          className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-cyan-400 to-cyan-500 text-black font-semibold rounded-xl glow-primary hover:scale-105 transition-all text-sm"
         >
           Reservasi Sekarang
         </button>
@@ -105,18 +126,18 @@ export default function Navbar() {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden glass border-t border-primary/10"
+            className="md:hidden glass-strong border-t border-primary/10"
           >
-            <div className="px-6 py-4 space-y-4">
+            <div className="px-6 py-4 space-y-3">
               {navLinks.map((link) => (
                 <Link
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
-                  className={`block py-2 hover:text-primary transition-colors ${
+                  className={`block py-2.5 transition-colors rounded-lg px-3 ${
                     pathname === link.href
-                      ? "text-primary font-semibold"
-                      : "text-muted"
+                      ? "text-primary font-semibold bg-primary/10"
+                      : "text-muted hover:text-white hover:bg-white/5"
                   }`}
                 >
                   {link.label}
@@ -124,13 +145,13 @@ export default function Navbar() {
               ))}
               <button
                 onClick={() => scrollToSection("contact")}
-                className="block w-full text-left py-2 text-muted hover:text-primary transition-colors"
+                className="block w-full text-left py-2.5 text-muted hover:text-white transition-colors px-3 rounded-lg hover:bg-white/5"
               >
                 Kontak
               </button>
               <button
                 onClick={() => scrollToSection("reservation")}
-                className="w-full px-5 py-3 bg-cyan-400 text-black font-semibold rounded-lg glow-primary mt-4"
+                className="w-full px-5 py-3 bg-gradient-to-r from-cyan-400 to-cyan-500 text-black font-semibold rounded-xl glow-primary mt-3"
               >
                 Reservasi Sekarang
               </button>
