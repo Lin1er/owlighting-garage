@@ -18,15 +18,15 @@ export default function ServicesSection() {
           <div className="flex flex-col items-center text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-semibold mb-4 backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              SOLUSI PENCERAHAN
+              LAYANAN CUSTOM BILED
             </div>
             <h2 className="text-4xl lg:text-5xl font-black mb-4">
-              <span className="gradient-text">Layanan</span> Bengkel Kami
+              Layanan <span className="gradient-text">Custom BILED</span> Kami
             </h2>
             <p className="text-muted mb-16 max-w-2xl mx-auto">
-              Mulai dari upgrade BILED/Projie yang sangat terang namun aman,
-              hingga perbaikan (Servis Headlamp) dan variasi. Semua pengerjaan
-              dijamin rapi, presisi, dan bergaransi!
+              Spesialis pasang <strong>Custom BILED</strong> mobil dan motor di Lampung Timur.
+              Dari retrofit BILED yang sangat terang namun aman, D2 Laser, DRL Matrix,
+              hingga poles kaca lampu. Semua pengerjaan dijamin rapi, presisi, dan bergaransi!
             </p>
           </div>
         </AnimatedSection>

@@ -8,10 +8,10 @@ import { useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 
 const categories = [
-  { key: "all", label: "Semua" },
-  { key: "mobil", label: "Mobil" },
-  { key: "motor", label: "Motor" },
-  { key: "custom", label: "Custom" },
+  { key: "all", label: "Semua Custom BILED" },
+  { key: "mobil", label: "Custom BILED Mobil" },
+  { key: "motor", label: "Custom BILED Motor" },
+  { key: "custom", label: "Custom Project" },
 ];
 
 export default function GallerySection() {
@@ -38,14 +38,14 @@ export default function GallerySection() {
           <div className="flex flex-col items-center text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-semibold mb-4 backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              PORTFOLIO KAMI
+              PORTFOLIO CUSTOM BILED
             </div>
             <h2 className="text-3xl md:text-5xl font-black mb-4">
-              Hasil Modifikasi <span className="gradient-text">Terbaik</span>
+              Hasil <span className="gradient-text">Custom BILED</span> Terbaik
             </h2>
             <p className="text-sm md:text-base text-muted mb-8 max-w-2xl mx-auto px-4">
-              Berbagai karya pencahayaan custom, retrofit BILED gahar, hingga
-              kreasi DRL Matrix menggunakan CNC & 3D Print.
+              Berbagai karya custom BILED mobil dan motor, retrofit projector presisi,
+              hingga kreasi DRL Matrix menggunakan CNC Laser & 3D Print di Lampung Timur.
             </p>
           </div>
         </AnimatedSection>
@@ -90,7 +90,7 @@ export default function GallerySection() {
                 >
                   <Image
                     src={item.image}
-                    alt={item.title}
+                    alt={`Custom BILED ${item.title} - Hasil pengerjaan Owlighting Lampung Timur`}
                     fill
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 25vw"
                     className="object-cover group-hover:scale-110 transition-transform duration-700"
@@ -121,7 +121,7 @@ export default function GallerySection() {
               whileTap={{ scale: 0.95 }}
               className="inline-flex items-center gap-2 px-8 py-4 bg-gradient-to-r from-cyan-400 to-cyan-500 hover:from-cyan-300 hover:to-cyan-400 text-black font-bold rounded-xl glow-primary shadow-xl"
             >
-              Lihat Galeri Lengkap
+              Lihat Galeri Custom BILED Lengkap
               <FaArrowRight size={14} />
             </motion.a>
           </div>

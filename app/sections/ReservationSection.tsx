@@ -46,15 +46,16 @@ export default function ReservationSection() {
           <div className="flex flex-col items-center text-center">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-semibold mb-4 backdrop-blur-sm">
               <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              TANYA-TANYA DULU BOLEH
+              KONSULTASI CUSTOM BILED GRATIS
             </div>
             <h2 className="text-4xl lg:text-5xl font-black mb-4">
-              <span className="gradient-text">Konsultasi</span> & Reservasi
+              <span className="gradient-text">Konsultasi Custom BILED</span> Gratis
             </h2>
             <p className="text-muted mb-10 max-w-2xl mx-auto text-sm lg:text-base">
-              Punya kendala dengan lampu kendaraan yang kurang terang? Atau
-              ingin pasang BILED custom? Hubungi kami untuk mendapatkan{" "}
-              <strong className="text-white">konsultasi gratis</strong> dan estimasi harga.
+              Ingin pasang <strong>Custom BILED</strong> di mobil atau motor Anda? 
+              Hubungi Owlighting untuk mendapatkan{" "}
+              <strong className="text-white">konsultasi gratis</strong>, survey headlamp, 
+              dan estimasi harga custom BILED terbaik di Lampung Timur.
             </p>
           </div>
         </AnimatedSection>

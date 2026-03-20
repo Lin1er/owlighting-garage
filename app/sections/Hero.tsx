@@ -103,19 +103,19 @@ export default function Hero() {
           className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs md:text-sm font-semibold mb-6 backdrop-blur-sm"
         >
           <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-          BENGKEL SPESIALIS CUSTOM LAMPU & BILED
+          SPESIALIS CUSTOM BILED LAMPUNG TIMUR
         </motion.div>
 
-        {/* Main Headline */}
+        {/* Main Headline - H1 optimized for "custom biled" */}
         <motion.h1
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.2 }}
           className="text-4xl md:text-6xl lg:text-7xl font-black mb-4 leading-tight tracking-tight select-none"
         >
-          <span className="gradient-text">UPGRADE TERANG</span>
+          <span className="gradient-text">CUSTOM BILED</span>
           <br className="hidden md:block" />
-          {" "}LAMPU KENDARAANMU
+          {" "}MOBIL & MOTOR LAMPUNG TIMUR
         </motion.h1>
 
         {/* Hashtag */}
@@ -128,17 +128,17 @@ export default function Hero() {
           #MENOLAKGELAP
         </motion.div>
 
-        {/* Description */}
+        {/* Description - SEO optimized */}
         <motion.p
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
           className="text-sm md:text-lg text-muted mb-6 max-w-2xl mx-auto leading-relaxed"
         >
-          Solusi pencahayaan{" "}
-          <span className="text-primary font-semibold">presisi & aman</span>.
-          Pasang BILED Retrofit, D2 Laser, Custom DRL, hingga poles kaca lampu.
-          Pengerjaan rapi & bergaransi di{" "}
+          <strong>Owlighting</strong> - Bengkel spesialis{" "}
+          <span className="text-primary font-semibold">Custom BILED</span> profesional.
+          Pasang BILED Retrofit, D2 Laser, Custom DRL Matrix, poles kaca lampu nano burn.
+          Garansi resmi & pengerjaan presisi di{" "}
           <span className="text-white font-semibold">Lampung Timur</span>.
         </motion.p>
 
@@ -154,7 +154,7 @@ export default function Hero() {
           <span>📱 {contactInfo.phone}</span>
         </motion.p>
 
-        {/* CTA Buttons */}
+        {/* CTA Buttons - optimized text */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -165,7 +165,7 @@ export default function Hero() {
             onClick={() => scrollToSection("reservation")}
             className="group w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-cyan-400 to-cyan-500 text-black font-bold rounded-xl glow-primary-strong hover:scale-105 transition-all duration-300 flex items-center justify-center gap-2"
           >
-            Tanya Harga & Konsultasi
+            Konsultasi Custom BILED GRATIS
             <FaArrowRight className="group-hover:translate-x-1 transition-transform" size={14} />
           </button>
           <button
@@ -173,11 +173,11 @@ export default function Hero() {
             className="group w-full sm:w-auto px-8 py-4 border-2 border-primary/30 text-white font-semibold rounded-xl hover:bg-primary/10 hover:border-primary transition-all hover:scale-105 flex items-center justify-center gap-2"
           >
             <FaImages size={14} className="text-primary" />
-            Lihat Bukti Pengerjaan
+            Lihat Hasil Custom BILED
           </button>
         </motion.div>
 
-        {/* Trust Badges */}
+        {/* Trust Badges - with keyword */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -185,7 +185,7 @@ export default function Hero() {
           className="flex flex-wrap justify-center gap-3 md:gap-6"
         >
           {[
-            { icon: FaTrophy, text: "5+ Tahun Pengalaman" },
+            { icon: FaTrophy, text: "5+ Tahun Custom BILED" },
             { icon: FaCar, text: "500+ Kendaraan" },
             { icon: FaShieldAlt, text: "Garansi Resmi" },
           ].map((badge, i) => (

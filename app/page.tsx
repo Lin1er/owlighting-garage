@@ -7,6 +7,7 @@ import SafetySection from "./sections/SafetySection";
 import GallerySection from "./sections/GallerySection";
 import TestimonialsSection from "./sections/TestimonialsSection";
 import ReservationSection from "./sections/ReservationSection";
+import SEOContentSection from "./sections/SEOContentSection";
 import Footer from "./components/Footer";
 import ScrollProgress from "./components/ScrollProgress";
 import WhatsAppWidget from "./components/WhatsAppWidget";
@@ -26,6 +27,7 @@ export default function Home() {
       <GallerySection />
       <TestimonialsSection />
       <ReservationSection />
+      <SEOContentSection />
       <Footer />
       <WhatsAppWidget />
     </main>

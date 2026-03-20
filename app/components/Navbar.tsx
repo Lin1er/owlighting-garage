@@ -31,10 +31,10 @@ export default function Navbar() {
   };
 
   const navLinks = [
-    { href: "/", label: "Beranda" },
-    { href: "/about", label: "Tentang" },
-    { href: "/services", label: "Layanan" },
-    { href: "/portfolio", label: "Karya" },
+    { href: "/", label: "Beranda", title: "Home - Custom BILED Lampung Timur" },
+    { href: "/about", label: "Tentang", title: "Tentang Owlighting - Spesialis Custom BILED" },
+    { href: "/services", label: "Layanan", title: "Layanan Custom BILED & Retrofit" },
+    { href: "/portfolio", label: "Portfolio", title: "Portfolio Custom BILED Mobil Motor" },
   ];
 
   return (
@@ -49,10 +49,10 @@ export default function Navbar() {
       }`}
     >
       <div className="max-w-7xl mx-auto px-6 lg:px-20 py-4 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3 cursor-pointer">
+        <Link href="/" className="flex items-center gap-3 cursor-pointer" title="Owlighting - Custom BILED Lampung Timur">
           <Image
             src="/assets/logo.png"
-            alt="OWLIGHTING Logo"
+            alt="Owlighting Logo - Spesialis Custom BILED Lampung Timur"
             width={200}
             height={50}
           />
@@ -64,6 +64,7 @@ export default function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
+                title={link.title}
                 className={`cursor-pointer transition-colors relative group ${
                   pathname === link.href ? "text-primary" : "text-muted hover:text-white"
                 }`}
@@ -114,8 +115,9 @@ export default function Navbar() {
         <button
           onClick={() => scrollToSection("reservation")}
           className="hidden md:flex items-center gap-2 px-5 py-2.5 bg-gradient-to-r from-cyan-400 to-cyan-500 text-black font-semibold rounded-xl glow-primary hover:scale-105 transition-all text-sm"
+          title="Konsultasi Custom BILED Gratis"
         >
-          Reservasi Sekarang
+          Konsultasi Gratis
         </button>
       </div>
 
@@ -134,6 +136,7 @@ export default function Navbar() {
                   key={link.href}
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
+                  title={link.title}
                   className={`block py-2.5 transition-colors rounded-lg px-3 ${
                     pathname === link.href
                       ? "text-primary font-semibold bg-primary/10"
@@ -153,7 +156,7 @@ export default function Navbar() {
                 onClick={() => scrollToSection("reservation")}
                 className="w-full px-5 py-3 bg-gradient-to-r from-cyan-400 to-cyan-500 text-black font-semibold rounded-xl glow-primary mt-3"
               >
-                Reservasi Sekarang
+                Konsultasi Custom BILED Gratis
               </button>
             </div>
           </motion.div>

@@ -6,9 +6,24 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
+        disallow: ["/api/", "/admin/", "/_next/", "/static/"],
+      },
+      {
+        userAgent: "Googlebot",
+        allow: "/",
+        disallow: ["/api/", "/admin/"],
+      },
+      {
+        userAgent: "Googlebot-Image",
+        allow: ["/", "/assets/", "/background/"],
+      },
+      {
+        userAgent: "Bingbot",
+        allow: "/",
         disallow: ["/api/", "/admin/"],
       },
     ],
     sitemap: "https://owlighting-garage.vercel.app/sitemap.xml",
+    host: "https://owlighting-garage.vercel.app",
   };
 }

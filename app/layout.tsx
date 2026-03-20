@@ -19,44 +19,61 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title:
-    "Owlighting - Pasang Custom BILED & Bengkel Lampu Kendaraan Lampung Timur | #MenolakGelap",
+  title: {
+    default:
+      "Custom BILED Lampung Timur | Owlighting - Spesialis Pasang BILED Mobil & Motor #MenolakGelap",
+    template: "%s | Owlighting - Custom BILED Lampung Timur",
+  },
   description:
-    "Bengkel spesialis lampu kendaraan: Pasang Custom BILED, servis headlamp motor/mobil, pasang projie, poles kaca lampu (nano burn), custom DRL Matrix, D2 Laser di Lampung Timur. Konsultasi Gratis!",
+    "Owlighting adalah bengkel spesialis Custom BILED di Lampung Timur. Jasa pasang BILED mobil & motor, retrofit projector, D2 Laser, DRL Matrix, poles kaca lampu nano burn. Garansi resmi, pengerjaan rapi. Konsultasi GRATIS! #MenolakGelap",
   keywords: [
+    // Primary Keywords - Custom BILED focused
     "custom biled",
+    "custom biled lampung",
+    "custom biled lampung timur",
+    "pasang custom biled",
+    "jasa custom biled",
+    "custom biled mobil",
+    "custom biled motor",
+    "biled custom",
+    // Secondary Keywords
+    "pasang biled",
     "pasang biled terdekat",
-    "bengkel lampu mobil",
-    "bengkel lampu motor",
-    "pasang projie motor",
-    "bengkel lampu kendaraan",
-    "poles kaca lampu mobil",
-    "nano burn coating",
-    "servis lampu mobil",
-    "servis headlamp",
-    "biled matrix",
-    "drl matrix",
-    "lampu projie mobil",
-    "biled lampung timur",
-    "owlighting garage",
-    "retrofit lampu lampung",
-    "custom headlight lampung",
-    "bengkel lampu way jepara",
+    "pasang biled lampung timur",
+    "retrofit biled",
     "biled retrofit lampung",
+    "harga pasang biled",
+    "bengkel biled terdekat",
+    // Long-tail Keywords
+    "bengkel lampu mobil lampung timur",
+    "bengkel lampu motor lampung timur",
+    "pasang projie motor lampung",
+    "poles kaca lampu mobil lampung",
+    "nano burn coating lampung",
+    "servis headlamp lampung timur",
+    // Brand Keywords
+    "owlighting",
+    "owlighting garage",
+    "owlighting lampung timur",
+    "owlighting way jepara",
+    // Service Keywords
     "d2 laser lampung",
-    "custom drl lampung",
-    "upgrade lampu mobil lampung",
-    "lampu motor custom lampung",
-    "cnc laser lampung timur",
-    "3d printing lampung",
-    "slimframe",
-    "custom akrilik",
-    "neon box lampung",
+    "drl matrix custom",
+    "custom headlight indonesia",
+    "upgrade lampu mobil",
+    "retrofit lampu projector",
+    // Location Keywords
+    "bengkel lampu way jepara",
+    "bengkel lampu sumberjo",
+    "modifikasi lampu lampung",
+    // Hashtag
     "menolak gelap",
   ],
-  authors: [{ name: "Owlighting Garage" }],
-  creator: "Owlighting",
+  authors: [{ name: "Owlighting Garage", url: "https://owlighting-garage.vercel.app" }],
+  creator: "Owlighting Garage",
   publisher: "Owlighting Garage",
+  category: "Automotive",
+  classification: "Business/Automotive Services",
   formatDetection: {
     email: false,
     address: false,
@@ -64,14 +81,17 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL("https://owlighting-garage.vercel.app"),
   alternates: {
-    canonical: "/",
+    canonical: "https://owlighting-garage.vercel.app",
+    languages: {
+      "id-ID": "https://owlighting-garage.vercel.app",
+    },
   },
   openGraph: {
-    title: "Owlighting Garage - Pasang Custom BILED & Bengkel Lampu Terdekat",
+    title: "Custom BILED Lampung Timur | Owlighting Garage - Spesialis Pasang BILED #MenolakGelap",
     description:
-      "Spesialis custom lampu kendaraan: Pasang BILED retrofit, D2 Laser, Nano Burn Coating, DRL Matrix untuk motor & mobil. #MenolakGelap Lampung Timur.",
+      "Bengkel spesialis Custom BILED di Lampung Timur. Pasang BILED mobil & motor dengan garansi resmi. Retrofit projector, D2 Laser, DRL Matrix, poles kaca lampu. Konsultasi GRATIS!",
     url: "https://owlighting-garage.vercel.app",
-    siteName: "Owlighting Garage",
+    siteName: "Owlighting Garage - Custom BILED Lampung Timur",
     locale: "id_ID",
     type: "website",
     images: [
@@ -79,23 +99,27 @@ export const metadata: Metadata = {
         url: "/og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "Owlighting - Custom Pencahayaan Kendaraan",
+        alt: "Owlighting Garage - Custom BILED Lampung Timur | Spesialis Pasang BILED Mobil Motor",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Owlighting - BILED Retrofit Lampung Timur",
+    title: "Custom BILED Lampung Timur | Owlighting Garage #MenolakGelap",
     description:
-      "Spesialis BILED retrofit & custom headlight di Lampung Timur. #MenolakGelap",
+      "Spesialis Custom BILED & retrofit projector di Lampung Timur. Pasang BILED mobil motor dengan garansi. Konsultasi GRATIS!",
     images: ["/og-image.jpg"],
+    creator: "@owlighting",
+    site: "@owlighting",
   },
   robots: {
     index: true,
     follow: true,
+    nocache: false,
     googleBot: {
       index: true,
       follow: true,
+      noimageindex: false,
       "max-video-preview": -1,
       "max-image-preview": "large",
       "max-snippet": -1,
@@ -104,7 +128,13 @@ export const metadata: Metadata = {
   verification: {
     google:
       process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION ||
-      "your-google-verification-code",
+      "jJHGCMuoy94jnBqTSb921m99iNlXYSH5YDjl1YJnpxI",
+  },
+  other: {
+    "google-site-verification": "jJHGCMuoy94jnBqTSb921m99iNlXYSH5YDjl1YJnpxI",
+    "msvalidate.01": "",
+    "yandex-verification": "",
+    "facebook-domain-verification": "",
   },
 };
 
