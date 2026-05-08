@@ -1,13 +1,21 @@
 "use client";
 
-import { stats } from "@/data/portfolio";
 import AnimatedSection from "../components/AnimatedSection";
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import { FaCar, FaStar, FaClock, FaBullseye } from "react-icons/fa";
+import type { IconType } from "react-icons";
 import { useReducedMotion } from "../hooks/useReducedMotion";
+import type { HomepageStat } from "@/lib/supabase";
 
-const statIcons = [FaCar, FaStar, FaClock, FaBullseye];
+const ICON_MAP: Record<string, IconType> = {
+  FaCar,
+  FaStar,
+  FaClock,
+  FaBullseye,
+};
+
+const FALLBACK_ICONS: IconType[] = [FaCar, FaStar, FaClock, FaBullseye];
 
 function AnimatedCounter({ value }: { value: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -20,9 +28,6 @@ function AnimatedCounter({ value }: { value: string }) {
   const hasPercent = value.includes("%");
 
   useEffect(() => {
-    // When the user prefers reduced motion we skip the count-up entirely and
-    // render the final value directly (see displayValue below). The effect
-    // only runs the animation in the normal case.
     if (!isInView || reduced) return;
 
     let start = 0;
@@ -54,14 +59,21 @@ function AnimatedCounter({ value }: { value: string }) {
   );
 }
 
-export default function StatsSection() {
+type Props = {
+  stats: HomepageStat[];
+};
+
+export default function StatsSection({ stats }: Props) {
   return (
     <section className="section-y relative">
       <div className="container-x">
         <AnimatedSection>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
             {stats.map((stat, index) => {
-              const Icon = statIcons[index % statIcons.length];
+              const Icon: IconType =
+                (stat.icon && ICON_MAP[stat.icon]) ||
+                FALLBACK_ICONS[index % FALLBACK_ICONS.length] ||
+                FaStar;
               return (
                 <motion.div
                   key={stat.id}

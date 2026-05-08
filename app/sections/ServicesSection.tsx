@@ -1,10 +1,14 @@
 "use client";
 
 import ServiceCard from "../components/ServiceCard";
-import { services } from "@/data";
 import { SectionHeader } from "../components/ui/SectionHeader";
+import type { Service } from "@/lib/supabase";
 
-export default function ServicesSection() {
+type Props = {
+  services: Service[];
+};
+
+export default function ServicesSection({ services }: Props) {
   return (
     <section id="services" className="section-y relative">
       <div className="container-x relative">
@@ -29,19 +33,19 @@ export default function ServicesSection() {
             <ServiceCard
               key={service.id}
               title={service.title}
-              description={service.description}
-              icon={service.icon}
-              features={service.features}
-              id={service.id}
+              description={service.description ?? ""}
+              icon={service.icon ?? "FaStar"}
+              features={service.features ?? []}
+              id={service.slug ?? undefined}
               delay={index * 0.08}
-              priceFrom={service.priceFrom}
-              category={service.category}
-              duration={service.duration}
+              priceFrom={service.price_from ?? undefined}
+              category={service.category ?? undefined}
+              duration={service.duration ?? undefined}
             />
           ))}
         </div>
 
-        {/* Single decorative ambient glow — was duplicated before */}
+        {/* Single decorative ambient glow */}
         <div
           aria-hidden
           className="pointer-events-none absolute top-1/2 -translate-y-1/2 right-0 w-96 h-96 bg-beam-400/[0.04] rounded-full blur-3xl -z-10"

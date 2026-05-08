@@ -3,12 +3,12 @@
 import AnimatedSection from "../components/AnimatedSection";
 import { motion, AnimatePresence } from "framer-motion";
 import Image from "next/image";
-import { portfolioProjects } from "@/data";
 import { useMemo, useState } from "react";
 import { FaArrowRight } from "react-icons/fa";
 import { SectionHeader } from "../components/ui/SectionHeader";
 import { Button } from "../components/ui/Button";
 import { Chip } from "../components/ui/Chip";
+import type { PortfolioProject } from "@/lib/supabase";
 
 const categories = [
   { key: "all", label: "Semua" },
@@ -17,21 +17,25 @@ const categories = [
   { key: "custom", label: "Custom" },
 ];
 
-export default function GallerySection() {
+type Props = {
+  projects: PortfolioProject[];
+};
+
+export default function GallerySection({ projects }: Props) {
   const [activeCategory, setActiveCategory] = useState("all");
 
   const counts = useMemo(() => {
-    const c: Record<string, number> = { all: portfolioProjects.length };
-    for (const p of portfolioProjects) {
+    const c: Record<string, number> = { all: projects.length };
+    for (const p of projects) {
       c[p.category] = (c[p.category] ?? 0) + 1;
     }
     return c;
-  }, []);
+  }, [projects]);
 
   const filteredProjects =
     activeCategory === "all"
-      ? portfolioProjects
-      : portfolioProjects.filter((p) => p.category === activeCategory);
+      ? projects
+      : projects.filter((p) => p.category === activeCategory);
 
   return (
     <section id="gallery" className="section-y relative overflow-hidden">
@@ -48,7 +52,6 @@ export default function GallerySection() {
           description="Berbagai karya custom BILED mobil dan motor, retrofit projector presisi, hingga kreasi DRL Matrix menggunakan CNC Laser & 3D Print di Lampung Timur."
         />
 
-        {/* Category Filter Tabs */}
         <AnimatedSection delay={0.05}>
           <div className="flex justify-center gap-2 md:gap-3 mb-10 flex-wrap">
             {categories.map(({ key, label }) => {
@@ -77,7 +80,6 @@ export default function GallerySection() {
           </div>
         </AnimatedSection>
 
-        {/* Projects Grid — sm:grid-cols-2 closes the 4→1 jump */}
         <motion.div
           layout
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 md:gap-6 mb-12"
@@ -101,16 +103,17 @@ export default function GallerySection() {
                   transition={{ duration: 0.24, ease: [0.32, 0.72, 0, 1] }}
                   className="relative rounded-2xl overflow-hidden shadow-xl h-[300px] sm:h-72 lg:h-80 group glass mx-auto w-full"
                 >
-                  <Image
-                    src={item.image}
-                    alt={`Custom BILED ${item.title} - Hasil pengerjaan Owlighting Lampung Timur`}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
-                    className="object-cover group-hover:scale-110 transition-transform duration-700"
-                  />
+                  {item.image_url && (
+                    <Image
+                      src={item.image_url}
+                      alt={`Custom BILED ${item.title} - Hasil pengerjaan Owlighting Lampung Timur`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, (max-width: 1280px) 33vw, 25vw"
+                      className="object-cover group-hover:scale-110 transition-transform duration-700"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-300" />
 
-                  {/* Category chip top-right — always visible */}
                   <div className="absolute top-3 right-3">
                     <Chip tone="beam" size="xs">
                       {item.category}
@@ -121,9 +124,11 @@ export default function GallerySection() {
                     <h3 className="font-display text-base lg:text-lg font-bold text-white mb-1 leading-tight">
                       {item.title}
                     </h3>
-                    <p className="text-xs text-gray-300 line-clamp-2 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
-                      {item.description}
-                    </p>
+                    {item.description && (
+                      <p className="text-xs text-gray-300 line-clamp-2 opacity-70 group-hover:opacity-100 transition-opacity duration-300">
+                        {item.description}
+                      </p>
+                    )}
                   </div>
                 </motion.div>
               </motion.div>

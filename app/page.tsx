@@ -14,8 +14,25 @@ import Footer from "./components/Footer";
 import ScrollProgress from "./components/ScrollProgress";
 import WhatsAppWidget from "./components/WhatsAppWidget";
 import StructuredData from "./components/StructuredData";
+import {
+  getHomepageStats,
+  getServices,
+  getPortfolioProjects,
+  getTestimonials,
+  getGalleryImages,
+} from "@/lib/api";
 
-export default function Home() {
+// All fetches degrade gracefully to bundled static data when Supabase env vars
+// are missing — see lib/api.ts. Page stays statically renderable in that case.
+export default async function Home() {
+  const [stats, services, projects, testimonials, gallery] = await Promise.all([
+    getHomepageStats(),
+    getServices(),
+    getPortfolioProjects(),
+    getTestimonials(),
+    getGalleryImages(),
+  ]);
+
   return (
     <main className="relative">
       <StructuredData />
@@ -24,12 +41,12 @@ export default function Home() {
       <Hero />
       <ProofBar />
       <TechSection />
-      <StatsSection />
-      <ServicesSection />
-      <BeforeAfterSection />
+      <StatsSection stats={stats} />
+      <ServicesSection services={services} />
+      <BeforeAfterSection comparisons={gallery} />
       <SafetySection />
-      <GallerySection />
-      <TestimonialsSection />
+      <GallerySection projects={projects} />
+      <TestimonialsSection testimonials={testimonials} />
       <ReservationSection />
       <SEOContentSection />
       <Footer />

@@ -1,122 +1,276 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
+import { useState } from "react";
 import AnimatedSection from "../components/AnimatedSection";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { DynamicIcon } from "../components/DynamicIcon";
-import { services } from "@/data";
+import { services as staticServices } from "@/data";
+import { SectionHeader } from "../components/ui/SectionHeader";
+import { Button } from "../components/ui/Button";
+import { Chip } from "../components/ui/Chip";
+import { PriceTag } from "../components/ui/PriceTag";
+import { buildWhatsAppLink, buildServiceInquiry } from "@/lib/whatsapp";
+import {
+  FaWhatsapp,
+  FaArrowRight,
+  FaMapMarkerAlt,
+  FaCheck,
+  FaChevronDown,
+  FaTrophy,
+  FaCog,
+  FaCheckCircle,
+} from "react-icons/fa";
+import { contactInfo } from "@/data";
+
+type FAQ = {
+  icon: string;
+  question: string;
+  answer: React.ReactNode;
+};
+
+const FAQS: FAQ[] = [
+  {
+    icon: "FaFire",
+    question: "Apakah Custom BILED Aman? Tidak Akan Terbakar?",
+    answer: (
+      <>
+        Sangat aman jika instalasi dilakukan dengan benar. Di Owlighting, kami menggunakan
+        relay proteksi, fuse, dan kabel proper gauge (sesuai ampere). Semua sambungan custom
+        BILED dilindungi heatshrink waterproof.{" "}
+        <strong className="text-white">5+ tahun beroperasi, 500+ kendaraan, 0 kasus terbakar.</strong>
+      </>
+    ),
+  },
+  {
+    icon: "FaBatteryFull",
+    question: "Apakah Aki Bisa Soak / Tekor Setelah Pasang Custom BILED?",
+    answer: (
+      <>
+        Tidak. Kami pakai sistem relay yang memisahkan beban dari aki langsung. Plus socket &
+        fuse untuk proteksi maksimal. Konsumsi daya custom BILED bahkan lebih rendah dari
+        halogen (35W vs 55W).{" "}
+        <strong className="text-white">Instalasi sesuai SOP keamanan elektrikal otomotif.</strong>
+      </>
+    ),
+  },
+  {
+    icon: "FaBolt",
+    question: "Apa Bedanya Custom BILED di Owlighting dengan Tempat Lain?",
+    answer: (
+      <ul className="space-y-2 list-none">
+        <li>
+          <strong className="text-white">Owlighting:</strong> kabel tembaga murni, relay
+          Bosch/Tyco, ballast branded (Morimoto/AC/Osram), wiring rapih seperti factory
+          install, heatshrink waterproof, garansi instalasi.
+        </li>
+        <li>
+          <strong className="text-danger">Tempat asal-asalan:</strong> kabel asal nyambung,
+          tidak pakai relay/fuse, ballast KW, sambungan lakban, rawan konslet.
+        </li>
+      </ul>
+    ),
+  },
+  {
+    icon: "FaLightbulb",
+    question: "Berapa Lama Garansi Custom BILED di Owlighting?",
+    answer: (
+      <>
+        Garansi 1 tahun untuk komponen custom BILED (ballast, bulb) dan instalasi kelistrikan.
+        Jika ada masalah dalam periode garansi, kami perbaiki atau ganti gratis.{" "}
+        <strong className="text-white">After-sales support siap membantu kapan pun.</strong>
+      </>
+    ),
+  },
+  {
+    icon: "FaCar",
+    question: "Mobil / Motor Saya Bisa Dipasang Custom BILED?",
+    answer: (
+      <>
+        Hampir semua kendaraan bisa dipasang custom BILED — dari mobil Jepang, Eropa, Korea,
+        hingga motor. Kami akan survey headlamp Anda terlebih dahulu untuk menentukan
+        projector custom BILED yang cocok dan bracket yang dibutuhkan.{" "}
+        <strong className="text-white">Konsultasi gratis via WhatsApp.</strong>
+      </>
+    ),
+  },
+  {
+    icon: "FaRuler",
+    question: "Berapa Lama Pengerjaan Pasang Custom BILED?",
+    answer: (
+      <>
+        Retrofit custom BILED standar: 1-2 hari. Custom project (DRL, lazy eyes, dll): 3-5 hari
+        tergantung kompleksitas. Kami tidak buru-buru karena detail dan keamanan adalah
+        prioritas. <strong className="text-white">Quality over speed.</strong>
+      </>
+    ),
+  },
+  {
+    icon: "FaMoneyBillWave",
+    question: "Berapa Harga Pasang Custom BILED di Owlighting?",
+    answer: (
+      <>
+        Harga bervariasi tergantung jenis kendaraan dan projector yang dipilih. Mulai dari Rp
+        1.5 juta untuk motor hingga Rp 3-5 juta untuk mobil. Hubungi via WhatsApp untuk
+        konsultasi & penawaran terbaik.{" "}
+        <strong className="text-white">Konsultasi & survey GRATIS.</strong>
+      </>
+    ),
+  },
+];
+
+const HIGHLIGHTS = [
+  {
+    icon: FaTrophy,
+    title: "Pengalaman 5+ Tahun",
+    body: "500+ kendaraan telah dipercaya — dari retrofit standar hingga project custom extreme.",
+  },
+  {
+    icon: FaCog,
+    title: "Teknologi In-House",
+    body: "CNC Laser & 3D Printer di workshop kami — fabrikasi presisi tanpa outsource.",
+  },
+  {
+    icon: FaCheckCircle,
+    title: "Garansi Resmi",
+    body: "Garansi 1 tahun untuk setiap instalasi. After-sales support siap membantu kapan pun.",
+  },
+];
 
 export default function ServicesClient() {
+  const [openFaq, setOpenFaq] = useState<number | null>(0);
+
   return (
     <main className="relative">
       <Navbar />
 
-      {/* Hero Section */}
-      <section className="relative pt-32 pb-20 px-6 lg:px-20 overflow-hidden">
-        <div className="absolute inset-0 bg-linear-to-b from-primary/5 to-transparent pointer-events-none" />
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <AnimatedSection>
-            <motion.h1
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8 }}
-              className="text-5xl lg:text-7xl font-black mb-6 text-center"
-            >
-              Layanan <span className="text-glow">Custom BILED</span> & Retrofit
-            </motion.h1>
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-xl text-muted text-center max-w-3xl mx-auto leading-relaxed"
-            >
-              Spesialis pasang <strong>Custom BILED</strong> mobil dan motor di Lampung Timur. 
-              Dari BILED Retrofit hingga D2 Laser, DRL Matrix, dan Neonbox Huruf Timbul. 
-              Solusi lengkap pencahayaan kendaraan dengan teknologi presisi tinggi.
-            </motion.p>
-            <motion.p
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.3 }}
-              className="text-center mt-4"
-            >
-              <span className="text-accent font-bold text-2xl">
-                #MenolakGelap
-              </span>
-            </motion.p>
-          </AnimatedSection>
+      {/* Hero */}
+      <section className="relative pt-32 pb-16 overflow-hidden">
+        <div
+          aria-hidden
+          className="absolute inset-0 pointer-events-none"
+          style={{
+            background:
+              "radial-gradient(60% 50% at 50% 0%, rgba(0,194,255,0.12), transparent 65%)",
+          }}
+        />
+        <div className="container-x relative z-10">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
+            className="text-center"
+          >
+            <Chip tone="beam" size="sm" className="mb-5">
+              Layanan
+            </Chip>
+            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] mb-6">
+              Layanan{" "}
+              <span className="gradient-text">Custom BILED</span>
+              <br />
+              <span className="text-white/90">& Retrofit Presisi.</span>
+            </h1>
+            <p className="text-base md:text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
+              Spesialis pasang <strong className="text-white">Custom BILED</strong> mobil dan
+              motor di Lampung Timur. Dari BILED Retrofit hingga D2 Laser, DRL Matrix, dan
+              Neonbox Huruf Timbul — solusi lengkap pencahayaan kendaraan.
+            </p>
+          </motion.div>
         </div>
       </section>
 
-      {/* Services Grid */}
-      <section className="py-12 px-6 lg:px-20" id="layanan-custom-biled">
-        <div className="max-w-7xl mx-auto">
-          <AnimatedSection>
-            <h2 className="text-3xl font-bold text-center mb-8 text-primary">
-              Daftar Layanan Custom BILED & Retrofit Lampung Timur
-            </h2>
-          </AnimatedSection>
-          <div className="grid md:grid-cols-2 gap-8">
-            {services.map((service, index) => (
-              <AnimatedSection key={service.id} delay={index * 0.1}>
+      {/* Services grid */}
+      <section className="section-y" id="layanan-custom-biled">
+        <div className="container-x">
+          <SectionHeader
+            badge="Daftar Layanan"
+            title="Tujuh layanan,"
+            accent="satu workshop."
+            description="Setiap layanan didukung tim teknisi yang sama, peralatan yang sama, dan SOP keamanan yang sama. Konsisten dari job pertama sampai kelima ratus."
+          />
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
+            {staticServices.map((service, index) => (
+              <AnimatedSection key={service.id} delay={index * 0.06}>
                 <motion.article
-                  whileHover={{ y: -5 }}
-                  className="glass rounded-2xl p-8 h-full"
+                  whileHover={{ y: -4 }}
+                  transition={{ duration: 0.24, ease: [0.32, 0.72, 0, 1] }}
+                  className="glass rounded-2xl p-6 md:p-7 h-full border border-white/5 hover:border-beam-400/30 transition-colors flex flex-col"
                   itemScope
                   itemType="https://schema.org/Service"
                 >
                   <div className="flex items-start gap-4 mb-4">
-                    <div>
+                    <div className="w-14 h-14 rounded-xl bg-beam-400/10 flex items-center justify-center shrink-0">
                       <DynamicIcon
                         name={service.icon}
-                        size={48}
-                        className="text-primary"
+                        size={26}
+                        className="text-beam-400"
                       />
                     </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-primary mb-2" itemProp="name">
-                        {service.title}
-                      </h3>
-                      <p className="text-muted leading-relaxed" itemProp="description">
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-start justify-between gap-2 mb-2">
+                        <h3
+                          className="font-display text-xl md:text-2xl font-bold text-white leading-tight"
+                          itemProp="name"
+                        >
+                          {service.title}
+                        </h3>
+                        {service.category && (
+                          <Chip tone="halo" size="xs">
+                            {service.category}
+                          </Chip>
+                        )}
+                      </div>
+                      <p
+                        className="text-text-secondary text-sm leading-relaxed"
+                        itemProp="description"
+                      >
                         {service.description}
                       </p>
                     </div>
                   </div>
 
-                  <div className="mt-6">
-                    <h4 className="font-semibold text-white mb-3">Keunggulan:</h4>
+                  {(service.priceFrom || service.duration) && (
+                    <div className="flex items-end justify-between gap-3 py-4 border-y border-white/5 mb-5">
+                      <PriceTag
+                        from={service.priceFrom ?? null}
+                        note={service.duration}
+                        size="md"
+                      />
+                    </div>
+                  )}
+
+                  <div className="mb-5 flex-1">
+                    <p className="text-[10px] uppercase tracking-widest text-text-tertiary font-bold mb-3">
+                      Termasuk dalam paket
+                    </p>
                     <ul className="space-y-2">
                       {service.features.map((feature, idx) => (
                         <li
                           key={idx}
-                          className="flex items-center gap-2 text-muted"
+                          className="flex items-start gap-2.5 text-sm text-text-secondary"
                         >
-                          <span className="text-accent">✓</span>
-                          {feature}
+                          <FaCheck size={11} className="text-beam-400 mt-1 shrink-0" />
+                          <span>{feature}</span>
                         </li>
                       ))}
                     </ul>
                   </div>
 
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    onClick={() => {
-                      const phone = "6285658648413";
-                      const message = `Halo Owlighting, saya tertarik dengan layanan ${service.title}. Bisa konsultasi?`;
-                      window.open(
-                        `https://wa.me/${phone}?text=${encodeURIComponent(
-                          message
-                        )}`,
-                        "_blank"
-                      );
-                    }}
-                    className="mt-6 w-full py-3 bg-cyan-400 hover:bg-cyan-300 text-black font-bold rounded-lg glow-primary"
+                  <Button
+                    href={buildWhatsAppLink({
+                      message: buildServiceInquiry(service.title),
+                    })}
+                    external
+                    variant="primary"
+                    size="md"
+                    fullWidth
+                    leftIcon={<FaWhatsapp size={14} />}
+                    rightIcon={<FaArrowRight size={11} />}
                   >
-                    Konsultasi Gratis Sekarang
-                  </motion.button>
+                    Konsultasi Gratis
+                  </Button>
                 </motion.article>
               </AnimatedSection>
             ))}
@@ -124,296 +278,155 @@ export default function ServicesClient() {
         </div>
       </section>
 
-      {/* Why Choose Section */}
-      <section className="py-20 px-6 lg:px-20 bg-surface/30" id="kenapa-pilih-owlighting">
-        <div className="max-w-7xl mx-auto">
-          <AnimatedSection>
-            <h2 className="text-4xl font-black text-center mb-4 text-glow">
-              Kenapa Pilih Owlighting untuk Custom BILED?
-            </h2>
-            <p className="text-center text-muted mb-12 max-w-2xl mx-auto">
-              Owlighting adalah bengkel spesialis custom BILED terpercaya di Lampung Timur dengan pengalaman 5+ tahun
-            </p>
-          </AnimatedSection>
+      {/* Highlights */}
+      <section className="section-y bg-bg-raised" id="kenapa-pilih-owlighting">
+        <div className="container-x">
+          <SectionHeader
+            badge="Kenapa Owlighting"
+            title="Tiga hal yang"
+            accent="tidak kami kompromikan"
+            accentTone="dual"
+            description="Bukan janji marketing — ini standar minimum yang berlaku di setiap pengerjaan, dari customer ke-1 sampai ke-500."
+          />
 
-          <div className="grid md:grid-cols-3 gap-8">
-            <AnimatedSection delay={0.2}>
-              <div className="text-center">
-                <div className="mb-4 flex justify-center">
-                  <DynamicIcon
-                    name="FaTrophy"
-                    size={64}
-                    className="text-primary"
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-3 text-primary">
-                  Pengalaman 5+ Tahun Custom BILED
-                </h3>
-                <p className="text-muted">
-                  500+ kendaraan telah dipercaya kepada kami. Dari retrofit
-                  standar hingga project custom BILED extreme.
-                </p>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.3}>
-              <div className="text-center">
-                <div className="mb-4 flex justify-center">
-                  <DynamicIcon
-                    name="FaCog"
-                    size={64}
-                    className="text-primary"
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-3 text-primary">
-                  Teknologi CNC & 3D In-House
-                </h3>
-                <p className="text-muted">
-                  CNC Laser & 3D Printer di workshop kami. Custom fabrication
-                  tanpa perlu outsource untuk hasil presisi maksimal.
-                </p>
-              </div>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.4}>
-              <div className="text-center">
-                <div className="mb-4 flex justify-center">
-                  <DynamicIcon
-                    name="FaCheckCircle"
-                    size={64}
-                    className="text-primary"
-                  />
-                </div>
-                <h3 className="text-xl font-bold mb-3 text-primary">
-                  Garansi Resmi & After-Sales Support
-                </h3>
-                <p className="text-muted">
-                  Garansi resmi untuk setiap instalasi custom BILED. After-sales support siap
-                  membantu kapan pun.
-                </p>
-              </div>
-            </AnimatedSection>
+          <div className="grid md:grid-cols-3 gap-5 md:gap-6">
+            {HIGHLIGHTS.map((h, i) => (
+              <AnimatedSection key={h.title} delay={i * 0.1}>
+                <motion.div
+                  whileHover={{ y: -6 }}
+                  transition={{ duration: 0.24, ease: [0.32, 0.72, 0, 1] }}
+                  className="glass-strong rounded-2xl p-6 md:p-8 text-center border border-white/5 h-full"
+                >
+                  <div className="inline-flex w-14 h-14 rounded-xl mb-5 items-center justify-center bg-beam-400/10">
+                    <h.icon size={24} className="text-beam-400" />
+                  </div>
+                  <h3 className="font-display text-xl font-bold mb-3 text-white leading-tight">
+                    {h.title}
+                  </h3>
+                  <p className="text-sm text-text-secondary leading-relaxed">{h.body}</p>
+                </motion.div>
+              </AnimatedSection>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-20 px-6 lg:px-20" id="faq-custom-biled">
-        <div className="max-w-4xl mx-auto">
-          <AnimatedSection>
-            <h2 className="text-4xl font-black text-center mb-4 text-glow">
-              FAQ: Pertanyaan Seputar Custom BILED & Retrofit
-            </h2>
-            <p className="text-center text-muted mb-12">
-              Jawaban untuk pertanyaan umum tentang pasang custom BILED dan keamanan retrofit lampu kendaraan
-            </p>
-          </AnimatedSection>
+      {/* FAQ — accordion */}
+      <section className="section-y" id="faq-custom-biled">
+        <div className="container-x max-w-4xl">
+          <SectionHeader
+            badge="Tanya Jawab"
+            title="Pertanyaan yang"
+            accent="paling sering ditanya."
+            description="Kalau ada pertanyaan lain yang belum terjawab, langsung WhatsApp kami — tim akan jawab dalam menit, bukan jam."
+            maxWidth="max-w-xl"
+          />
 
-          <div className="space-y-6">
-            <AnimatedSection delay={0.2}>
-              <article className="glass rounded-xl p-6" itemScope itemType="https://schema.org/Question">
-                <h3 className="text-xl font-bold text-primary mb-3 flex items-center gap-3" itemProp="name">
-                  <DynamicIcon
-                    name="FaFire"
-                    size={24}
-                    className="text-primary"
-                  />
-                  Apakah Custom BILED Aman? Tidak Akan Terbakar?
-                </h3>
-                <div itemProp="acceptedAnswer" itemScope itemType="https://schema.org/Answer">
-                  <p className="text-muted leading-relaxed" itemProp="text">
-                    Sangat aman jika instalasi dilakukan dengan benar! Di
-                    Owlighting, kami menggunakan relay proteksi, fuse, dan kabel
-                    proper gauge (sesuai ampere). Semua sambungan custom BILED dilindungi
-                    heatshrink waterproof.{" "}
-                    <span className="text-white font-semibold">
-                      5+ tahun beroperasi, 500+ kendaraan, 0 kasus terbakar.
-                    </span>
-                  </p>
-                </div>
-              </article>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.3}>
-              <article className="glass rounded-xl p-6" itemScope itemType="https://schema.org/Question">
-                <h3 className="text-xl font-bold text-primary mb-3 flex items-center gap-3" itemProp="name">
-                  <DynamicIcon
-                    name="FaBatteryFull"
-                    size={24}
-                    className="text-primary"
-                  />
-                  Apakah Aki Bisa Soak/Tekor Setelah Pasang Custom BILED?
-                </h3>
-                <div itemProp="acceptedAnswer" itemScope itemType="https://schema.org/Answer">
-                  <p className="text-muted leading-relaxed" itemProp="text">
-                    Tidak! Kami pakai sistem relay yang memisahkan beban dari aki
-                    langsung. Plus socket & fuse untuk proteksi maksimal. Konsumsi
-                    daya custom BILED bahkan lebih rendah dari halogen biasa (35W vs
-                    55W).{" "}
-                    <span className="text-white font-semibold">
-                      Instalasi sesuai SOP keamanan elektrikal otomotif.
-                    </span>
-                  </p>
-                </div>
-              </article>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.4}>
-              <article className="glass rounded-xl p-6" itemScope itemType="https://schema.org/Question">
-                <h3 className="text-xl font-bold text-primary mb-3 flex items-center gap-3" itemProp="name">
-                  <DynamicIcon
-                    name="FaBolt"
-                    size={24}
-                    className="text-primary"
-                  />
-                  Apa Bedanya Custom BILED di Owlighting dengan Tempat Lain?
-                </h3>
-                <div itemProp="acceptedAnswer" itemScope itemType="https://schema.org/Answer">
-                  <p className="text-muted leading-relaxed" itemProp="text">
-                    <strong className="text-white">Owlighting:</strong> Kabel
-                    tembaga murni, relay Bosch/Tyco, ballast branded
-                    (Morimoto/AC/Osram), wiring rapih seperti factory install,
-                    heatshrink waterproof, garansi instalasi custom BILED.
-                    <br />
-                    <strong className="text-red-400">
-                      Tempat Asal-asalan:
-                    </strong>{" "}
-                    Kabel asal nyambung, tidak pakai relay/fuse, ballast KW,
-                    sambungan lakban, rawan konslet.
-                  </p>
-                </div>
-              </article>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.5}>
-              <article className="glass rounded-xl p-6" itemScope itemType="https://schema.org/Question">
-                <h3 className="text-xl font-bold text-primary mb-3 flex items-center gap-3" itemProp="name">
-                  <DynamicIcon
-                    name="FaLightbulb"
-                    size={24}
-                    className="text-primary"
-                  />
-                  Berapa Lama Garansi Custom BILED di Owlighting?
-                </h3>
-                <div itemProp="acceptedAnswer" itemScope itemType="https://schema.org/Answer">
-                  <p className="text-muted leading-relaxed" itemProp="text">
-                    Garansi 1 tahun untuk komponen custom BILED (ballast, bulb) dan instalasi
-                    kelistrikan. Jika ada masalah dalam periode garansi, kami
-                    perbaiki atau ganti gratis.{" "}
-                    <span className="text-white font-semibold">
-                      After-sales support siap membantu kapan pun.
-                    </span>
-                  </p>
-                </div>
-              </article>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.6}>
-              <article className="glass rounded-xl p-6" itemScope itemType="https://schema.org/Question">
-                <h3 className="text-xl font-bold text-primary mb-3 flex items-center gap-3" itemProp="name">
-                  <DynamicIcon
-                    name="FaCar"
-                    size={24}
-                    className="text-primary"
-                  />
-                  Mobil/Motor Saya Bisa Dipasang Custom BILED?
-                </h3>
-                <div itemProp="acceptedAnswer" itemScope itemType="https://schema.org/Answer">
-                  <p className="text-muted leading-relaxed" itemProp="text">
-                    Hampir semua kendaraan bisa dipasang custom BILED! Dari mobil Jepang, Eropa, Korea,
-                    hingga motor. Kami akan survey headlamp Anda terlebih dahulu
-                    untuk menentukan projector custom BILED yang cocok dan bracket yang
-                    dibutuhkan.{" "}
-                    <span className="text-white font-semibold">
-                      Konsultasi gratis via WhatsApp!
-                    </span>
-                  </p>
-                </div>
-              </article>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.7}>
-              <article className="glass rounded-xl p-6" itemScope itemType="https://schema.org/Question">
-                <h3 className="text-xl font-bold text-primary mb-3 flex items-center gap-3" itemProp="name">
-                  <DynamicIcon
-                    name="FaRuler"
-                    size={24}
-                    className="text-primary"
-                  />
-                  Berapa Lama Pengerjaan Pasang Custom BILED?
-                </h3>
-                <div itemProp="acceptedAnswer" itemScope itemType="https://schema.org/Answer">
-                  <p className="text-muted leading-relaxed" itemProp="text">
-                    Retrofit custom BILED standar: 1-2 hari. Custom project (DRL, lazy eyes,
-                    dll): 3-5 hari tergantung kompleksitas. Kami tidak buru-buru
-                    karena detail dan keamanan adalah prioritas.{" "}
-                    <span className="text-white font-semibold">
-                      Quality over speed!
-                    </span>
-                  </p>
-                </div>
-              </article>
-            </AnimatedSection>
-
-            <AnimatedSection delay={0.8}>
-              <article className="glass rounded-xl p-6" itemScope itemType="https://schema.org/Question">
-                <h3 className="text-xl font-bold text-primary mb-3 flex items-center gap-3" itemProp="name">
-                  <DynamicIcon
-                    name="FaMoneyBillWave"
-                    size={24}
-                    className="text-primary"
-                  />
-                  Berapa Harga Pasang Custom BILED di Owlighting?
-                </h3>
-                <div itemProp="acceptedAnswer" itemScope itemType="https://schema.org/Answer">
-                  <p className="text-muted leading-relaxed" itemProp="text">
-                    Harga pasang custom BILED bervariasi tergantung jenis kendaraan dan projector yang dipilih. 
-                    Mulai dari Rp 1.5 juta untuk motor hingga Rp 3-5 juta untuk mobil. 
-                    Hubungi kami via WhatsApp untuk konsultasi dan penawaran harga custom BILED terbaik.{" "}
-                    <span className="text-white font-semibold">
-                      Konsultasi & survey GRATIS!
-                    </span>
-                  </p>
-                </div>
-              </article>
-            </AnimatedSection>
+          <div className="space-y-3">
+            {FAQS.map((faq, i) => {
+              const isOpen = openFaq === i;
+              return (
+                <AnimatedSection key={faq.question} delay={i * 0.04}>
+                  <article
+                    className={`glass rounded-2xl border transition-colors overflow-hidden ${
+                      isOpen ? "border-beam-400/30 bg-beam-400/[0.03]" : "border-white/5"
+                    }`}
+                    itemScope
+                    itemType="https://schema.org/Question"
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setOpenFaq(isOpen ? null : i)}
+                      className="w-full px-5 py-4 md:px-6 md:py-5 flex items-center gap-4 text-left"
+                      aria-expanded={isOpen}
+                    >
+                      <div
+                        className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                          isOpen ? "bg-beam-400/15" : "bg-white/5"
+                        }`}
+                      >
+                        <DynamicIcon
+                          name={faq.icon}
+                          size={16}
+                          className="text-beam-400"
+                        />
+                      </div>
+                      <h3
+                        className="font-display text-base md:text-lg font-bold text-white leading-tight flex-1"
+                        itemProp="name"
+                      >
+                        {faq.question}
+                      </h3>
+                      <motion.span
+                        animate={{ rotate: isOpen ? 180 : 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="text-text-tertiary shrink-0"
+                      >
+                        <FaChevronDown size={14} />
+                      </motion.span>
+                    </button>
+                    <AnimatePresence initial={false}>
+                      {isOpen && (
+                        <motion.div
+                          key="content"
+                          initial={{ height: 0, opacity: 0 }}
+                          animate={{ height: "auto", opacity: 1 }}
+                          exit={{ height: 0, opacity: 0 }}
+                          transition={{ duration: 0.24, ease: [0.32, 0.72, 0, 1] }}
+                          className="overflow-hidden"
+                          itemScope
+                          itemProp="acceptedAnswer"
+                          itemType="https://schema.org/Answer"
+                        >
+                          <div
+                            className="px-5 pb-5 md:px-6 md:pb-6 pl-[68px] md:pl-[80px] text-sm md:text-base text-text-secondary leading-relaxed"
+                            itemProp="text"
+                          >
+                            {faq.answer}
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
+                  </article>
+                </AnimatedSection>
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-6 lg:px-20" id="hubungi-owlighting">
-        <div className="max-w-4xl mx-auto text-center">
+      {/* CTA */}
+      <section className="section-y bg-bg-raised" id="hubungi-owlighting">
+        <div className="container-x max-w-4xl text-center">
           <AnimatedSection>
-            <h2 className="text-4xl font-black mb-6 text-glow">
-              Siap Pasang Custom BILED di Kendaraan Anda?
+            <h2 className="font-display text-3xl md:text-5xl font-black mb-5 leading-tight">
+              Siap pasang{" "}
+              <span className="gradient-text">Custom BILED</span> di kendaraan Anda?
             </h2>
-            <p className="text-muted text-lg mb-8">
-              Konsultasi gratis untuk menentukan solusi custom BILED terbaik untuk kendaraan Anda di Lampung Timur
+            <p className="text-text-secondary text-base md:text-lg mb-8 max-w-2xl mx-auto">
+              Konsultasi gratis untuk menentukan setup terbaik untuk kendaraan Anda di Lampung Timur.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <motion.a
-                href="https://wa.me/6285658648413?text=Halo%20Owlighting,%20saya%20ingin%20konsultasi%20tentang%20layanan%20Custom%20BILED"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 py-4 bg-cyan-400 hover:bg-cyan-300 text-black font-bold rounded-lg glow-primary text-lg inline-flex items-center gap-3 justify-center"
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <Button
+                href={buildWhatsAppLink({
+                  message: buildServiceInquiry("Konsultasi Custom BILED"),
+                })}
+                external
+                variant="primary"
+                size="lg"
+                leftIcon={<FaWhatsapp size={16} />}
               >
-                <DynamicIcon name="FaWhatsapp" size={24} />
                 WhatsApp Konsultasi Gratis
-              </motion.a>
-              <motion.a
-                href="https://maps.app.goo.gl/MvXVMty2vPcaZEB28"
-                target="_blank"
-                rel="noopener noreferrer"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="px-10 py-4 border-2 border-primary/30 text-white font-semibold rounded-lg hover:bg-primary/10 hover:border-primary transition-all inline-flex items-center gap-3 justify-center"
+              </Button>
+              <Button
+                href={contactInfo.googleMapsUrl}
+                external
+                variant="secondary"
+                size="lg"
+                leftIcon={<FaMapMarkerAlt size={14} className="text-beam-400" />}
               >
-                <DynamicIcon name="FaMapMarkerAlt" size={24} />
-                Lokasi Workshop Lampung Timur
-              </motion.a>
+                Lokasi Workshop
+              </Button>
             </div>
           </AnimatedSection>
         </div>

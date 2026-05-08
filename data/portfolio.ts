@@ -1,24 +1,38 @@
 // Gallery before/after images
+// NOTE: replace Unsplash placeholders with workshop-shot photos when assets are ready.
+// The CMS-managed copy in `gallery_images` table will override these once populated.
 export const galleryImages = [
   {
-    id: "biled-retrofit-1",
-    title: "Retrofit BILED Projector",
+    id: "biled-retrofit-avanza",
+    title: "BILED Retrofit",
+    vehicle: "Toyota Avanza 2018",
+    description: "Halogen kuning 3.200 lx → BILED putih tajam 6000 K dengan cut-off RHD presisi.",
     category: "mobil",
+    serviceTag: "BILED Retrofit",
     beforeImage:
-      "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1568605117036-5fe5e7bab0b7?w=1200&auto=format&fit=crop",
     afterImage:
-      "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=1200&auto=format&fit=crop",
     sliderColor: "#00C2FF",
+    luxBefore: 3200,
+    luxAfter: 18500,
+    durationDays: 1,
   },
   {
-    id: "suv-headlight",
-    title: "Custom SUV Headlights",
+    id: "d2-laser-jazz",
+    title: "D2 Laser Foglamp",
+    vehicle: "Honda Jazz 2020",
+    description: "Foglamp standar redup → cahaya kristal dual-color, IP67, tembus kabut.",
     category: "mobil",
+    serviceTag: "D2 Laser",
     beforeImage:
-      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1552519507-da3b142c6e3d?w=1200&auto=format&fit=crop",
     afterImage:
-      "https://images.unsplash.com/photo-1619405399517-d7fce0f13302?w=800&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?w=1200&auto=format&fit=crop",
     sliderColor: "#FFB800",
+    luxBefore: 1800,
+    luxAfter: 12000,
+    durationDays: 1,
   },
 ];
 
