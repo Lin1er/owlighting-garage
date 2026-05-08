@@ -34,6 +34,9 @@ export default function ServicesSection() {
               features={service.features}
               id={service.id}
               delay={index * 0.08}
+              priceFrom={service.priceFrom}
+              category={service.category}
+              duration={service.duration}
             />
           ))}
         </div>

@@ -1,5 +1,6 @@
 import Navbar from "./components/Navbar";
 import Hero from "./sections/Hero";
+import ProofBar from "./sections/ProofBar";
 import TechSection from "./sections/TechSection";
 import StatsSection from "./sections/StatsSection";
 import ServicesSection from "./sections/ServicesSection";
@@ -21,6 +22,7 @@ export default function Home() {
       <ScrollProgress />
       <Navbar />
       <Hero />
+      <ProofBar />
       <TechSection />
       <StatsSection />
       <ServicesSection />

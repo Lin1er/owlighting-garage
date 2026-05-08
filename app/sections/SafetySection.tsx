@@ -2,149 +2,221 @@
 
 import { motion } from "framer-motion";
 import AnimatedSection from "../components/AnimatedSection";
-import { DynamicIcon } from "../components/DynamicIcon";
-import { FaFire, FaBatteryFull, FaBolt, FaPlug, FaShieldAlt, FaTint, FaRuler } from "react-icons/fa";
+import {
+  FaFire,
+  FaBatteryFull,
+  FaBolt,
+  FaPlug,
+  FaShieldAlt,
+  FaTint,
+  FaRuler,
+  FaCar,
+  FaCalendarCheck,
+} from "react-icons/fa";
+import { SectionHeader } from "../components/ui/SectionHeader";
+import { useReducedMotion } from "../hooks/useReducedMotion";
+
+const headlineStats = [
+  { icon: FaFire, value: "0", label: "Kasus Terbakar", tone: "halo" as const },
+  { icon: FaCalendarCheck, value: "5+", label: "Tahun Pengalaman", tone: "beam" as const },
+  { icon: FaCar, value: "500+", label: "Kendaraan Dikerjakan", tone: "beam" as const },
+];
+
+const safetyPoints = [
+  {
+    icon: FaFire,
+    title: "Takut Kabel Terbakar?",
+    bullets: [
+      "Retrofit asal-asalan = kabel tipis di-paksa amperage tinggi",
+      "Tanpa relay → arus utama lewat saklar standar",
+      "Hasil: kabel meleleh, asap, kabin terbakar",
+    ],
+    solution:
+      "Setiap instalasi pakai relay proteksi, fuse, dan kabel tembaga proper gauge. Wiring di-routing seperti factory install.",
+  },
+  {
+    icon: FaBatteryFull,
+    title: "Khawatir Aki Soak?",
+    bullets: [
+      "Lampu langsung dicolok ke aki tanpa pemisah beban",
+      "Konslet kecil → aki drain semalaman",
+      "Pagi hari: mobil tidak bisa start",
+    ],
+    solution:
+      "Sistem relay memisahkan beban dari aki. Plus socket & fuse untuk proteksi. Aki tetap awet seperti standar pabrik.",
+  },
+  {
+    icon: FaBolt,
+    title: "Wiring Berantakan?",
+    bullets: [
+      "Kabel kusut, sambungan dilakban biasa",
+      "Tidak waterproof, gampang konslet",
+      "Susah di-troubleshoot kalau ada masalah",
+    ],
+    solution:
+      "Wiring rapih seperti factory install. Sambungan pakai heatshrink + taping waterproof. Cable management ter-labeling.",
+  },
+];
+
+const standards = [
+  { icon: FaPlug, title: "Kabel Original", desc: "Tembaga murni, proper gauge" },
+  { icon: FaShieldAlt, title: "Relay & Fuse", desc: "Bosch / Tyco + fuse proteksi" },
+  { icon: FaTint, title: "Waterproof", desc: "Heatshrink + taping outdoor" },
+  { icon: FaRuler, title: "Cable Management", desc: "Rapi seperti factory" },
+];
 
 export default function SafetySection() {
-  const safetyPoints = [
-    {
-      icon: FaFire,
-      title: "Takut Kabel Terbakar?",
-      problem:
-        "Banyak kasus retrofit BILED asal-asalan yang bikin kabel terbakar dan merusak kendaraan.",
-      solution:
-        "Di Owlighting, semua instalasi menggunakan relay proteksi, fuse, dan kabel proper gauge. Dijamin aman!",
-      accent: "red",
-    },
-    {
-      icon: FaBatteryFull,
-      title: "Khawatir Aki Soak?",
-      problem:
-        "Instalasi yang salah bisa bikin aki cepat tekor karena beban berlebih atau konslet.",
-      solution:
-        "Kami pakai sistem relay yang memisahkan beban dari aki. Plus socket & fuse untuk proteksi maksimal.",
-      accent: "amber",
-    },
-    {
-      icon: FaBolt,
-      title: "Kabel Berantakan?",
-      problem:
-        "Kabel kusut & sambungan alakadarnya rawan konslet dan tidak tahan lama.",
-      solution:
-        "Wiring rapih seperti factory install. Semua sambungan pakai heatshrink & taping waterproof. Cable management profesional.",
-      accent: "orange",
-    },
-  ];
-
-  const standards = [
-    { icon: FaPlug, title: "Kabel Original", desc: "Tembaga murni, proper gauge sesuai ampere" },
-    { icon: FaShieldAlt, title: "Relay & Fuse", desc: "Bosch/Tyco relay + fuse proteksi" },
-    { icon: FaTint, title: "Waterproof", desc: "Heatshrink & taping weather resistant" },
-    { icon: FaRuler, title: "Cable Management", desc: "Rapih seperti factory install" },
-  ];
+  const reduced = useReducedMotion();
 
   return (
-    <section className="relative py-24 px-6 lg:px-20 bg-surface/30">
-      <div className="max-w-7xl mx-auto">
-        <AnimatedSection>
-          <div className="text-center mb-6">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-semibold mb-4 backdrop-blur-sm">
-              <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-              KEAMANAN TERJAMIN
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-black mb-4">
-              <span className="gradient-text">Mengapa Harus</span> Aman?
-            </h2>
-            <p className="text-muted mb-6 max-w-2xl mx-auto">
-              Banyak yang takut pasang BILED karena kasus kabel terbakar & aki
-              soak. Di Owlighting, keamanan adalah prioritas utama.
-            </p>
-          </div>
-        </AnimatedSection>
+    <section className="section-y relative bg-bg-raised">
+      <div className="container-x">
+        <SectionHeader
+          badge="Keamanan Terjamin"
+          title="Mengapa Harus"
+          accent="Aman?"
+          accentTone="dual"
+          description="Banyak yang takut pasang BILED karena cerita kabel terbakar & aki soak. Di Owlighting, keamanan bukan opsi — itu standar minimum yang tidak pernah kami kompromikan."
+        />
 
-        {/* Big Zero Callout */}
-        <AnimatedSection delay={0.2}>
-          <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-12 mb-16 py-8 px-6 glass-strong rounded-2xl border border-primary/10">
-            <div className="text-center">
-              <div className="text-6xl md:text-8xl font-black gradient-text leading-none mb-1">0</div>
-              <div className="text-lg md:text-xl font-bold text-white">Kasus Terbakar</div>
-            </div>
-            <div className="hidden md:block w-px h-20 bg-gradient-to-b from-transparent via-primary/30 to-transparent" />
-            <div className="text-center">
-              <div className="text-6xl md:text-8xl font-black gradient-text leading-none mb-1">5+</div>
-              <div className="text-lg md:text-xl font-bold text-white">Tahun Pengalaman</div>
-            </div>
-            <div className="hidden md:block w-px h-20 bg-gradient-to-b from-transparent via-primary/30 to-transparent" />
-            <div className="text-center">
-              <div className="text-6xl md:text-8xl font-black gradient-text leading-none mb-1">500+</div>
-              <div className="text-lg md:text-xl font-bold text-white">Kendaraan Dikerjakan</div>
-            </div>
-          </div>
-        </AnimatedSection>
-
-        {/* Safety Cards */}
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8">
-          {safetyPoints.map((point, index) => (
-            <AnimatedSection key={index} delay={0.3 + index * 0.15}>
+        {/* Headline stats — animated line connectors instead of vertical dividers */}
+        <AnimatedSection delay={0.1}>
+          <div className="relative glass-strong rounded-2xl border border-white/8 p-6 md:p-10 mb-12 md:mb-16 overflow-hidden">
+            {/* Animated horizontal line that "lights up" on scroll into view */}
+            {!reduced && (
               <motion.div
-                whileHover={{ y: -8 }}
-                className="glass-strong rounded-2xl p-6 h-full border border-white/5 hover:border-primary/20 transition-colors"
+                aria-hidden
+                initial={{ scaleX: 0 }}
+                whileInView={{ scaleX: 1 }}
+                viewport={{ once: true, margin: "-80px" }}
+                transition={{ duration: 1.2, ease: [0.32, 0.72, 0, 1] }}
+                style={{ transformOrigin: "left" }}
+                className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-beam-400/60 to-transparent"
+              />
+            )}
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-4">
+              {headlineStats.map((stat, i) => (
+                <motion.div
+                  key={stat.label}
+                  initial={reduced ? false : { opacity: 0, y: 16 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-60px" }}
+                  transition={{ duration: 0.5, delay: 0.15 + i * 0.12 }}
+                  className="text-center relative"
+                >
+                  <div
+                    className={`inline-flex w-12 h-12 rounded-xl mb-3 items-center justify-center ${
+                      stat.tone === "halo"
+                        ? "bg-halo-500/10 text-halo-300"
+                        : "bg-beam-400/10 text-beam-400"
+                    }`}
+                  >
+                    <stat.icon size={20} />
+                  </div>
+                  <div
+                    className={`font-display text-5xl md:text-7xl font-black tabular leading-none mb-2 ${
+                      stat.tone === "halo" ? "gradient-text-halo" : "gradient-text"
+                    }`}
+                  >
+                    {stat.value}
+                  </div>
+                  <div className="text-sm md:text-base font-semibold text-white">
+                    {stat.label}
+                  </div>
+
+                  {/* Mobile: animated separator below each stat (except last) */}
+                  {i < headlineStats.length - 1 && (
+                    <div
+                      aria-hidden
+                      className="md:hidden mt-8 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent"
+                    />
+                  )}
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* Safety problem/solution cards */}
+        <div className="grid md:grid-cols-3 gap-6 md:gap-8 mb-12 md:mb-16">
+          {safetyPoints.map((point, index) => (
+            <AnimatedSection key={point.title} delay={0.15 + index * 0.1}>
+              <motion.article
+                whileHover={reduced ? undefined : { y: -6 }}
+                transition={{ duration: 0.24, ease: [0.32, 0.72, 0, 1] }}
+                className="glass-strong rounded-2xl p-6 h-full border border-white/5 hover:border-beam-400/20 transition-colors flex flex-col"
               >
-                <div className="mb-4 w-14 h-14 rounded-xl bg-primary/10 flex items-center justify-center">
-                  <point.icon size={24} className="text-primary" />
+                <div className="mb-4 w-12 h-12 rounded-xl bg-danger/10 flex items-center justify-center">
+                  <point.icon size={20} className="text-danger" />
                 </div>
-                <h3 className="text-xl font-bold mb-4 text-white">
+                <h3 className="font-display text-xl font-bold mb-4 text-white leading-tight">
                   {point.title}
                 </h3>
 
-                <div className="mb-4 pb-4 border-b border-red-500/20 rounded-lg bg-red-500/5 p-3 -mx-1">
-                  <p className="text-xs font-bold text-red-400 mb-1.5 uppercase tracking-wider">
-                    ❌ Masalah Umum
+                <div className="mb-5 rounded-lg bg-danger/5 border border-danger/10 p-3">
+                  <p className="text-[10px] font-bold text-danger mb-2 uppercase tracking-widest">
+                    Masalah Umum
                   </p>
-                  <p className="text-muted text-sm leading-relaxed">
-                    {point.problem}
-                  </p>
+                  <ul className="space-y-1.5">
+                    {point.bullets.map((b, i) => (
+                      <li
+                        key={i}
+                        className="text-[13px] text-text-secondary leading-relaxed flex items-start gap-2"
+                      >
+                        <span className="text-danger/70 mt-1">×</span>
+                        <span>{b}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
 
-                <div className="rounded-lg bg-emerald-500/5 p-3 -mx-1 border border-emerald-500/10">
-                  <p className="text-xs font-bold text-emerald-400 mb-1.5 uppercase tracking-wider">
-                    ✅ Solusi Owlighting
+                <div className="rounded-lg bg-success/5 border border-success/15 p-3 mt-auto">
+                  <p className="text-[10px] font-bold text-success mb-2 uppercase tracking-widest">
+                    Solusi Owlighting
                   </p>
-                  <p className="text-white text-sm leading-relaxed">
-                    {point.solution}
-                  </p>
+                  <p className="text-sm text-white leading-relaxed">{point.solution}</p>
                 </div>
-              </motion.div>
+              </motion.article>
             </AnimatedSection>
           ))}
         </div>
 
-        {/* Quality Assurance */}
-        <AnimatedSection delay={0.6}>
-          <div className="mt-16 glass-strong gradient-border-card rounded-2xl p-8">
-            <h3 className="text-2xl font-bold text-center mb-8">
-              <span className="gradient-text">Standar Instalasi</span> Owlighting
+        {/* Quality standards — horizontal scroll on mobile */}
+        <AnimatedSection delay={0.4}>
+          <div className="glass-strong gradient-border-card rounded-2xl p-6 md:p-8">
+            <h3 className="font-display text-xl md:text-2xl font-bold text-center mb-2">
+              <span className="gradient-text">Standar Instalasi</span>{" "}
+              <span className="text-white">Owlighting</span>
             </h3>
-            <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-              {standards.map((item, i) => (
-                <motion.div
-                  key={i}
-                  whileHover={{ y: -5, scale: 1.02 }}
-                  className="text-center group"
-                >
-                  <div className="mb-3 flex justify-center">
-                    <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                      <item.icon size={22} className="text-primary" />
+            <p className="text-center text-sm text-text-tertiary mb-8 max-w-md mx-auto">
+              Empat hal di bawah ini bukan opsi tambahan — ini bagian dari paket dasar setiap pengerjaan.
+            </p>
+
+            {/* Horizontal-scroll carousel on mobile, 4-col grid on md+ */}
+            <div className="-mx-6 md:mx-0 overflow-x-auto md:overflow-visible scrollbar-thin">
+              <div className="flex md:grid md:grid-cols-4 gap-4 md:gap-6 px-6 md:px-0 snap-x snap-mandatory md:snap-none">
+                {standards.map((item) => (
+                  <motion.div
+                    key={item.title}
+                    whileHover={reduced ? undefined : { y: -4, scale: 1.01 }}
+                    transition={{ duration: 0.24, ease: [0.32, 0.72, 0, 1] }}
+                    className="snap-start shrink-0 w-[70%] md:w-auto text-center bg-white/[0.02] rounded-xl p-5 border border-white/5"
+                  >
+                    <div className="mb-3 flex justify-center">
+                      <div className="w-12 h-12 rounded-xl bg-beam-400/10 flex items-center justify-center">
+                        <item.icon size={20} className="text-beam-400" />
+                      </div>
                     </div>
-                  </div>
-                  <p className="font-semibold text-white mb-1 text-sm md:text-base">
-                    {item.title}
-                  </p>
-                  <p className="text-xs md:text-sm text-muted">
-                    {item.desc}
-                  </p>
-                </motion.div>
-              ))}
+                    <p className="font-semibold text-white mb-1 text-sm md:text-base">
+                      {item.title}
+                    </p>
+                    <p className="text-xs md:text-sm text-text-tertiary leading-relaxed">
+                      {item.desc}
+                    </p>
+                  </motion.div>
+                ))}
+              </div>
             </div>
           </div>
         </AnimatedSection>

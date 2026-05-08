@@ -4,11 +4,38 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { contactInfo, companyInfo } from "@/data";
-import { FaInstagram, FaFacebook, FaTiktok, FaMapMarkerAlt, FaPhone, FaEnvelope, FaHeart } from "react-icons/fa";
+import { useEffect, useState } from "react";
+import { contactInfo, companyInfo, portfolioProjects } from "@/data";
+import {
+  FaInstagram,
+  FaFacebook,
+  FaTiktok,
+  FaMapMarkerAlt,
+  FaPhone,
+  FaEnvelope,
+  FaHeart,
+  FaArrowRight,
+} from "react-icons/fa";
+import { StatusDot } from "./ui/StatusDot";
+import { getOpenStatus } from "@/lib/operating-hours";
 
 export default function Footer() {
   const pathname = usePathname();
+  const [openStatus, setOpenStatus] = useState(() =>
+    getOpenStatus(contactInfo.workingHours),
+  );
+
+  useEffect(() => {
+    const id = setInterval(() => {
+      setOpenStatus((prev) => {
+        const next = getOpenStatus(contactInfo.workingHours);
+        return prev.open === next.open && prev.nextChange === next.nextChange
+          ? prev
+          : next;
+      });
+    }, 60_000);
+    return () => clearInterval(id);
+  }, []);
 
   const scrollToSection = (id: string) => {
     if (pathname !== "/") {
@@ -19,16 +46,32 @@ export default function Footer() {
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
-  return (
-    <footer className="relative border-t border-white/5">
-      {/* Top gradient */}
-      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
+  const recentProjects = portfolioProjects.slice(0, 3);
+  const navLinks = [
+    { href: "/", label: "Beranda" },
+    { href: "/about", label: "Tentang" },
+    { href: "/services", label: "Layanan" },
+    { href: "/portfolio", label: "Portfolio" },
+    { href: "/blog", label: "Video & Review" },
+  ];
 
-      <div className="max-w-7xl mx-auto px-6 lg:px-20 py-12 md:py-16">
-        <div className="grid md:grid-cols-3 gap-10 mb-10">
-          {/* Brand - SEO optimized */}
-          <div>
-            <Link href="/" className="inline-block mb-4" title="Owlighting - Custom BILED Lampung Timur">
+  return (
+    <footer className="relative border-t border-white/5 bg-bg-raised">
+      {/* Top accent line */}
+      <div
+        aria-hidden
+        className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-beam-400/30 to-transparent"
+      />
+
+      <div className="container-x py-14 md:py-16">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 mb-12">
+          {/* Brand */}
+          <div className="col-span-2 md:col-span-1">
+            <Link
+              href="/"
+              className="inline-block mb-4"
+              title="Owlighting - Custom BILED Lampung Timur"
+            >
               <Image
                 src="/assets/logo.png"
                 alt="Owlighting Logo - Spesialis Custom BILED Lampung Timur"
@@ -36,65 +79,69 @@ export default function Footer() {
                 height={40}
               />
             </Link>
-            <p className="text-sm text-muted leading-relaxed mb-4">
-              <strong>Owlighting</strong> - Bengkel spesialis Custom BILED mobil dan motor di Lampung Timur. 
-              Pasang BILED retrofit, D2 Laser, DRL Matrix dengan garansi resmi. #MenolakGelap
+            <p className="text-sm text-text-secondary leading-relaxed mb-5">
+              <strong className="text-white">Owlighting</strong> — Bengkel spesialis Custom
+              BILED mobil dan motor di Lampung Timur. Retrofit, D2 Laser, DRL Matrix dengan
+              garansi resmi.
             </p>
-            {/* Social Icons */}
-            <div className="flex gap-3">
-              <a
-                href={contactInfo.socialMedia.instagram}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-primary/15 transition-all border border-white/5 hover:border-primary/30"
-                aria-label="Instagram Owlighting Custom BILED"
-                title="Follow Owlighting di Instagram"
-              >
-                <FaInstagram size={18} className="text-white/70" />
-              </a>
-              <a
-                href={contactInfo.socialMedia.facebook}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-primary/15 transition-all border border-white/5 hover:border-primary/30"
-                aria-label="Facebook Owlighting Custom BILED"
-                title="Like Owlighting di Facebook"
-              >
-                <FaFacebook size={18} className="text-white/70" />
-              </a>
-              <a
-                href={contactInfo.socialMedia.tiktok}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center hover:bg-primary/15 transition-all border border-white/5 hover:border-primary/30"
-                aria-label="TikTok Owlighting Custom BILED"
-                title="Follow Owlighting di TikTok"
-              >
-                <FaTiktok size={18} className="text-white/70" />
-              </a>
+
+            {/* Operating-hours real-time status */}
+            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/5 text-xs text-text-secondary mb-5">
+              <StatusDot open={openStatus.open} />
+              <span>{openStatus.open ? "Buka sekarang" : "Sedang tutup"}</span>
+              {openStatus.nextChange && (
+                <span className="text-text-tertiary">· {openStatus.nextChange}</span>
+              )}
+            </div>
+
+            {/* Socials */}
+            <div className="flex gap-2">
+              {[
+                {
+                  href: contactInfo.socialMedia.instagram,
+                  Icon: FaInstagram,
+                  label: "Instagram",
+                },
+                {
+                  href: contactInfo.socialMedia.facebook,
+                  Icon: FaFacebook,
+                  label: "Facebook",
+                },
+                {
+                  href: contactInfo.socialMedia.tiktok,
+                  Icon: FaTiktok,
+                  label: "TikTok",
+                },
+              ].map(({ href, Icon, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-9 h-9 rounded-lg bg-white/5 flex items-center justify-center hover:bg-beam-400/15 hover:border-beam-400/30 transition-all border border-transparent"
+                  aria-label={`${label} Owlighting`}
+                  title={label}
+                >
+                  <Icon size={15} className="text-text-secondary" />
+                </a>
+              ))}
             </div>
           </div>
 
-          {/* Quick Links - SEO optimized */}
+          {/* Quick links */}
           <div>
-            <h3 className="font-bold mb-4 text-white text-sm uppercase tracking-wider">
-              Layanan Custom BILED
+            <h3 className="font-bold mb-4 text-white text-xs uppercase tracking-widest">
+              Navigasi
             </h3>
             <ul className="space-y-2.5 text-sm">
-              {[
-                { href: "/", label: "Beranda" },
-                { href: "/about", label: "Tentang Owlighting" },
-                { href: "/services", label: "Layanan Custom BILED" },
-                { href: "/portfolio", label: "Portfolio Custom BILED" },
-                { href: "/blog", label: "Video & Review" },
-              ].map((link) => (
+              {navLinks.map((link) => (
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-muted hover:text-primary transition-colors inline-flex items-center gap-1.5 group"
+                    className="text-text-secondary hover:text-beam-400 transition-colors inline-flex items-center gap-1.5 group"
                     title={link.label}
                   >
-                    <span className="w-1 h-1 rounded-full bg-primary/30 group-hover:bg-primary transition-colors" />
+                    <span className="w-1 h-1 rounded-full bg-beam-400/40 group-hover:bg-beam-400 transition-colors" />
                     {link.label}
                   </Link>
                 </li>
@@ -102,19 +149,19 @@ export default function Footer() {
               <li>
                 <button
                   onClick={() => scrollToSection("reservation")}
-                  className="text-muted hover:text-primary transition-colors inline-flex items-center gap-1.5 group"
+                  className="text-text-secondary hover:text-beam-400 transition-colors inline-flex items-center gap-1.5 group"
                 >
-                  <span className="w-1 h-1 rounded-full bg-primary/30 group-hover:bg-primary transition-colors" />
-                  Konsultasi Custom BILED Gratis
+                  <span className="w-1 h-1 rounded-full bg-beam-400/40 group-hover:bg-beam-400 transition-colors" />
+                  Konsultasi Gratis
                 </button>
               </li>
             </ul>
           </div>
 
-          {/* Contact - SEO optimized */}
+          {/* Contact */}
           <div>
-            <h3 className="font-bold mb-4 text-white text-sm uppercase tracking-wider">
-              Kontak Owlighting
+            <h3 className="font-bold mb-4 text-white text-xs uppercase tracking-widest">
+              Kontak
             </h3>
             <ul className="space-y-3 text-sm">
               <li>
@@ -122,11 +169,16 @@ export default function Footer() {
                   href={contactInfo.googleMapsUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted hover:text-primary transition-colors flex items-start gap-2.5"
+                  className="text-text-secondary hover:text-beam-400 transition-colors flex items-start gap-2.5"
                   title="Lokasi Bengkel Custom BILED Owlighting"
                 >
-                  <FaMapMarkerAlt size={14} className="text-primary/60 mt-0.5 shrink-0" />
-                  <span>Jl. Danau Km.1, Sumberjo, Way Jepara, Lampung Timur 34396</span>
+                  <FaMapMarkerAlt
+                    size={13}
+                    className="text-beam-400/70 mt-0.5 shrink-0"
+                  />
+                  <span className="leading-relaxed">
+                    Jl. Danau Km.1, Sumberjo, Way Jepara, Lampung Timur 34396
+                  </span>
                 </a>
               </li>
               <li>
@@ -134,48 +186,104 @@ export default function Footer() {
                   href={`https://wa.me/${contactInfo.whatsappNumber}?text=Halo%20Owlighting,%20saya%20ingin%20konsultasi%20Custom%20BILED`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-muted hover:text-primary transition-colors flex items-center gap-2.5"
-                  title="WhatsApp Owlighting Custom BILED"
+                  className="text-text-secondary hover:text-beam-400 transition-colors flex items-center gap-2.5"
+                  title="WhatsApp Owlighting"
                 >
-                  <FaPhone size={13} className="text-primary/60 shrink-0" />
-                  <span>{contactInfo.phone} (WhatsApp)</span>
+                  <FaPhone size={12} className="text-beam-400/70 shrink-0" />
+                  <span>{contactInfo.phone}</span>
                 </a>
               </li>
               <li>
                 <a
                   href={`mailto:${contactInfo.email}`}
-                  className="text-muted hover:text-primary transition-colors flex items-center gap-2.5"
+                  className="text-text-secondary hover:text-beam-400 transition-colors flex items-center gap-2.5"
                   title="Email Owlighting"
                 >
-                  <FaEnvelope size={13} className="text-primary/60 shrink-0" />
-                  <span>{contactInfo.email}</span>
+                  <FaEnvelope size={12} className="text-beam-400/70 shrink-0" />
+                  <span className="truncate">{contactInfo.email}</span>
                 </a>
               </li>
               <li className="mt-4 pt-4 border-t border-white/5">
-                <span className="text-primary font-bold text-lg">#MenolakGelap</span>
-                <p className="text-xs text-muted mt-1">Custom BILED Lampung Timur</p>
+                <span className="text-beam-400 font-bold tracking-widest text-sm">
+                  #MENOLAKGELAP
+                </span>
+                <p className="text-xs text-text-tertiary mt-1">
+                  Custom BILED Lampung Timur
+                </p>
               </li>
             </ul>
           </div>
+
+          {/* Latest projects */}
+          <div className="col-span-2 md:col-span-1">
+            <h3 className="font-bold mb-4 text-white text-xs uppercase tracking-widest">
+              Karya Terbaru
+            </h3>
+            <div className="grid grid-cols-3 md:grid-cols-1 gap-2.5 mb-3">
+              {recentProjects.map((p) => (
+                <Link
+                  key={p.id}
+                  href="/portfolio"
+                  className="group flex items-center gap-3 md:bg-white/[0.02] md:border md:border-white/5 md:rounded-lg md:p-2 md:hover:border-beam-400/30 md:hover:bg-beam-400/5 transition-colors"
+                >
+                  <div className="relative w-full md:w-12 aspect-square md:aspect-square shrink-0 rounded-md overflow-hidden">
+                    <Image
+                      src={p.image}
+                      alt={p.title}
+                      fill
+                      sizes="(max-width: 768px) 33vw, 48px"
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                  <div className="hidden md:block min-w-0 flex-1">
+                    <p className="text-xs text-white truncate font-medium group-hover:text-beam-400 transition-colors">
+                      {p.title}
+                    </p>
+                    <p className="text-[10px] uppercase tracking-widest text-text-tertiary">
+                      {p.category}
+                    </p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+            <Link
+              href="/portfolio"
+              className="inline-flex items-center gap-1.5 text-xs font-semibold text-beam-400 hover:text-beam-200 transition-colors group/link"
+            >
+              Lihat semua karya
+              <FaArrowRight
+                size={10}
+                className="group-hover/link:translate-x-1 transition-transform"
+              />
+            </Link>
+          </div>
         </div>
 
-        {/* Bottom Bar */}
+        {/* Bottom bar */}
         <motion.div
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
-          transition={{ duration: 1 }}
           viewport={{ once: true }}
-          className="border-t border-white/5 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-muted"
+          transition={{ duration: 0.6 }}
+          className="border-t border-white/5 pt-6 flex flex-col md:flex-row justify-between items-center gap-3 text-xs text-text-tertiary"
         >
-          <div className="flex items-center gap-1">
+          <div className="flex items-center gap-1.5">
             © {new Date().getFullYear()} {companyInfo.name}. Made with{" "}
-            <FaHeart size={12} className="text-red-400 mx-0.5" /> in Lampung Timur.
+            <FaHeart size={11} className="text-danger/80" /> di Lampung Timur.
           </div>
-          <div className="flex gap-6">
-            <a href="#" className="hover:text-primary transition-colors text-xs">
+          <div className="flex gap-5">
+            <a
+              href="#"
+              className="hover:text-beam-400 transition-colors"
+              aria-label="Privacy Policy"
+            >
               Privacy Policy
             </a>
-            <a href="#" className="hover:text-primary transition-colors text-xs">
+            <a
+              href="#"
+              className="hover:text-beam-400 transition-colors"
+              aria-label="Terms of Service"
+            >
               Terms of Service
             </a>
           </div>
