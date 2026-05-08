@@ -1,6 +1,7 @@
 import Navbar from "./components/Navbar";
 import Hero from "./sections/Hero";
 import TechSection from "./sections/TechSection";
+import StatsSection from "./sections/StatsSection";
 import ServicesSection from "./sections/ServicesSection";
 import BeforeAfterSection from "./sections/BeforeAfterSection";
 import SafetySection from "./sections/SafetySection";
@@ -21,6 +22,7 @@ export default function Home() {
       <Navbar />
       <Hero />
       <TechSection />
+      <StatsSection />
       <ServicesSection />
       <BeforeAfterSection />
       <SafetySection />

@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { supabase, type TikTokVideo } from "@/lib/supabase";
+import { supabase, isSupabaseConfigured, type TikTokVideo } from "@/lib/supabase";
+import { NotConfiguredBanner } from "../_components/AdminShell";
 import {
   FaPlus,
   FaEdit,
@@ -24,6 +25,10 @@ export default function VideosPage() {
   }, []);
 
   const loadVideos = async () => {
+    if (!supabase) {
+      setLoading(false);
+      return;
+    }
     setLoading(true);
     const { data, error } = await supabase
       .from("tiktok_videos")
@@ -37,6 +42,7 @@ export default function VideosPage() {
   };
 
   const saveVideo = async () => {
+    if (!supabase) return;
     if (
       !currentVideo.video_id ||
       !currentVideo.title ||
@@ -71,7 +77,7 @@ export default function VideosPage() {
             description: currentVideo.description,
             category: currentVideo.category,
             thumbnail_url: currentVideo.thumbnail_url,
-            views: currentVideo.views || 0,
+            views: currentVideo.views ?? "0",
           },
         ]);
 
@@ -81,12 +87,14 @@ export default function VideosPage() {
       setIsEditing(false);
       setCurrentVideo({});
       loadVideos();
-    } catch (error: any) {
-      alert("Error: " + error.message);
+    } catch (error) {
+      const msg = error instanceof Error ? error.message : String(error);
+      alert("Error: " + msg);
     }
   };
 
   const deleteVideo = async (id: number) => {
+    if (!supabase) return;
     if (!confirm("Are you sure you want to delete this video?")) return;
 
     try {
@@ -97,8 +105,9 @@ export default function VideosPage() {
 
       if (error) throw error;
       loadVideos();
-    } catch (error: any) {
-      alert("Error deleting: " + error.message);
+    } catch (error) {
+      const msg = error instanceof Error ? error.message : String(error);
+      alert("Error deleting: " + msg);
     }
   };
 
@@ -112,6 +121,8 @@ export default function VideosPage() {
 
   return (
     <div>
+      {!isSupabaseConfigured && <NotConfiguredBanner />}
+
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
@@ -297,12 +308,12 @@ export default function VideosPage() {
                   Views (Display Only)
                 </label>
                 <input
-                  type="number"
-                  value={currentVideo.views || ""}
+                  type="text"
+                  value={currentVideo.views ?? ""}
                   onChange={(e) =>
-                    setCurrentVideo({ ...currentVideo, views: parseInt(e.target.value) || 0 })
+                    setCurrentVideo({ ...currentVideo, views: e.target.value })
                   }
-                  placeholder="e.g. 125000"
+                  placeholder="e.g. 125K"
                   className="w-full px-4 py-3 bg-surface border border-primary/20 rounded-lg focus:border-primary focus:outline-none transition-colors"
                 />
                 <p className="text-xs text-muted mt-2">

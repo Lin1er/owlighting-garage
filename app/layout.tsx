@@ -1,21 +1,31 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
 import "./globals.css";
 import InteractiveBackground from "./components/InteractiveBackground";
 import AnimatedGridBackground from "./components/AnimatedGridBackground";
 import FloatingParticles from "./components/FloatingParticles";
 import LoadingScreen from "./components/LoadingScreen";
 import GoogleAnalytics from "./components/GoogleAnalytics";
+import { ToastProvider } from "./components/ui/Toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  display: "swap",
+});
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -166,23 +176,25 @@ export default function RootLayout({
         <GoogleAnalytics />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} antialiased`}
       >
         <Analytics />
-        {/* Loading Screen */}
-        <LoadingScreen />
+        <ToastProvider>
+          {/* Loading Screen */}
+          <LoadingScreen />
 
-        {/* Animated Grid Background */}
-        <AnimatedGridBackground />
+          {/* Animated Grid Background */}
+          <AnimatedGridBackground />
 
-        {/* Floating Light Particles */}
-        <FloatingParticles />
+          {/* Floating Light Particles */}
+          <FloatingParticles />
 
-        {/* Interactive Highbeam Spotlight */}
-        <InteractiveBackground />
+          {/* Interactive Highbeam Spotlight */}
+          <InteractiveBackground />
 
-        {/* Main Content */}
-        <div className="relative z-10">{children}</div>
+          {/* Main Content */}
+          <div className="relative z-10">{children}</div>
+        </ToastProvider>
       </body>
     </html>
   );

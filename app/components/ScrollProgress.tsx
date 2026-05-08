@@ -12,8 +12,9 @@ export default function ScrollProgress() {
 
   return (
     <motion.div
-      className="fixed top-0 left-0 right-0 h-1 bg-linear-to-r from-[#00C2FF] via-[#FFB800] to-primary origin-left z-50"
+      className="fixed top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-halo-500 via-halo-300 to-beam-400 origin-left z-50 shadow-[0_0_12px_rgba(0,194,255,0.4)]"
       style={{ scaleX }}
+      aria-hidden
     />
   );
 }
