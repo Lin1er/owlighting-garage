@@ -24,7 +24,7 @@ export function PriceTag({ from, note, prefix = "Mulai dari", size = "md" }: Pri
     return (
       <div className="inline-flex flex-col">
         <span className="text-[10px] uppercase tracking-widest text-text-tertiary">Estimasi</span>
-        <span className={`font-display font-bold text-white ${big ? "text-lg" : "text-base"}`}>
+        <span className={`font-bold text-white ${big ? "text-lg" : "text-base"}`}>
           Konsultasi WA
         </span>
       </div>
@@ -34,7 +34,7 @@ export function PriceTag({ from, note, prefix = "Mulai dari", size = "md" }: Pri
   return (
     <div className="inline-flex flex-col">
       <span className="text-[10px] uppercase tracking-widest text-text-tertiary">{prefix}</span>
-      <span className={`font-display font-bold gradient-text tabular ${big ? "text-2xl" : "text-lg"}`}>
+      <span className={`font-mono-tech font-medium text-white tabular ${big ? "text-xl" : "text-base"}`}>
         Rp {from}
       </span>
       {note && (

@@ -68,18 +68,19 @@ export default function SEOContentSection() {
     <section className="section-y bg-bg-raised" id="seo-content">
       <div className="container-x">
         <SectionHeader
-          badge="Tentang Custom BILED"
+          index="08"
+          eyebrow="Tentang Custom BILED"
           title="Custom BILED Lampung Timur,"
           accent="dijelaskan."
-          accentTone="dual"
-          description="Bagi yang baru pertama dengar 'BILED' — section ini menjelaskan apa, kenapa, dan bagaimana kami mengerjakannya."
+          accentTone="italic"
+          description="Bagi yang baru pertama dengar 'BILED' — bagian ini menjelaskan apa, kenapa, dan bagaimana kami mengerjakannya."
         />
 
         {/* Main content card */}
         <AnimatedSection>
           <article className="glass-strong rounded-2xl p-6 md:p-10 mb-8 border border-white/5">
-            <h3 className="font-display text-xl md:text-2xl font-bold mb-3 text-white">
-              Apa itu <span className="gradient-text">Custom BILED?</span>
+            <h3 className="text-xl md:text-2xl font-semibold mb-3 text-white tracking-tight">
+              Apa itu <span className="font-editorial italic">Custom BILED?</span>
             </h3>
             <p className="text-text-secondary leading-relaxed mb-6">
               <strong className="text-white">Custom BILED</strong> (Bi-LED Projector) adalah lampu
@@ -157,7 +158,7 @@ export default function SEOContentSection() {
               <Chip tone="beam" size="xs" className="mb-3">
                 Lokasi Workshop
               </Chip>
-              <h3 className="font-display text-lg font-bold text-white mb-4">
+              <h3 className="text-lg font-bold text-white mb-4">
                 Bengkel Custom BILED Owlighting
               </h3>
               <address className="not-italic text-text-secondary leading-relaxed text-sm space-y-1">
@@ -186,13 +187,13 @@ export default function SEOContentSection() {
               <Chip tone="halo" size="xs" className="mb-3">
                 Empat Alasan
               </Chip>
-              <h3 className="font-display text-lg font-bold text-white mb-4">
+              <h3 className="text-lg font-bold text-white mb-4">
                 Kenapa pilih Owlighting?
               </h3>
               <ol className="space-y-3.5">
                 {REASONS.map((reason, i) => (
                   <li key={reason.title} className="flex gap-3">
-                    <span className="font-display text-2xl font-black tabular gradient-text-dual leading-none shrink-0">
+                    <span className="font-mono-tech text-base tabular text-beam-400 leading-none shrink-0 mt-1">
                       {String(i + 1).padStart(2, "0")}
                     </span>
                     <div>

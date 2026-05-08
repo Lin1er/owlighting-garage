@@ -22,12 +22,12 @@ export default function BeforeAfterSection({ comparisons }: Props) {
     <section className="section-y bg-bg-raised">
       <div className="container-x">
         <SectionHeader
-          badge="Bukti Hasil Pengerjaan"
-          title="Sebelum"
-          accent="& Sesudah"
-          accentTone="dual"
-          titleSuffix="Upgrade"
-          description="Geser slider untuk lihat sendiri. Cahaya kuning kusam bawaan pabrik bisa kami sulap jadi tajam, putih bersih (6000 K), dan ber-cutoff rapi tanpa menyilaukan pengguna jalan lain."
+          eyebrow="Bukti Hasil Pengerjaan"
+          title="Geser slider — lihat"
+          accent="bedanya"
+          titleSuffix="sendiri."
+          accentTone="italic"
+          description="Cahaya kuning kusam bawaan pabrik bisa kami sulap jadi tajam, putih bersih (6000 K), dan ber-cutoff rapi tanpa menyilaukan pengguna jalan lain."
         />
 
         <div className="grid md:grid-cols-2 gap-6 md:gap-8">
@@ -74,7 +74,7 @@ export default function BeforeAfterSection({ comparisons }: Props) {
                       {item.category}
                     </Chip>
                   </div>
-                  <h3 className="font-display text-lg md:text-xl font-bold text-white mb-1 leading-tight">
+                  <h3 className="text-lg md:text-xl font-semibold text-white mb-1 leading-tight tracking-tight">
                     {item.title}
                   </h3>
                   {item.vehicle && (

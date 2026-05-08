@@ -12,7 +12,7 @@ import {
   FaChartBar,
   FaExternalLinkAlt,
 } from "react-icons/fa";
-import { Geist, Space_Grotesk } from "next/font/google";
+import { Geist, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "../globals.css";
 
 const geistSans = Geist({
@@ -21,10 +21,18 @@ const geistSans = Geist({
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-editorial",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400"],
+  style: ["normal", "italic"],
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono-tech",
+  subsets: ["latin"],
+  weight: ["400", "500", "700"],
   display: "swap",
 });
 
@@ -67,12 +75,12 @@ export default function AdminLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="id" className={`${geistSans.variable} ${spaceGrotesk.variable}`}>
+    <html lang="id" className={`${geistSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable}`}>
       <body className="bg-bg-base text-foreground antialiased">
         <div className="flex min-h-screen">
           <aside className="w-64 bg-bg-raised border-r border-white/5 flex flex-col">
             <div className="p-6 border-b border-white/5">
-              <h1 className="font-display text-xl font-black text-beam-400 tracking-tight">
+              <h1 className="text-xl font-bold text-beam-400 tracking-tight">
                 OWLIGHTING
               </h1>
               <p className="text-[11px] text-text-tertiary mt-1 uppercase tracking-widest">

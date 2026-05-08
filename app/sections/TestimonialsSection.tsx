@@ -52,16 +52,14 @@ export default function TestimonialsSection({ testimonials }: Props) {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div aria-hidden className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/4 left-0 w-96 h-96 bg-beam-400/[0.04] rounded-full blur-3xl" />
-      </div>
-
       <div className="container-x max-w-5xl relative z-10">
         <SectionHeader
-          badge="Testimoni Pelanggan"
-          title="Apa Kata"
-          accent="Mereka?"
-          description="Kepuasan pelanggan adalah bukti nyata kualitas kerja kami."
+          index="06"
+          eyebrow="Testimoni Pelanggan"
+          title="Bukan klaim kami —"
+          accent="klaim mereka."
+          accentTone="italic"
+          description="Lebih dari 500 customer percaya kerjaan kami. Berikut beberapa cerita mereka."
         />
 
         <AnimatedSection delay={0.15}>
@@ -92,7 +90,7 @@ export default function TestimonialsSection({ testimonials }: Props) {
                     ))}
                   </div>
 
-                  <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-8 max-w-2xl mx-auto italic font-display">
+                  <p className="text-xl md:text-2xl text-white leading-snug mb-8 max-w-2xl mx-auto font-editorial italic">
                     &ldquo;{active.comment}&rdquo;
                   </p>
 

@@ -39,16 +39,13 @@ export default function GallerySection({ projects }: Props) {
 
   return (
     <section id="gallery" className="section-y relative overflow-hidden">
-      <div aria-hidden className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-beam-400/[0.06] rounded-full blur-3xl pulse-glow" />
-      </div>
-
       <div className="container-x relative z-10">
         <SectionHeader
-          badge="Portfolio Custom BILED"
-          title="Hasil"
-          accent="Custom BILED"
-          titleSuffix="Terbaik"
+          index="05"
+          eyebrow="Portfolio"
+          title="Yang sudah jalan di"
+          accent="jalanan."
+          accentTone="italic"
           description="Berbagai karya custom BILED mobil dan motor, retrofit projector presisi, hingga kreasi DRL Matrix menggunakan CNC Laser & 3D Print di Lampung Timur."
         />
 
@@ -121,7 +118,7 @@ export default function GallerySection({ projects }: Props) {
                   </div>
 
                   <div className="absolute bottom-0 left-0 p-5 w-full transform translate-y-1 group-hover:translate-y-0 transition-transform">
-                    <h3 className="font-display text-base lg:text-lg font-bold text-white mb-1 leading-tight">
+                    <h3 className="text-base lg:text-lg font-semibold text-white mb-1 leading-tight tracking-tight">
                       {item.title}
                     </h3>
                     {item.description && (

@@ -176,7 +176,7 @@ export default function StatsAdminPage() {
               {items.map((item) => (
                 <tr key={item.id} className="hover:bg-white/[0.02]">
                   <td className="px-4 py-3 font-mono text-xs text-text-secondary">{item.slug}</td>
-                  <td className="px-4 py-3 font-display text-2xl font-black tabular gradient-text">
+                  <td className="px-4 py-3 text-2xl font-bold tabular gradient-text">
                     {item.value}
                   </td>
                   <td className="px-4 py-3 text-white">{item.label}</td>

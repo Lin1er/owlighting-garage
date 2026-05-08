@@ -72,11 +72,13 @@ export default function SafetySection() {
     <section className="section-y relative bg-bg-raised">
       <div className="container-x">
         <SectionHeader
-          badge="Keamanan Terjamin"
-          title="Mengapa Harus"
-          accent="Aman?"
-          accentTone="dual"
-          description="Banyak yang takut pasang BILED karena cerita kabel terbakar & aki soak. Di Owlighting, keamanan bukan opsi — itu standar minimum yang tidak pernah kami kompromikan."
+          index="04"
+          eyebrow="Keamanan Terjamin"
+          title="Bukan terang yang"
+          accent="kami pikirkan"
+          titleSuffix="dulu — tapi aman."
+          accentTone="italic"
+          description="Banyak yang takut pasang BILED karena cerita kabel terbakar dan aki soak. Di Owlighting, keamanan bukan opsi — itu standar minimum yang tidak pernah kami kompromikan."
         />
 
         {/* Headline stats — animated line connectors instead of vertical dividers */}
@@ -114,11 +116,7 @@ export default function SafetySection() {
                   >
                     <stat.icon size={20} />
                   </div>
-                  <div
-                    className={`font-display text-5xl md:text-7xl font-black tabular leading-none mb-2 ${
-                      stat.tone === "halo" ? "gradient-text-halo" : "gradient-text"
-                    }`}
-                  >
+                  <div className="font-editorial-roman text-5xl md:text-7xl font-normal tabular leading-none mb-2 text-white">
                     {stat.value}
                   </div>
                   <div className="text-sm md:text-base font-semibold text-white">
@@ -150,7 +148,7 @@ export default function SafetySection() {
                 <div className="mb-4 w-12 h-12 rounded-xl bg-danger/10 flex items-center justify-center">
                   <point.icon size={20} className="text-danger" />
                 </div>
-                <h3 className="font-display text-xl font-bold mb-4 text-white leading-tight">
+                <h3 className="text-xl font-semibold mb-4 text-white leading-tight tracking-tight">
                   {point.title}
                 </h3>
 
@@ -185,9 +183,8 @@ export default function SafetySection() {
         {/* Quality standards — horizontal scroll on mobile */}
         <AnimatedSection delay={0.4}>
           <div className="glass-strong gradient-border-card rounded-2xl p-6 md:p-8">
-            <h3 className="font-display text-xl md:text-2xl font-bold text-center mb-2">
-              <span className="gradient-text">Standar Instalasi</span>{" "}
-              <span className="text-white">Owlighting</span>
+            <h3 className="text-xl md:text-2xl font-semibold text-center mb-2 text-white tracking-tight">
+              Standar instalasi <span className="font-editorial italic">Owlighting</span>
             </h3>
             <p className="text-center text-sm text-text-tertiary mb-8 max-w-md mx-auto">
               Empat hal di bawah ini bukan opsi tambahan — ini bagian dari paket dasar setiap pengerjaan.
@@ -208,7 +205,7 @@ export default function SafetySection() {
                         <item.icon size={20} className="text-beam-400" />
                       </div>
                     </div>
-                    <p className="font-semibold text-white mb-1 text-sm md:text-base">
+                    <p className="font-semibold text-white mb-1 text-sm md:text-base tracking-tight">
                       {item.title}
                     </p>
                     <p className="text-xs md:text-sm text-text-tertiary leading-relaxed">

@@ -1,24 +1,23 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { FaCar, FaShieldAlt, FaBolt, FaMapMarkerAlt, FaInstagram, FaTiktok } from "react-icons/fa";
+import { FaInstagram, FaTiktok } from "react-icons/fa";
 import { contactInfo } from "@/data";
 import { useReducedMotion } from "../hooks/useReducedMotion";
 
 const PROOFS = [
-  { icon: FaCar, label: "500+", caption: "Kendaraan dipercaya" },
-  { icon: FaShieldAlt, label: "Garansi", caption: "Resmi 1 tahun" },
-  { icon: FaBolt, label: "0", caption: "Insiden 5+ tahun" },
-  { icon: FaMapMarkerAlt, label: "Way Jepara", caption: "Lampung Timur" },
+  { value: "500+", label: "Kendaraan" },
+  { value: "5+ THN", label: "Pengalaman" },
+  { value: "0", label: "Insiden" },
+  { value: "1 THN", label: "Garansi" },
 ];
 
 /**
- * Compact proof strip below the Hero.
+ * ProofBar — editorial ticker.
  *
- * Replaces the busy trust-badge cluster that used to live inside the Hero
- * itself. Pulling these chips into their own band cleans up the first fold
- * and gives the proof points more room to breathe — they're a frame around
- * the Hero, not noise inside it.
+ * Was a 4-card grid with tinted icon boxes (very generic "trust strip").
+ * Now reads as a typographic line: small mono labels with tabular figures
+ * separated by hairline rules. Closer to the dateline of a magazine cover.
  */
 export default function ProofBar() {
   const reduced = useReducedMotion();
@@ -26,59 +25,54 @@ export default function ProofBar() {
   return (
     <section
       aria-label="Bukti & lokasi"
-      className="relative bg-bg-raised border-y border-white/5 py-5"
+      className="relative bg-bg-raised border-y border-white/5"
     >
-      <div className="container-x">
-        <div className="flex flex-col md:flex-row items-stretch md:items-center gap-4 md:gap-6">
-          {/* Proof items */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 flex-1">
+      <div className="container-x py-5 md:py-6">
+        <div className="flex flex-col md:flex-row items-stretch md:items-center gap-5 md:gap-8">
+          {/* Proof items — typographic, with mono labels above tabular values */}
+          <ul className="flex-1 grid grid-cols-2 md:flex md:items-center md:divide-x md:divide-white/8 gap-y-4 md:gap-0">
             {PROOFS.map((p, i) => (
-              <motion.div
-                key={p.caption}
-                initial={reduced ? false : { opacity: 0, y: 10 }}
+              <motion.li
+                key={p.label}
+                initial={reduced ? false : { opacity: 0, y: 6 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-40px" }}
-                transition={{ duration: 0.4, delay: i * 0.06 }}
-                className="flex items-center gap-3"
+                viewport={{ once: true, margin: "-30px" }}
+                transition={{ duration: 0.4, delay: i * 0.05 }}
+                className="md:px-6 first:md:pl-0 last:md:pr-0 flex flex-col gap-0.5"
               >
-                <div className="w-9 h-9 rounded-lg bg-beam-400/10 flex items-center justify-center shrink-0">
-                  <p.icon size={14} className="text-beam-400" />
-                </div>
-                <div className="min-w-0">
-                  <div className="font-display text-sm md:text-base font-bold text-white tabular truncate">
-                    {p.label}
-                  </div>
-                  <div className="text-[11px] text-text-tertiary truncate">
-                    {p.caption}
-                  </div>
-                </div>
-              </motion.div>
+                <span className="eyebrow">{p.label}</span>
+                <span className="font-mono-tech tabular text-base md:text-lg text-white font-medium leading-none">
+                  {p.value}
+                </span>
+              </motion.li>
             ))}
-          </div>
+          </ul>
 
-          {/* Right rail: socials */}
-          <div className="hidden md:flex items-center gap-2 pl-6 border-l border-white/5">
-            <span className="text-[10px] uppercase tracking-widest text-text-tertiary mr-1">
-              Follow
-            </span>
+          {/* Right rail */}
+          <div className="hidden md:flex items-center gap-3 pl-6 border-l border-white/8">
+            <span className="eyebrow">Follow</span>
             <a
               href={contactInfo.socialMedia.instagram}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Instagram"
-              className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center hover:bg-beam-400/15 hover:border-beam-400/30 border border-transparent transition-colors"
+              className="text-text-secondary hover:text-white transition-colors"
             >
-              <FaInstagram size={14} className="text-text-secondary" />
+              <FaInstagram size={14} />
             </a>
             <a
               href={contactInfo.socialMedia.tiktok}
               target="_blank"
               rel="noopener noreferrer"
               aria-label="TikTok"
-              className="w-8 h-8 rounded-lg bg-white/5 flex items-center justify-center hover:bg-beam-400/15 hover:border-beam-400/30 border border-transparent transition-colors"
+              className="text-text-secondary hover:text-white transition-colors"
             >
-              <FaTiktok size={14} className="text-text-secondary" />
+              <FaTiktok size={14} />
             </a>
+            <span aria-hidden className="h-3 w-px bg-text-tertiary/30 mx-1" />
+            <span className="font-mono-tech text-[10px] text-text-tertiary tabular">
+              #MENOLAKGELAP
+            </span>
           </div>
         </div>
       </div>

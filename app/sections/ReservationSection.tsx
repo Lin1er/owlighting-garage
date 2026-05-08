@@ -141,16 +141,15 @@ export default function ReservationSection() {
 
       <div className="container-x relative z-10">
         <SectionHeader
-          badge="Konsultasi Custom BILED Gratis"
-          title=""
-          accent="Konsultasi Custom BILED"
-          titleSuffix="Gratis"
+          index="07"
+          eyebrow="Konsultasi Gratis"
+          title="Tanya dulu,"
+          accent="tidak harus jadi."
+          accentTone="italic"
           description={
             <>
-              Ingin pasang <strong className="text-white">Custom BILED</strong> di mobil atau motor
-              Anda? Hubungi Owlighting untuk{" "}
-              <strong className="text-white">konsultasi gratis</strong>, survey headlamp, dan
-              estimasi harga custom BILED terbaik di Lampung Timur.
+              Hubungi Owlighting untuk konsultasi gratis, survey headlamp, dan estimasi harga
+              terbaik. Kami pastikan dulu setup yang cocok sebelum minta deposit.
             </>
           }
         />

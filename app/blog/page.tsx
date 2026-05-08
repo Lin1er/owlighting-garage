@@ -39,23 +39,22 @@ export default async function BlogPage() {
               "radial-gradient(60% 50% at 50% 0%, rgba(0,194,255,0.10), transparent 65%)",
           }}
         />
-        <div className="container-x relative z-10 text-center">
-          <Chip tone="beam" size="sm" className="mb-5">
-            Video & Review
-          </Chip>
-          <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] mb-5">
-            <span className="gradient-text-dual">@owlighting_garage</span>
+        <div className="container-x relative z-10 max-w-4xl">
+          <div className="flex items-center gap-3 mb-6">
+            <span className="font-mono-tech text-[11px] tabular text-beam-400">CHAPTER 05</span>
+            <span aria-hidden className="h-px w-12 bg-text-tertiary/40" />
+            <span className="eyebrow">Video & Review</span>
+          </div>
+          <h1 className="text-[clamp(2.5rem,7vw,5.5rem)] font-bold tracking-tight leading-[1.02] mb-5">
+            <span className="font-editorial italic text-white">@owlighting_garage</span>
             <br />
-            <span className="text-white/90">di TikTok.</span>
+            <span className="text-white">di </span>
+            <span className="font-editorial italic">TikTok.</span>
           </h1>
-          <p className="text-base md:text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed mb-6">
+          <p className="text-base md:text-lg text-text-secondary max-w-2xl leading-relaxed">
             Tutorial, dokumentasi proses, edukasi safety retrofit, dan before/after langsung
             dari workshop. Disusun supaya Anda paham dulu sebelum memutuskan.
           </p>
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/5 text-xs text-text-secondary">
-            <FaTiktok className="text-beam-400" size={13} />
-            <span className="tabular">@owlighting_garage</span>
-          </div>
         </div>
       </section>
 
@@ -64,9 +63,9 @@ export default async function BlogPage() {
       {/* CTA */}
       <section className="section-y bg-bg-raised">
         <div className="container-x max-w-4xl text-center">
-          <h2 className="font-display text-3xl md:text-4xl font-black mb-5 leading-tight">
-            Follow{" "}
-            <span className="gradient-text">@owlighting_garage</span>
+          <h2 className="text-3xl md:text-4xl font-bold mb-5 leading-tight tracking-tight">
+            <span className="text-white">Follow </span>
+            <span className="font-editorial italic">@owlighting_garage</span>
           </h2>
           <p className="text-text-secondary text-base md:text-lg mb-8 max-w-2xl mx-auto">
             Video terbaru, tips memilih projector, dan promo eksklusif lebih dulu di TikTok kami.

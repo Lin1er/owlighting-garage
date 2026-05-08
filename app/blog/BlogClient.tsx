@@ -159,7 +159,7 @@ export default function BlogClient({ videos, tiktokUrl }: Props) {
                     </div>
 
                     <div className="p-5">
-                      <h3 className="font-display text-base md:text-lg font-bold mb-1.5 group-hover:text-beam-400 transition-colors line-clamp-2 leading-tight">
+                      <h3 className="text-base md:text-lg font-bold mb-1.5 group-hover:text-beam-400 transition-colors line-clamp-2 leading-tight">
                         {video.title}
                       </h3>
                       {video.description && (

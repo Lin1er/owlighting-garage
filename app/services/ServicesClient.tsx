@@ -160,21 +160,24 @@ export default function ServicesClient() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
-            className="text-center"
+            className="text-left max-w-4xl"
           >
-            <Chip tone="beam" size="sm" className="mb-5">
-              Layanan
-            </Chip>
-            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] mb-6">
-              Layanan{" "}
-              <span className="gradient-text">Custom BILED</span>
+            <div className="flex items-center gap-3 mb-6">
+              <span className="font-mono-tech text-[11px] tabular text-beam-400">CHAPTER 03</span>
+              <span aria-hidden className="h-px w-12 bg-text-tertiary/40" />
+              <span className="eyebrow">Layanan</span>
+            </div>
+            <h1 className="text-[clamp(2.75rem,7vw,5.5rem)] font-bold tracking-tight leading-[1.02] mb-7">
+              <span className="text-white">Layanan </span>
+              <span className="font-editorial italic">Custom BILED</span>
               <br />
-              <span className="text-white/90">& Retrofit Presisi.</span>
+              <span className="text-white">&amp; retrofit </span>
+              <span className="font-editorial italic">presisi.</span>
             </h1>
-            <p className="text-base md:text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
-              Spesialis pasang <strong className="text-white">Custom BILED</strong> mobil dan
-              motor di Lampung Timur. Dari BILED Retrofit hingga D2 Laser, DRL Matrix, dan
-              Neonbox Huruf Timbul — solusi lengkap pencahayaan kendaraan.
+            <p className="text-base md:text-lg text-text-secondary max-w-2xl leading-relaxed">
+              Spesialis pasang <span className="text-white font-semibold">Custom BILED</span>{" "}
+              mobil dan motor di Lampung Timur. Dari BILED Retrofit hingga D2 Laser, DRL Matrix,
+              dan Neonbox Huruf Timbul.
             </p>
           </motion.div>
         </div>
@@ -184,9 +187,10 @@ export default function ServicesClient() {
       <section className="section-y" id="layanan-custom-biled">
         <div className="container-x">
           <SectionHeader
-            badge="Daftar Layanan"
+            eyebrow="Daftar Layanan"
             title="Tujuh layanan,"
             accent="satu workshop."
+            accentTone="italic"
             description="Setiap layanan didukung tim teknisi yang sama, peralatan yang sama, dan SOP keamanan yang sama. Konsisten dari job pertama sampai kelima ratus."
           />
 
@@ -211,7 +215,7 @@ export default function ServicesClient() {
                     <div className="flex-1 min-w-0">
                       <div className="flex items-start justify-between gap-2 mb-2">
                         <h3
-                          className="font-display text-xl md:text-2xl font-bold text-white leading-tight"
+                          className="text-xl md:text-2xl font-bold text-white leading-tight"
                           itemProp="name"
                         >
                           {service.title}
@@ -282,10 +286,10 @@ export default function ServicesClient() {
       <section className="section-y bg-bg-raised" id="kenapa-pilih-owlighting">
         <div className="container-x">
           <SectionHeader
-            badge="Kenapa Owlighting"
+            eyebrow="Kenapa Owlighting"
             title="Tiga hal yang"
-            accent="tidak kami kompromikan"
-            accentTone="dual"
+            accent="tidak kami kompromikan."
+            accentTone="italic"
             description="Bukan janji marketing — ini standar minimum yang berlaku di setiap pengerjaan, dari customer ke-1 sampai ke-500."
           />
 
@@ -300,7 +304,7 @@ export default function ServicesClient() {
                   <div className="inline-flex w-14 h-14 rounded-xl mb-5 items-center justify-center bg-beam-400/10">
                     <h.icon size={24} className="text-beam-400" />
                   </div>
-                  <h3 className="font-display text-xl font-bold mb-3 text-white leading-tight">
+                  <h3 className="text-xl font-bold mb-3 text-white leading-tight">
                     {h.title}
                   </h3>
                   <p className="text-sm text-text-secondary leading-relaxed">{h.body}</p>
@@ -315,9 +319,10 @@ export default function ServicesClient() {
       <section className="section-y" id="faq-custom-biled">
         <div className="container-x max-w-4xl">
           <SectionHeader
-            badge="Tanya Jawab"
+            eyebrow="Tanya Jawab"
             title="Pertanyaan yang"
             accent="paling sering ditanya."
+            accentTone="italic"
             description="Kalau ada pertanyaan lain yang belum terjawab, langsung WhatsApp kami — tim akan jawab dalam menit, bukan jam."
             maxWidth="max-w-xl"
           />
@@ -352,7 +357,7 @@ export default function ServicesClient() {
                         />
                       </div>
                       <h3
-                        className="font-display text-base md:text-lg font-bold text-white leading-tight flex-1"
+                        className="text-base md:text-lg font-bold text-white leading-tight flex-1"
                         itemProp="name"
                       >
                         {faq.question}
@@ -399,9 +404,10 @@ export default function ServicesClient() {
       <section className="section-y bg-bg-raised" id="hubungi-owlighting">
         <div className="container-x max-w-4xl text-center">
           <AnimatedSection>
-            <h2 className="font-display text-3xl md:text-5xl font-black mb-5 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-bold mb-5 leading-tight tracking-tight">
               Siap pasang{" "}
-              <span className="gradient-text">Custom BILED</span> di kendaraan Anda?
+              <span className="font-editorial italic">Custom BILED</span>
+              <span className="text-white"> di kendaraan Anda?</span>
             </h2>
             <p className="text-text-secondary text-base md:text-lg mb-8 max-w-2xl mx-auto">
               Konsultasi gratis untuk menentukan setup terbaik untuk kendaraan Anda di Lampung Timur.

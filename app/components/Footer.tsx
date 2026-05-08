@@ -79,18 +79,22 @@ export default function Footer() {
                 height={40}
               />
             </Link>
-            <p className="text-sm text-text-secondary leading-relaxed mb-5">
-              <strong className="text-white">Owlighting</strong> — Bengkel spesialis Custom
-              BILED mobil dan motor di Lampung Timur. Retrofit, D2 Laser, DRL Matrix dengan
-              garansi resmi.
+            <p className="font-editorial italic text-base text-white/80 leading-snug mb-4 max-w-xs">
+              Studio rekayasa cahaya untuk mobil &amp; motor.
+            </p>
+            <p className="text-xs text-text-secondary leading-relaxed mb-5">
+              Retrofit BILED, D2 Laser, DRL Matrix — dengan garansi resmi.
             </p>
 
-            {/* Operating-hours real-time status */}
-            <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/5 border border-white/5 text-xs text-text-secondary mb-5">
+            {/* Operating-hours status — small mono pill */}
+            <div className="inline-flex items-center gap-2 font-mono-tech text-[10px] uppercase tracking-widest text-text-tertiary mb-5">
               <StatusDot open={openStatus.open} />
-              <span>{openStatus.open ? "Buka sekarang" : "Sedang tutup"}</span>
+              <span>{openStatus.open ? "Buka" : "Tutup"}</span>
               {openStatus.nextChange && (
-                <span className="text-text-tertiary">· {openStatus.nextChange}</span>
+                <>
+                  <span aria-hidden>·</span>
+                  <span>{openStatus.nextChange}</span>
+                </>
               )}
             </div>
 
@@ -130,9 +134,7 @@ export default function Footer() {
 
           {/* Quick links */}
           <div>
-            <h3 className="font-bold mb-4 text-white text-xs uppercase tracking-widest">
-              Navigasi
-            </h3>
+            <h3 className="eyebrow mb-4">Navigasi</h3>
             <ul className="space-y-2.5 text-sm">
               {navLinks.map((link) => (
                 <li key={link.href}>
@@ -160,9 +162,7 @@ export default function Footer() {
 
           {/* Contact */}
           <div>
-            <h3 className="font-bold mb-4 text-white text-xs uppercase tracking-widest">
-              Kontak
-            </h3>
+            <h3 className="eyebrow mb-4">Kontak</h3>
             <ul className="space-y-3 text-sm">
               <li>
                 <a
@@ -203,22 +203,16 @@ export default function Footer() {
                   <span className="truncate">{contactInfo.email}</span>
                 </a>
               </li>
-              <li className="mt-4 pt-4 border-t border-white/5">
-                <span className="text-beam-400 font-bold tracking-widest text-sm">
-                  #MENOLAKGELAP
-                </span>
-                <p className="text-xs text-text-tertiary mt-1">
-                  Custom BILED Lampung Timur
-                </p>
+              <li className="mt-4 pt-4 border-t border-white/5 font-mono-tech text-[10px] text-text-tertiary tabular leading-relaxed">
+                <p>05°11&prime;11&Prime;S · 105°41&prime;26&Prime;E</p>
+                <p className="mt-1">EST. 2019 · WAY JEPARA</p>
               </li>
             </ul>
           </div>
 
           {/* Latest projects */}
           <div className="col-span-2 md:col-span-1">
-            <h3 className="font-bold mb-4 text-white text-xs uppercase tracking-widest">
-              Karya Terbaru
-            </h3>
+            <h3 className="eyebrow mb-4">Karya Terbaru</h3>
             <div className="grid grid-cols-3 md:grid-cols-1 gap-2.5 mb-3">
               {recentProjects.map((p) => (
                 <Link

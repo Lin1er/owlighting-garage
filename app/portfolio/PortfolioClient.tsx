@@ -60,20 +60,23 @@ export default function PortfolioClient() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
-            className="text-center"
+            className="text-left max-w-4xl"
           >
-            <Chip tone="halo" size="sm" className="mb-5">
-              Portfolio
-            </Chip>
-            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] mb-6">
-              <span className="gradient-text-dual">Karya Custom BILED</span>
+            <div className="flex items-center gap-3 mb-6">
+              <span className="font-mono-tech text-[11px] tabular text-beam-400">CHAPTER 04</span>
+              <span aria-hidden className="h-px w-12 bg-text-tertiary/40" />
+              <span className="eyebrow">Portfolio</span>
+            </div>
+            <h1 className="text-[clamp(2.75rem,7vw,5.5rem)] font-bold tracking-tight leading-[1.02] mb-7">
+              <span className="font-editorial italic">Karya Custom BILED</span>
               <br />
-              <span className="text-white/90">yang sudah jalan di jalanan.</span>
+              <span className="text-white">yang sudah jalan di </span>
+              <span className="font-editorial italic">jalanan.</span>
             </h1>
-            <p className="text-base md:text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
-              Hasil pengerjaan <strong className="text-white">Custom BILED</strong> mobil dan
-              motor di Owlighting Lampung Timur. Dari retrofit standar hingga custom extreme —
-              setiap project adalah karya yang masih beroperasi sampai sekarang.
+            <p className="text-base md:text-lg text-text-secondary max-w-2xl leading-relaxed">
+              Hasil pengerjaan <span className="text-white font-semibold">Custom BILED</span>{" "}
+              mobil dan motor di Lampung Timur. Setiap project adalah karya yang masih beroperasi
+              sampai sekarang.
             </p>
           </motion.div>
         </div>
@@ -157,7 +160,7 @@ export default function PortfolioClient() {
                     </div>
                     <div className="p-5">
                       <h3
-                        className="font-display text-base md:text-lg font-bold text-white mb-1.5 leading-tight"
+                        className="text-base md:text-lg font-bold text-white mb-1.5 leading-tight"
                         itemProp="name"
                       >
                         {project.title}
@@ -178,7 +181,7 @@ export default function PortfolioClient() {
       <section className="section-y bg-bg-raised" id="statistik">
         <div className="container-x">
           <SectionHeader
-            badge="Track Record"
+            eyebrow="Track Record"
             title="Angka yang"
             accent="bisa diverifikasi."
             description="500+ kendaraan, 5+ tahun, 0 insiden — bukan klaim marketing. Mereka masih beroperasi di jalanan, customer-nya masih kontak via WhatsApp untuk service rutin."
@@ -192,7 +195,7 @@ export default function PortfolioClient() {
                   transition={{ duration: 0.24, ease: [0.32, 0.72, 0, 1] }}
                   className="glass-strong gradient-border-card rounded-2xl p-5 md:p-7 text-center"
                 >
-                  <div className="font-display text-4xl md:text-6xl font-black tabular gradient-text mb-2 leading-none">
+                  <div className="font-editorial-roman text-4xl md:text-6xl font-normal tabular text-white mb-2 leading-none">
                     {stat.number}
                   </div>
                   <div className="text-xs md:text-sm text-text-secondary font-medium">
@@ -209,7 +212,7 @@ export default function PortfolioClient() {
       <section className="section-y" id="testimoni-custom-biled">
         <div className="container-x">
           <SectionHeader
-            badge="Testimoni Pelanggan"
+            eyebrow="Testimoni Pelanggan"
             title="Apa kata"
             accent="customer kami?"
             description="Kepuasan pelanggan adalah bukti nyata kualitas kerja kami — dan alasan referral terus mengalir tanpa iklan berbayar."
@@ -270,9 +273,9 @@ export default function PortfolioClient() {
       <section className="section-y bg-bg-raised" id="mulai-project">
         <div className="container-x max-w-4xl text-center">
           <AnimatedSection>
-            <h2 className="font-display text-3xl md:text-5xl font-black mb-5 leading-tight">
-              Kendaraan Anda{" "}
-              <span className="gradient-text">selanjutnya?</span>
+            <h2 className="text-3xl md:text-5xl font-bold mb-5 leading-tight tracking-tight">
+              <span className="text-white">Kendaraan Anda </span>
+              <span className="font-editorial italic">selanjutnya?</span>
             </h2>
             <p className="text-text-secondary text-base md:text-lg mb-8 max-w-2xl mx-auto">
               Konsultasi gratis untuk project custom BILED kendaraan Anda. Kami survey headlamp

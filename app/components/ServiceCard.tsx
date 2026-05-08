@@ -1,13 +1,11 @@
 "use client";
 
-import Tilt from "react-parallax-tilt";
 import { motion } from "framer-motion";
 import { DynamicIcon } from "./DynamicIcon";
 import { FaCheck, FaArrowRight, FaWhatsapp } from "react-icons/fa";
 import Link from "next/link";
 import { useReducedMotion } from "../hooks/useReducedMotion";
 import { PriceTag } from "./ui/PriceTag";
-import { Chip } from "./ui/Chip";
 import { buildWhatsAppLink, buildServiceInquiry } from "@/lib/whatsapp";
 
 interface ServiceCardProps {
@@ -17,14 +15,20 @@ interface ServiceCardProps {
   features?: string[];
   id?: string;
   delay?: number;
-  /** Optional minimum price string ("2.5jt"). */
   priceFrom?: string;
-  /** Optional secondary tag (Otomotif, Custom, Signage). */
   category?: string;
-  /** Estimated work duration ("1 hari kerja"). */
   duration?: string;
 }
 
+/**
+ * ServiceCard — restrained.
+ *
+ * The previous version: tilt parallax, gradient cyan glare, gradient title
+ * border, gradient hover state, cyan icon glow, halo chip top-right. That's
+ * five separate "look at me" effects competing on a single card. The new
+ * card behaves like a print catalogue entry — solid surface, hairline rules,
+ * mono category label, and one accent only when hovered.
+ */
 export default function ServiceCard({
   title,
   description,
@@ -37,80 +41,72 @@ export default function ServiceCard({
   duration,
 }: ServiceCardProps) {
   const reduced = useReducedMotion();
+  const inquiryHref = buildWhatsAppLink({ message: buildServiceInquiry(title) });
 
-  const inquiryHref = buildWhatsAppLink({
-    message: buildServiceInquiry(title),
-  });
-
-  const cardInner = (
-    <div className="gradient-border-card bg-bg-card border border-white/5 rounded-2xl p-6 h-full max-w-[calc(100vw-2rem)] hover:border-beam-400/30 transition-colors group flex flex-col">
-      {/* Header: icon + category chip */}
-      <div className="flex items-start justify-between gap-3 mb-4">
-        <div className="w-14 h-14 rounded-xl bg-beam-400/10 flex items-center justify-center group-hover:bg-beam-400/15 group-hover:scale-110 transition-all">
-          <DynamicIcon name={icon} size={28} className="text-beam-400" />
+  return (
+    <motion.article
+      initial={reduced ? false : { opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.45, delay, ease: [0.32, 0.72, 0, 1] }}
+      className="group solid-card rounded-md p-6 md:p-7 h-full flex flex-col hover:border-beam-400/30 transition-colors"
+    >
+      {/* Header — eyebrow category + icon, hairline rule below */}
+      <div className="flex items-start justify-between gap-3 mb-5 pb-5 border-b border-white/5">
+        <div className="flex-1 min-w-0">
+          {category && <span className="eyebrow block mb-2">{category}</span>}
+          <h3 className="text-xl md:text-2xl font-semibold text-white leading-tight tracking-tight">
+            {title}
+          </h3>
         </div>
-        {category && (
-          <Chip tone="halo" size="xs">
-            {category}
-          </Chip>
-        )}
+        <div className="shrink-0 w-10 h-10 flex items-center justify-center text-text-secondary group-hover:text-beam-400 transition-colors">
+          <DynamicIcon name={icon} size={22} />
+        </div>
       </div>
 
-      {/* Title */}
-      <h3 className="font-display text-xl md:text-2xl font-bold mb-3 text-white group-hover:text-beam-400 transition-colors leading-tight">
-        {title}
-      </h3>
-
       {/* Description */}
-      <p className="text-text-secondary text-sm leading-relaxed mb-4 flex-grow">
+      <p className="text-text-secondary text-sm leading-relaxed mb-5 flex-grow">
         {description}
       </p>
 
-      {/* Price + duration row */}
-      {(priceFrom || duration) && (
-        <div className="flex items-end justify-between mb-4 pb-4 border-b border-white/5">
-          {priceFrom !== undefined ? (
-            <PriceTag from={priceFrom} note={duration} size="sm" />
-          ) : (
-            <span />
-          )}
-          {!priceFrom && duration && (
-            <span className="text-xs text-text-tertiary tabular">{duration}</span>
-          )}
+      {/* Price + duration — mono technical row */}
+      {(priceFrom !== undefined || duration) && (
+        <div className="flex items-end justify-between gap-3 mb-5 pb-5 border-b border-white/5">
+          <PriceTag from={priceFrom ?? null} note={duration} size="sm" />
         </div>
       )}
 
-      {/* Features list */}
+      {/* Features — clean checkmark list, no decoration */}
       {features.length > 0 && (
-        <ul className="space-y-2 mb-5">
+        <ul className="space-y-2 mb-6">
           {features.slice(0, 4).map((feature, i) => (
             <li
               key={i}
-              className="flex items-start gap-2 text-sm text-text-secondary"
+              className="flex items-start gap-2.5 text-sm text-text-secondary"
             >
               <FaCheck size={10} className="text-beam-400 mt-1 shrink-0" />
               <span>{feature}</span>
             </li>
           ))}
           {features.length > 4 && (
-            <li className="text-xs text-beam-400/70">
+            <li className="font-mono-tech text-[11px] text-text-tertiary tabular pl-5">
               +{features.length - 4} fitur lainnya
             </li>
           )}
         </ul>
       )}
 
-      {/* Footer links: detail + WA inquiry */}
-      <div className="flex items-center justify-between gap-3 mt-auto pt-4 border-t border-white/5">
+      {/* Footer — links, no buttons (print-feel) */}
+      <div className="flex items-center justify-between gap-3 mt-auto pt-5 border-t border-white/5">
         {id ? (
           <Link
             href={`/services#${id}`}
-            className="inline-flex items-center gap-1.5 text-sm font-semibold text-beam-400 hover:text-beam-200 transition-colors group/link"
+            className="inline-flex items-center gap-1.5 text-sm font-medium text-text-secondary hover:text-white transition-colors group/link"
           >
             Detail
             <FaArrowRight
-              size={11}
-              className="group-hover/link:translate-x-1 transition-transform"
+              size={10}
+              className="group-hover/link:translate-x-0.5 transition-transform"
             />
           </Link>
         ) : (
@@ -120,38 +116,12 @@ export default function ServiceCard({
           href={inquiryHref}
           target="_blank"
           rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-xs font-semibold px-3 py-1.5 rounded-lg bg-success/10 text-success hover:bg-success/20 transition-colors"
+          className="inline-flex items-center gap-1.5 text-sm font-medium text-success/90 hover:text-success transition-colors"
         >
-          <FaWhatsapp size={12} />
-          Konsultasi WA
+          <FaWhatsapp size={13} />
+          Konsultasi
         </a>
       </div>
-    </div>
-  );
-
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.45, delay, ease: [0.32, 0.72, 0, 1] }}
-      viewport={{ once: true, margin: "-60px" }}
-    >
-      {reduced ? (
-        cardInner
-      ) : (
-        <Tilt
-          tiltMaxAngleX={6}
-          tiltMaxAngleY={6}
-          glareEnable
-          glareMaxOpacity={0.12}
-          glareColor="#00C2FF"
-          glarePosition="all"
-          scale={1.01}
-          transitionSpeed={2000}
-        >
-          {cardInner}
-        </Tilt>
-      )}
-    </motion.div>
+    </motion.article>
   );
 }

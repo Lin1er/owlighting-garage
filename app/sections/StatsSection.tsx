@@ -1,21 +1,10 @@
 "use client";
 
 import AnimatedSection from "../components/AnimatedSection";
-import { motion, useInView } from "framer-motion";
+import { useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
-import { FaCar, FaStar, FaClock, FaBullseye } from "react-icons/fa";
-import type { IconType } from "react-icons";
 import { useReducedMotion } from "../hooks/useReducedMotion";
 import type { HomepageStat } from "@/lib/supabase";
-
-const ICON_MAP: Record<string, IconType> = {
-  FaCar,
-  FaStar,
-  FaClock,
-  FaBullseye,
-};
-
-const FALLBACK_ICONS: IconType[] = [FaCar, FaStar, FaClock, FaBullseye];
 
 function AnimatedCounter({ value }: { value: string }) {
   const ref = useRef<HTMLDivElement>(null);
@@ -29,12 +18,10 @@ function AnimatedCounter({ value }: { value: string }) {
 
   useEffect(() => {
     if (!isInView || reduced) return;
-
     let start = 0;
     const end = numericValue;
-    const duration = 1800;
+    const duration = 1600;
     const increment = end / (duration / 16);
-
     const timer = setInterval(() => {
       start += increment;
       if (start >= end) {
@@ -44,14 +31,13 @@ function AnimatedCounter({ value }: { value: string }) {
         setCount(Math.floor(start));
       }
     }, 16);
-
     return () => clearInterval(timer);
   }, [isInView, numericValue, reduced]);
 
   const displayValue = reduced ? numericValue : count;
 
   return (
-    <div ref={ref} className="font-display tabular text-4xl md:text-6xl lg:text-7xl font-black leading-none">
+    <div ref={ref} className="font-editorial-roman tabular text-[clamp(3rem,8vw,6rem)] font-normal leading-[0.9] text-white">
       {displayValue}
       {hasPercent && "%"}
       {hasPlus && "+"}
@@ -63,38 +49,36 @@ type Props = {
   stats: HomepageStat[];
 };
 
+/**
+ * Stats — track-record band.
+ *
+ * Was 4 glass cards with gradient-text counters and pulsing icon boxes.
+ * Now: 4 typographic counters (Instrument Serif roman) under mono labels,
+ * separated by hairline rules. Reads like a publication's by-the-numbers
+ * sidebar instead of a cookie-cutter "trust strip."
+ */
 export default function StatsSection({ stats }: Props) {
   return (
     <section className="section-y relative">
       <div className="container-x">
+        <div className="chapter-rule mb-10 md:mb-14">
+          <span className="font-mono-tech text-[11px] tabular text-beam-400">02</span>
+          <span className="chapter-rule__label">Track Record</span>
+        </div>
+
         <AnimatedSection>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6 text-center">
-            {stats.map((stat, index) => {
-              const Icon: IconType =
-                (stat.icon && ICON_MAP[stat.icon]) ||
-                FALLBACK_ICONS[index % FALLBACK_ICONS.length] ||
-                FaStar;
-              return (
-                <motion.div
-                  key={stat.id}
-                  whileHover={{ scale: 1.03, y: -4 }}
-                  transition={{ duration: 0.24, ease: [0.32, 0.72, 0, 1] }}
-                  className="glass-strong gradient-border-card rounded-2xl p-5 md:p-8 group"
-                >
-                  <div className="mb-3 flex justify-center">
-                    <div className="w-12 h-12 rounded-xl flex items-center justify-center bg-beam-400/10 text-beam-400 group-hover:scale-110 transition-transform">
-                      <Icon size={22} />
-                    </div>
-                  </div>
-                  <div className="gradient-text mb-2">
-                    <AnimatedCounter value={stat.value} />
-                  </div>
-                  <div className="text-sm md:text-base text-text-secondary font-medium">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              );
-            })}
+          <div className="grid grid-cols-2 md:grid-cols-4 md:divide-x md:divide-white/8">
+            {stats.map((stat, index) => (
+              <div
+                key={stat.id}
+                className={`py-6 md:py-0 md:px-8 first:md:pl-0 last:md:pr-0 ${
+                  index % 2 === 0 ? "border-r border-white/8 pr-4 md:border-r-0 md:pr-0" : "pl-4 md:pl-0"
+                } ${index < 2 ? "border-b md:border-b-0 border-white/8 pb-6 md:pb-0" : "pt-6 md:pt-0"}`}
+              >
+                <span className="eyebrow block mb-3">{stat.label}</span>
+                <AnimatedCounter value={stat.value} />
+              </div>
+            ))}
           </div>
         </AnimatedSection>
       </div>

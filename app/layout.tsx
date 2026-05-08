@@ -1,30 +1,35 @@
 import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
-import { Geist, Geist_Mono, Space_Grotesk } from "next/font/google";
+import { Geist, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import InteractiveBackground from "./components/InteractiveBackground";
-import AnimatedGridBackground from "./components/AnimatedGridBackground";
-import FloatingParticles from "./components/FloatingParticles";
 import LoadingScreen from "./components/LoadingScreen";
 import GoogleAnalytics from "./components/GoogleAnalytics";
 import { ToastProvider } from "./components/ui/Toast";
 
+// Body sans — clean, modern, kept from previous build for consistency
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
   display: "swap",
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
+// Editorial display — italic serif gives the site a "workshop atelier"
+// magazine feel that purely sans-serif templates can't replicate. The
+// occasional italic headline becomes the brand's signature voice.
+const instrumentSerif = Instrument_Serif({
+  variable: "--font-editorial",
   subsets: ["latin"],
+  weight: ["400"],
+  style: ["normal", "italic"],
   display: "swap",
 });
 
-const spaceGrotesk = Space_Grotesk({
-  variable: "--font-space-grotesk",
+// Technical mono — used for specs, coordinates, dimensions, and any
+// number that should read as engineering-precise rather than marketing.
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-mono-tech",
   subsets: ["latin"],
-  weight: ["500", "600", "700"],
+  weight: ["400", "500", "700"],
   display: "swap",
 });
 
@@ -176,23 +181,16 @@ export default function RootLayout({
         <GoogleAnalytics />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${spaceGrotesk.variable} antialiased`}
+        className={`${geistSans.variable} ${instrumentSerif.variable} ${jetbrainsMono.variable} antialiased grain-bg`}
       >
         <Analytics />
         <ToastProvider>
-          {/* Loading Screen */}
           <LoadingScreen />
-
-          {/* Animated Grid Background */}
-          <AnimatedGridBackground />
-
-          {/* Floating Light Particles */}
-          <FloatingParticles />
-
-          {/* Interactive Highbeam Spotlight */}
-          <InteractiveBackground />
-
-          {/* Main Content */}
+          {/* Background overlay components (FloatingParticles / AnimatedGridBackground /
+              InteractiveBackground) were intentionally removed — they piled up enough
+              ambient motion that the site read as a "demo template." A single
+              SVG-grain texture on the body now does the atmospheric work without
+              the AI-flat feel. */}
           <div className="relative z-10">{children}</div>
         </ToastProvider>
       </body>

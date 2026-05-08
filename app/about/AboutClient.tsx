@@ -60,21 +60,24 @@ export default function AboutClient() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.32, 0.72, 0, 1] }}
-            className="text-center"
+            className="text-left max-w-4xl"
           >
-            <Chip tone="beam" size="sm" className="mb-5">
-              Tentang Owlighting
-            </Chip>
-            <h1 className="font-display text-4xl md:text-6xl lg:text-7xl font-black tracking-tight leading-[1.05] mb-6">
-              Bukan bengkel{" "}
-              <span className="gradient-text-dual">biasa</span>
+            <div className="flex items-center gap-3 mb-6">
+              <span className="font-mono-tech text-[11px] tabular text-beam-400">EST · 2019</span>
+              <span aria-hidden className="h-px w-12 bg-text-tertiary/40" />
+              <span className="eyebrow">Tentang Owlighting</span>
+            </div>
+            <h1 className="text-[clamp(2.75rem,7vw,5.5rem)] font-bold tracking-tight leading-[1.02] mb-7">
+              <span className="text-white">Bukan bengkel </span>
+              <span className="font-editorial italic text-white/90">biasa</span>
               <br />
-              <span className="text-white/90">untuk lampu kendaraan.</span>
+              <span className="text-white">untuk </span>
+              <span className="font-editorial italic text-white/90">lampu kendaraan.</span>
             </h1>
-            <p className="text-base md:text-lg text-text-secondary max-w-2xl mx-auto leading-relaxed">
-              Spesialis <strong className="text-white">Custom BILED</strong> dan retrofit lampu
-              kendaraan di Way Jepara, Lampung Timur. Sejak 2019, fokus pada presisi & keamanan
-              instalasi yang tidak banyak workshop berani garansikan.
+            <p className="text-base md:text-lg text-text-secondary max-w-2xl leading-relaxed">
+              Spesialis <span className="text-white font-semibold">Custom BILED</span> dan
+              retrofit lampu kendaraan di Way Jepara, Lampung Timur. Fokus pada presisi dan
+              keamanan instalasi — yang tidak banyak workshop berani garansikan.
             </p>
           </motion.div>
         </div>
@@ -98,7 +101,7 @@ export default function AboutClient() {
                   <p className="text-[10px] uppercase tracking-[0.3em] text-white/60 mb-1">
                     Workshop · est. 2019
                   </p>
-                  <p className="font-display text-2xl font-black text-white">
+                  <p className="text-2xl font-bold text-white">
                     Way Jepara, Lampung Timur
                   </p>
                 </div>
@@ -107,14 +110,15 @@ export default function AboutClient() {
 
             <AnimatedSection delay={0.15}>
               <div>
-                <Chip tone="halo" size="sm" className="mb-4">
-                  Cerita Kami
-                </Chip>
-                <h2 className="font-display text-3xl md:text-4xl font-black mb-6 leading-tight">
-                  Dimulai dari{" "}
-                  <span className="gradient-text-halo">garasi kecil</span>,
+                <span className="eyebrow block mb-4">Cerita Kami</span>
+                <h2 className="text-3xl md:text-4xl font-bold mb-6 leading-[1.1] tracking-tight">
+                  <span className="text-white">Dimulai dari </span>
+                  <span className="font-editorial italic">garasi kecil</span>
+                  <span className="text-white">,</span>
                   <br />
-                  jadi <span className="gradient-text">studio rekayasa cahaya</span>.
+                  <span className="text-white">jadi </span>
+                  <span className="font-editorial italic">studio rekayasa cahaya</span>
+                  <span className="text-white">.</span>
                 </h2>
                 <div className="space-y-4 text-text-secondary leading-relaxed">
                   {companyStory.map((paragraph, index) => (
@@ -136,10 +140,10 @@ export default function AboutClient() {
       <section className="section-y bg-bg-raised" id="kenapa-owlighting">
         <div className="container-x">
           <SectionHeader
-            badge="Mengapa Pilih Kami"
+            eyebrow="Mengapa Pilih Kami"
             title="Apa yang membuat"
             accent="Owlighting berbeda?"
-            accentTone="dual"
+            accentTone="italic"
             description="500+ kendaraan tidak datang dari iklan. Mereka datang karena rekomendasi pelanggan sebelumnya — dan inilah delapan alasannya."
           />
 
@@ -154,7 +158,7 @@ export default function AboutClient() {
                   <div className="w-11 h-11 rounded-xl bg-beam-400/10 flex items-center justify-center mb-4">
                     <DynamicIcon name={item.icon} size={20} className="text-beam-400" />
                   </div>
-                  <h3 className="font-display text-base font-bold text-white mb-2 leading-tight">
+                  <h3 className="text-base font-bold text-white mb-2 leading-tight">
                     {item.title}
                   </h3>
                   <p className="text-sm text-text-secondary leading-relaxed">
@@ -171,9 +175,10 @@ export default function AboutClient() {
       <section className="section-y" id="fasilitas-workshop">
         <div className="container-x">
           <SectionHeader
-            badge="Fasilitas Workshop"
+            eyebrow="Fasilitas Workshop"
             title="Peralatan presisi,"
             accent="bukan kebetulan."
+            accentTone="italic"
             description="Setiap fasilitas berdiri di workshop kami sendiri — bukan disewa atau di-outsource. Itu sebabnya kami bisa berkata 'di-cek ulang' untuk setiap pengerjaan."
           />
 
@@ -201,7 +206,7 @@ export default function AboutClient() {
                     </span>
                   </div>
                   <div className="absolute bottom-5 left-5 right-5">
-                    <h3 className="font-display text-lg md:text-xl font-bold text-white mb-1 leading-tight">
+                    <h3 className="text-lg md:text-xl font-bold text-white mb-1 leading-tight">
                       {facility.title}
                     </h3>
                     <p className="text-xs text-text-secondary leading-relaxed">
@@ -219,16 +224,17 @@ export default function AboutClient() {
       <section className="section-y bg-bg-raised" id="lokasi-owlighting">
         <div className="container-x">
           <SectionHeader
-            badge="Lokasi Workshop"
+            eyebrow="Lokasi Workshop"
             title="Mampir ke"
-            accent="Way Jepara"
+            accent="Way Jepara."
+            accentTone="italic"
             description="Konsultasi langsung di workshop, lihat hasil pengerjaan customer terbaru, dan diskusi gratis tentang setup ideal untuk kendaraan Anda."
           />
 
           <div className="grid md:grid-cols-2 gap-6 md:gap-8">
             <AnimatedSection delay={0.1}>
               <div className="glass-strong rounded-2xl p-6 md:p-8 border border-white/5 h-full">
-                <h3 className="font-display text-xl font-bold text-white mb-5">
+                <h3 className="text-xl font-bold text-white mb-5">
                   Informasi Kontak
                 </h3>
                 <div className="space-y-5">
@@ -294,7 +300,7 @@ export default function AboutClient() {
 
             <AnimatedSection delay={0.2}>
               <div className="glass-strong rounded-2xl p-6 md:p-8 border border-white/5 h-full">
-                <h3 className="font-display text-xl font-bold text-white mb-3">
+                <h3 className="text-xl font-bold text-white mb-3">
                   Area Layanan Custom BILED
                 </h3>
                 <p className="text-sm text-text-secondary mb-5">
@@ -331,9 +337,10 @@ export default function AboutClient() {
       <section className="section-y">
         <div className="container-x max-w-4xl text-center">
           <AnimatedSection>
-            <h2 className="font-display text-3xl md:text-5xl font-black mb-5 leading-tight">
+            <h2 className="text-3xl md:text-5xl font-bold mb-5 leading-tight tracking-tight">
               Siap upgrade dengan{" "}
-              <span className="gradient-text">BILED Presisi?</span>
+              <span className="font-editorial italic">BILED Presisi</span>
+              <span className="text-white">?</span>
             </h2>
             <p className="text-text-secondary text-base md:text-lg mb-8 max-w-2xl mx-auto">
               Konsultasi gratis untuk menentukan setup BILED terbaik untuk kendaraan Anda — kami

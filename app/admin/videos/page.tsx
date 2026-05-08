@@ -126,7 +126,7 @@ export default function VideosPage() {
       {/* Header */}
       <div className="flex justify-between items-center mb-8">
         <div>
-          <h1 className="text-3xl font-black mb-2 flex items-center gap-3">
+          <h1 className="text-3xl font-bold mb-2 flex items-center gap-3">
             <FaTiktok className="text-primary" />
             TikTok Videos
           </h1>
@@ -148,7 +148,7 @@ export default function VideosPage() {
         <div className="flex items-center justify-between">
           <div>
             <p className="text-muted text-sm mb-1">Total Videos</p>
-            <p className="text-3xl font-black text-primary">{videos.length}</p>
+            <p className="text-3xl font-bold text-primary">{videos.length}</p>
           </div>
           <div className="flex gap-4">
             {categories.map((cat) => {
@@ -170,7 +170,7 @@ export default function VideosPage() {
           <div className="glass rounded-2xl p-8 max-w-3xl w-full max-h-[90vh] overflow-auto border border-primary/20 shadow-2xl">
             {/* Modal Header */}
             <div className="flex justify-between items-center mb-8">
-              <h2 className="text-2xl font-black flex items-center gap-3">
+              <h2 className="text-2xl font-bold flex items-center gap-3">
                 {currentVideo.id ? (
                   <>
                     <FaEdit className="text-accent" /> Edit Video

@@ -170,7 +170,7 @@ export default function Navbar() {
                         href={link.href}
                         onClick={() => setMobileMenuOpen(false)}
                         title={link.title}
-                        className={`block py-4 font-display text-3xl font-black border-b border-white/5 transition-colors ${
+                        className={`block py-4 text-3xl font-bold border-b border-white/5 transition-colors ${
                           isActive
                             ? "text-beam-400"
                             : "text-white hover:text-beam-200"
@@ -191,7 +191,7 @@ export default function Navbar() {
                 >
                   <button
                     onClick={() => scrollToSection("reservation")}
-                    className="block w-full text-left py-4 font-display text-3xl font-black border-b border-white/5 text-white hover:text-beam-200 transition-colors"
+                    className="block w-full text-left py-4 text-3xl font-bold border-b border-white/5 text-white hover:text-beam-200 transition-colors"
                   >
                     <span className="text-text-tertiary text-base font-mono mr-3">
                       0{NAV_LINKS.length + 1}

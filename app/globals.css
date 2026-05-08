@@ -1,42 +1,46 @@
 @import "tailwindcss";
 
 /* ============================================================
-   Owlighting Design Tokens
-   "Engineering Light" — dual-tone halogen→BILED palette
+   Owlighting — "Workshop Atelier"
+   Editorial-engineering aesthetic. Discipline > effects.
    ============================================================ */
 
 :root {
-  /* Surface ladder (4 levels) ---------------------------------- */
-  --bg-base:     #050608;   /* canvas terdalam */
-  --bg-raised:   #0B0D11;   /* section alternatif */
-  --bg-card:     #131620;   /* card glass-fallback */
-  --bg-elevated: #1C1F2B;   /* modal, popover */
+  /* Surface ladder — slightly warmer black than pure neutral.
+     Pure #050608 felt too "developer dark mode." This is a film-graded
+     near-black with a barely perceptible warmth. */
+  --bg-base:     #07080A;
+  --bg-raised:   #0C0E12;
+  --bg-card:     #14171E;
+  --bg-elevated: #1B1F28;
 
-  /* Beam (cyan) — lampu setelah retrofit ---------------------- */
+  /* Beam (cyan) — kept as primary accent, used SPARINGLY.
+     Rule of thumb: cyan should never appear in more than two places per fold. */
   --beam-50:  #E6F9FF;
   --beam-200: #7DE0FF;
   --beam-400: #00C2FF;
   --beam-600: #0089BB;
   --beam-900: #003244;
 
-  /* Halogen (amber) — lampu sebelum retrofit ------------------ */
+  /* Halogen (amber) — restricted to "halogen" / before-state semantics.
+     Stop using this as a generic decorative accent. */
   --halo-50:  #FFF6DB;
   --halo-300: #FFD25C;
   --halo-500: #FFB800;
   --halo-700: #B57E00;
 
-  /* Semantic --------------------------------------------------- */
+  /* Semantic */
   --success: #34D399;
   --danger:  #F87171;
   --warning: #FBBF24;
 
-  /* Text ladder ------------------------------------------------ */
-  --text-primary:   #F5F7FA;
-  --text-secondary: #A8B0BD;
-  --text-tertiary:  #5B6373;
+  /* Type ladder — slightly warmer whites for editorial feel */
+  --text-primary:   #F2EFE9;   /* warm bone, not stark #FFF */
+  --text-secondary: #A0A4AC;
+  --text-tertiary:  #5B6068;
   --text-on-beam:   #001018;
 
-  /* Backwards-compatible aliases (kode lama masih pakai ini) -- */
+  /* Backwards-compatible aliases (legacy classes still in use) */
   --background: var(--bg-base);
   --foreground: var(--text-primary);
   --surface:    var(--bg-card);
@@ -45,24 +49,23 @@
   --muted:      var(--text-secondary);
 
   /* Typography ------------------------------------------------- */
-  --font-sans:    var(--font-geist-sans);
-  --font-display: var(--font-space-grotesk), var(--font-geist-sans);
-  --font-mono:    var(--font-geist-mono);
+  --font-sans:      var(--font-geist-sans);
+  --font-editorial: var(--font-editorial);   /* Instrument Serif */
+  --font-mono:      var(--font-mono-tech);   /* JetBrains Mono */
 
   /* Layout ----------------------------------------------------- */
-  --section-y:        clamp(4rem, 8vw, 7rem);
-  --container-px:     clamp(1.25rem, 4vw, 5rem);
-  --container-max:    80rem;
+  --section-y:      clamp(4rem, 8vw, 7rem);
+  --container-px:   clamp(1.25rem, 4vw, 5rem);
+  --container-max:  82rem;
 
   /* Motion ----------------------------------------------------- */
   --ease-out-expo: cubic-bezier(0.32, 0.72, 0, 1);
   --ease-in-expo:  cubic-bezier(0.7, 0, 0.84, 0);
   --ease-out-back: cubic-bezier(0.34, 1.56, 0.64, 1);
-
-  --dur-micro:    150ms;
-  --dur-default:  280ms;
-  --dur-entrance: 480ms;
-  --dur-hero:     800ms;
+  --dur-micro:     150ms;
+  --dur-default:   280ms;
+  --dur-entrance:  480ms;
+  --dur-hero:      800ms;
 }
 
 @theme {
@@ -105,6 +108,23 @@ body {
   overflow-x: hidden;
 }
 
+/* Grain texture — SVG noise layered on body.
+   Without this, dark backgrounds look like a vector mockup. With it, the
+   page reads as captured / processed media (closer to film stock or a
+   printed page) which is one of the strongest signals against the
+   "AI-flat" aesthetic. Opacity 0.04 keeps it subliminal. */
+.grain-bg::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  opacity: 0.04;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+}
+
 /* Section wrapper -------------------------------------------- */
 .section-y {
   padding-top: var(--section-y);
@@ -119,19 +139,77 @@ body {
   padding-right: var(--container-px);
 }
 
-/* Display font for headings ---------------------------------- */
-.font-display {
-  font-family: var(--font-display), 'Inter', system-ui, sans-serif;
-  letter-spacing: -0.02em;
+/* Typography utilities --------------------------------------- */
+
+/* Editorial display — Instrument Serif italic, the brand's voice.
+   Usage: large editorial headlines and pulled quotes. Use sparingly. */
+.font-editorial {
+  font-family: var(--font-editorial), 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 400;
+  letter-spacing: -0.015em;
+  line-height: 0.98;
 }
 
-/* Tabular numerals for stats counters ------------------------ */
+/* Roman variant — Instrument Serif regular for static/non-italic moments */
+.font-editorial-roman {
+  font-family: var(--font-editorial), 'Times New Roman', serif;
+  font-style: normal;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+/* Technical mono — JetBrains Mono. For specs, coordinates, dimensions. */
+.font-mono-tech {
+  font-family: var(--font-mono), ui-monospace, 'SF Mono', monospace;
+  font-feature-settings: "tnum", "calt";
+  letter-spacing: 0;
+}
+
+/* Eyebrow label — small uppercase mono, used in place of badge pills.
+   Replaces the "badge + chip + dot" pattern that screams template. */
+.eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  font-feature-settings: "tnum";
+}
+
+/* Chapter rule — horizontal divider with optional inline mono label.
+   Used as a section opener instead of pill-style badge components. */
+.chapter-rule {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+.chapter-rule::before,
+.chapter-rule::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.10), transparent);
+}
+.chapter-rule__label {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 10px;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  font-feature-settings: "tnum";
+}
+
+/* Tabular numerals helper */
 .tabular {
   font-variant-numeric: tabular-nums;
   font-feature-settings: "tnum";
 }
 
-/* Gradient text — monochromatic cyan (legacy)               */
+/* Gradient text — RESERVED moments only.
+   Rule: at most 2 invocations per page. Audit ruthlessly. */
 .gradient-text {
   background: linear-gradient(135deg, #00C2FF 0%, #7DD3FC 50%, #E0F7FF 100%);
   -webkit-background-clip: text;
@@ -139,7 +217,6 @@ body {
   background-clip: text;
 }
 
-/* Gradient text — dual-tone halogen → beam (NEW)             */
 .gradient-text-dual {
   background: linear-gradient(135deg, var(--halo-500) 0%, var(--halo-300) 25%, var(--beam-200) 65%, var(--beam-50) 100%);
   -webkit-background-clip: text;
@@ -147,7 +224,6 @@ body {
   background-clip: text;
 }
 
-/* Gradient text — halogen only (NEW)                          */
 .gradient-text-halo {
   background: linear-gradient(135deg, var(--halo-700) 0%, var(--halo-500) 50%, var(--halo-300) 100%);
   -webkit-background-clip: text;
@@ -155,60 +231,55 @@ body {
   background-clip: text;
 }
 
-/* Glow utilities --------------------------------------------- */
+/* Glow utilities — kept, but use halved.
+   These are no longer applied to every CTA — only the primary one per fold. */
 .glow-primary {
-  box-shadow: 0 0 20px rgba(0, 194, 255, 0.3), 0 0 40px rgba(0, 194, 255, 0.15);
+  box-shadow: 0 0 18px rgba(0, 194, 255, 0.22), 0 0 32px rgba(0, 194, 255, 0.10);
 }
-
 .glow-primary-strong {
-  box-shadow: 0 0 30px rgba(0, 194, 255, 0.4), 0 0 60px rgba(0, 194, 255, 0.2), 0 0 100px rgba(0, 194, 255, 0.1);
+  box-shadow: 0 0 24px rgba(0, 194, 255, 0.30), 0 0 48px rgba(0, 194, 255, 0.15), 0 0 80px rgba(0, 194, 255, 0.07);
 }
-
 .glow-accent {
-  box-shadow: 0 0 20px rgba(255, 184, 0, 0.3), 0 0 40px rgba(255, 184, 0, 0.15);
+  box-shadow: 0 0 16px rgba(255, 184, 0, 0.22), 0 0 32px rgba(255, 184, 0, 0.10);
 }
-
 .glow-accent-strong {
-  box-shadow: 0 0 30px rgba(255, 184, 0, 0.4), 0 0 60px rgba(255, 184, 0, 0.2);
+  box-shadow: 0 0 24px rgba(255, 184, 0, 0.32), 0 0 48px rgba(255, 184, 0, 0.15);
 }
 
 .text-glow {
-  text-shadow: 0 0 20px rgba(0, 194, 255, 0.5);
+  text-shadow: 0 0 18px rgba(0, 194, 255, 0.35);
 }
-
 .text-glow-strong {
-  text-shadow: 0 0 30px rgba(0, 194, 255, 0.6), 0 0 60px rgba(0, 194, 255, 0.3);
+  text-shadow: 0 0 24px rgba(0, 194, 255, 0.45), 0 0 48px rgba(0, 194, 255, 0.22);
 }
 
-/* Section divider — monochromatic */
+/* Section divider — single thin rule. */
 .section-divider {
   position: relative;
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(0, 194, 255, 0.25), transparent);
+  background: linear-gradient(90deg, transparent, rgba(0, 194, 255, 0.18), transparent);
 }
 
-/* Gradient border card */
+/* Gradient border card — keep, but reduce opacity (was screaming for attention) */
 .gradient-border-card {
   position: relative;
   border-radius: 1rem;
   overflow: hidden;
 }
-
 .gradient-border-card::before {
   content: '';
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, #00C2FF, transparent);
-  opacity: 0.5;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(0,194,255,0.6), transparent);
+  opacity: 0.4;
   transition: opacity 0.3s;
 }
-
 .gradient-border-card:hover::before {
-  opacity: 0.8;
+  opacity: 0.65;
 }
 
 /* Beam animations -------------------------------------------- */
@@ -216,32 +287,23 @@ body {
   0%   { transform: translateX(-100%) rotate(-15deg); }
   100% { transform: translateX(200%)  rotate(-15deg); }
 }
-
 @keyframes float {
   0%, 100% { transform: translateY(0px); }
   50%      { transform: translateY(-20px); }
 }
-
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.6; }
-  50%      { opacity: 1; }
+  0%, 100% { opacity: 0.5; }
+  50%      { opacity: 0.85; }
 }
-
 @keyframes shimmer {
   0%   { background-position: -200% 0; }
   100% { background-position: 200% 0; }
 }
 
-@keyframes line-sweep {
-  0%   { transform: scaleX(0); transform-origin: left; }
-  100% { transform: scaleX(1); transform-origin: left; }
-}
+.beam-sweep { animation: beam-sweep 8s ease-in-out infinite; }
+.float      { animation: float 6s ease-in-out infinite; }
+.pulse-glow { animation: pulse-glow 3.5s ease-in-out infinite; }
 
-.beam-sweep   { animation: beam-sweep 8s ease-in-out infinite; }
-.float        { animation: float 6s ease-in-out infinite; }
-.pulse-glow   { animation: pulse-glow 3s ease-in-out infinite; }
-
-/* Skeleton loading shimmer */
 .skeleton {
   background: linear-gradient(
     90deg,
@@ -253,17 +315,23 @@ body {
   animation: shimmer 1.6s ease-in-out infinite;
 }
 
-/* Glassmorphism ---------------------------------------------- */
+/* Glassmorphism — kept but used sparingly now (was overused, hence template feel) */
 .glass {
-  background: rgba(19, 22, 32, 0.6);
-  backdrop-filter: blur(12px);
+  background: rgba(20, 23, 30, 0.5);
+  backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
-
 .glass-strong {
-  background: rgba(19, 22, 32, 0.8);
-  backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(20, 23, 30, 0.75);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+/* Solid card — alternative to glass, more "document" feel.
+   Use to break up a page that has too many glass cards in a row. */
+.solid-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 /* Compare image centering */
@@ -276,33 +344,29 @@ body {
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: #0a0a0a; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(0, 194, 255, 0.3);
+  background: rgba(0, 194, 255, 0.25);
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 194, 255, 0.5);
+  background: rgba(0, 194, 255, 0.45);
 }
 
-/* Selection color */
 ::selection {
-  background: rgba(0, 194, 255, 0.3);
+  background: rgba(0, 194, 255, 0.28);
   color: #fff;
 }
 
-/* Focus ring (keyboard a11y) --------------------------------- */
 :focus-visible {
   outline: 2px solid var(--beam-400);
   outline-offset: 2px;
   border-radius: 6px;
 }
 
-/* Date input dark theme ------------------------------------- */
 input[type="date"]::-webkit-calendar-picker-indicator {
   filter: invert(1) sepia(1) saturate(5) hue-rotate(150deg);
   opacity: 0.7;
   cursor: pointer;
 }
-
 input[type="date"]::-webkit-calendar-picker-indicator:hover {
   opacity: 1;
 }

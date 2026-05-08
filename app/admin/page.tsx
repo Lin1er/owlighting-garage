@@ -118,7 +118,7 @@ export default function AdminDashboard() {
               Reservasi Baru
             </span>
           </div>
-          <div className="font-display text-4xl font-black tabular text-white">
+          <div className="text-4xl font-bold tabular text-white">
             {loading ? "—" : counts.reservations_new}
           </div>
           <p className="text-xs text-text-secondary mt-1">
@@ -139,7 +139,7 @@ export default function AdminDashboard() {
               Total Konten
             </span>
           </div>
-          <div className="font-display text-4xl font-black tabular text-white">
+          <div className="text-4xl font-bold tabular text-white">
             {loading
               ? "—"
               : counts.portfolio + counts.gallery + counts.services + counts.testimonials}
@@ -159,7 +159,7 @@ export default function AdminDashboard() {
             className="glass rounded-xl p-4 border border-white/5 hover:border-beam-400/30 hover:bg-beam-400/5 transition-all group"
           >
             <c.icon className="text-beam-400 mb-3" size={18} />
-            <div className="font-display text-2xl font-bold tabular text-white">
+            <div className="text-2xl font-bold tabular text-white">
               {loading ? "—" : counts[c.key]}
             </div>
             <div className="text-xs text-text-secondary mt-1 group-hover:text-white transition-colors">
