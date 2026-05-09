@@ -9,6 +9,9 @@ import {
   type Reservation,
   type SiteSetting,
   type TikTokVideo,
+  type CompanyParagraph,
+  type WhyChooseItem,
+  type Facility,
 } from "./supabase";
 import {
   portfolioProjects as staticPortfolio,
@@ -17,6 +20,11 @@ import {
   galleryImages as staticGallery,
 } from "@/data/portfolio";
 import { services as staticServices } from "@/data/services";
+import {
+  companyStory as staticParagraphs,
+  whyChooseUs as staticWhy,
+  facilities as staticFacilities,
+} from "@/data/company";
 
 /**
  * Public-content API.
@@ -332,4 +340,98 @@ export async function updateSetting(key: string, value: string) {
     .from("site_settings")
     .upsert({ key, value }, { onConflict: "key" });
   return { ok: !error, error: error?.message };
+}
+
+// ------------------------------------------------------------
+// About page content — story paragraphs, why-choose-us, facilities
+// ------------------------------------------------------------
+
+export async function getCompanyParagraphs(): Promise<CompanyParagraph[]> {
+  if (!isSupabaseConfigured || !supabase) {
+    return staticParagraphs.map(adaptStaticParagraph);
+  }
+  const { data, error } = await supabase
+    .from("company_paragraphs")
+    .select("*")
+    .order("sort_order", { ascending: true });
+  if (error || !data || data.length === 0) {
+    if (error) console.error("Error fetching paragraphs:", error);
+    return staticParagraphs.map(adaptStaticParagraph);
+  }
+  return data as CompanyParagraph[];
+}
+
+function adaptStaticParagraph(body: string, i: number): CompanyParagraph {
+  return {
+    id: i + 1,
+    body,
+    sort_order: i,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  };
+}
+
+export async function getWhyChooseUs(): Promise<WhyChooseItem[]> {
+  if (!isSupabaseConfigured || !supabase) {
+    return staticWhy.map(adaptStaticWhy);
+  }
+  const { data, error } = await supabase
+    .from("why_choose_us")
+    .select("*")
+    .eq("published", true)
+    .order("sort_order", { ascending: true });
+  if (error || !data || data.length === 0) {
+    if (error) console.error("Error fetching why-choose-us:", error);
+    return staticWhy.map(adaptStaticWhy);
+  }
+  return data as WhyChooseItem[];
+}
+
+function adaptStaticWhy(
+  w: (typeof staticWhy)[number],
+  i: number,
+): WhyChooseItem {
+  return {
+    id: i + 1,
+    icon: w.icon,
+    title: w.title,
+    description: w.description,
+    sort_order: i,
+    published: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  };
+}
+
+export async function getFacilities(): Promise<Facility[]> {
+  if (!isSupabaseConfigured || !supabase) {
+    return staticFacilities.map(adaptStaticFacility);
+  }
+  const { data, error } = await supabase
+    .from("facilities")
+    .select("*")
+    .eq("published", true)
+    .order("sort_order", { ascending: true });
+  if (error || !data || data.length === 0) {
+    if (error) console.error("Error fetching facilities:", error);
+    return staticFacilities.map(adaptStaticFacility);
+  }
+  return data as Facility[];
+}
+
+function adaptStaticFacility(
+  f: (typeof staticFacilities)[number],
+  i: number,
+): Facility {
+  return {
+    id: i + 1,
+    title: f.title,
+    description: f.description,
+    image_url: f.image,
+    tone: f.color === "primary" ? "beam" : "halo",
+    sort_order: i,
+    published: true,
+    created_at: new Date().toISOString(),
+    updated_at: new Date().toISOString(),
+  };
 }

@@ -6,7 +6,7 @@ import AnimatedSection from "../components/AnimatedSection";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { DynamicIcon } from "../components/DynamicIcon";
-import { services as staticServices } from "@/data";
+import type { Service } from "@/lib/supabase";
 import { SectionHeader } from "../components/ui/SectionHeader";
 import { Button } from "../components/ui/Button";
 import { Chip } from "../components/ui/Chip";
@@ -138,7 +138,11 @@ const HIGHLIGHTS = [
   },
 ];
 
-export default function ServicesClient() {
+type Props = {
+  services: Service[];
+};
+
+export default function ServicesClient({ services }: Props) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   return (
@@ -195,7 +199,7 @@ export default function ServicesClient() {
           />
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6">
-            {staticServices.map((service, index) => (
+            {services.map((service, index) => (
               <AnimatedSection key={service.id} delay={index * 0.06}>
                 <motion.article
                   whileHover={{ y: -4 }}
@@ -207,7 +211,7 @@ export default function ServicesClient() {
                   <div className="flex items-start gap-4 mb-4">
                     <div className="w-14 h-14 rounded-xl bg-beam-400/10 flex items-center justify-center shrink-0">
                       <DynamicIcon
-                        name={service.icon}
+                        name={service.icon ?? "FaStar"}
                         size={26}
                         className="text-beam-400"
                       />
@@ -235,11 +239,11 @@ export default function ServicesClient() {
                     </div>
                   </div>
 
-                  {(service.priceFrom || service.duration) && (
+                  {(service.price_from || service.duration) && (
                     <div className="flex items-end justify-between gap-3 py-4 border-y border-white/5 mb-5">
                       <PriceTag
-                        from={service.priceFrom ?? null}
-                        note={service.duration}
+                        from={service.price_from ?? null}
+                        note={service.duration ?? undefined}
                         size="md"
                       />
                     </div>
@@ -250,7 +254,7 @@ export default function ServicesClient() {
                       Termasuk dalam paket
                     </p>
                     <ul className="space-y-2">
-                      {service.features.map((feature, idx) => (
+                      {(service.features ?? []).map((feature, idx) => (
                         <li
                           key={idx}
                           className="flex items-start gap-2.5 text-sm text-text-secondary"

@@ -6,7 +6,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Image from "next/image";
 import { DynamicIcon } from "../components/DynamicIcon";
-import { companyStory, whyChooseUs, facilities, contactInfo } from "@/data";
+import { contactInfo } from "@/data";
+import type { CompanyParagraph, WhyChooseItem, Facility } from "@/lib/supabase";
 import { SectionHeader } from "../components/ui/SectionHeader";
 import { Button } from "../components/ui/Button";
 import { Chip } from "../components/ui/Chip";
@@ -24,7 +25,13 @@ const SERVICE_AREAS = [
   "Radius 100km dari Way Jepara",
 ];
 
-export default function AboutClient() {
+type Props = {
+  paragraphs: CompanyParagraph[];
+  whyChooseUs: WhyChooseItem[];
+  facilities: Facility[];
+};
+
+export default function AboutClient({ paragraphs, whyChooseUs, facilities }: Props) {
   const [openStatus, setOpenStatus] = useState(() =>
     getOpenStatus(contactInfo.workingHours),
   );
@@ -121,8 +128,8 @@ export default function AboutClient() {
                   <span className="text-white">.</span>
                 </h2>
                 <div className="space-y-4 text-text-secondary leading-relaxed">
-                  {companyStory.map((paragraph, index) => (
-                    <p key={index}>{paragraph}</p>
+                  {paragraphs.map((paragraph) => (
+                    <p key={paragraph.id}>{paragraph.body}</p>
                   ))}
                 </div>
                 <div className="mt-6 flex flex-wrap gap-3">
@@ -149,21 +156,23 @@ export default function AboutClient() {
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
             {whyChooseUs.map((item, index) => (
-              <AnimatedSection key={item.title} delay={index * 0.06}>
+              <AnimatedSection key={item.id} delay={index * 0.06}>
                 <motion.article
                   whileHover={{ y: -6 }}
                   transition={{ duration: 0.24, ease: [0.32, 0.72, 0, 1] }}
                   className="glass rounded-2xl p-5 h-full border border-white/5 hover:border-beam-400/30 transition-colors"
                 >
                   <div className="w-11 h-11 rounded-xl bg-beam-400/10 flex items-center justify-center mb-4">
-                    <DynamicIcon name={item.icon} size={20} className="text-beam-400" />
+                    <DynamicIcon name={item.icon ?? "FaStar"} size={20} className="text-beam-400" />
                   </div>
                   <h3 className="text-base font-bold text-white mb-2 leading-tight">
                     {item.title}
                   </h3>
-                  <p className="text-sm text-text-secondary leading-relaxed">
-                    {item.description}
-                  </p>
+                  {item.description && (
+                    <p className="text-sm text-text-secondary leading-relaxed">
+                      {item.description}
+                    </p>
+                  )}
                 </motion.article>
               </AnimatedSection>
             ))}
@@ -184,34 +193,38 @@ export default function AboutClient() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6">
             {facilities.map((facility, index) => (
-              <AnimatedSection key={facility.title} delay={index * 0.08}>
+              <AnimatedSection key={facility.id} delay={index * 0.08}>
                 <article className="relative aspect-[4/5] rounded-2xl overflow-hidden group">
-                  <Image
-                    src={facility.image}
-                    alt={`${facility.title} - Fasilitas Custom BILED Owlighting`}
-                    fill
-                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                    className="object-cover group-hover:scale-105 transition-transform duration-700"
-                  />
+                  {facility.image_url && (
+                    <Image
+                      src={facility.image_url}
+                      alt={`${facility.title} - Fasilitas Custom BILED Owlighting`}
+                      fill
+                      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                      className="object-cover group-hover:scale-105 transition-transform duration-700"
+                    />
+                  )}
                   <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
                   <div className="absolute top-3 left-3">
                     <span
                       className={`inline-block px-2 py-0.5 rounded-md text-[10px] uppercase tracking-widest font-bold backdrop-blur-md border ${
-                        facility.color === "primary"
+                        facility.tone === "beam"
                           ? "bg-beam-400/15 text-beam-400 border-beam-400/30"
                           : "bg-halo-500/15 text-halo-300 border-halo-500/30"
                       }`}
                     >
-                      {facility.color === "primary" ? "Beam" : "Halo"}
+                      {facility.tone === "beam" ? "Beam" : "Halo"}
                     </span>
                   </div>
                   <div className="absolute bottom-5 left-5 right-5">
                     <h3 className="text-lg md:text-xl font-bold text-white mb-1 leading-tight">
                       {facility.title}
                     </h3>
-                    <p className="text-xs text-text-secondary leading-relaxed">
-                      {facility.description}
-                    </p>
+                    {facility.description && (
+                      <p className="text-xs text-text-secondary leading-relaxed">
+                        {facility.description}
+                      </p>
+                    )}
                   </div>
                 </article>
               </AnimatedSection>

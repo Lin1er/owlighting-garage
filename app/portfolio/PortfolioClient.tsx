@@ -6,7 +6,7 @@ import AnimatedSection from "../components/AnimatedSection";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import Image from "next/image";
-import { portfolioProjects, testimonials } from "@/data";
+import type { PortfolioProject, Testimonial, HomepageStat } from "@/lib/supabase";
 import { SectionHeader } from "../components/ui/SectionHeader";
 import { Button } from "../components/ui/Button";
 import { Chip } from "../components/ui/Chip";
@@ -20,26 +20,25 @@ const FILTERS = [
   { key: "custom", label: "Custom" },
 ];
 
-const STATS = [
-  { number: "500+", label: "Kendaraan Custom BILED" },
-  { number: "99%", label: "Kepuasan Pelanggan" },
-  { number: "5+", label: "Tahun Pengalaman" },
-  { number: "0", label: "Kasus Kebakaran" },
-];
+type Props = {
+  projects: PortfolioProject[];
+  testimonials: Testimonial[];
+  stats: HomepageStat[];
+};
 
-export default function PortfolioClient() {
+export default function PortfolioClient({ projects, testimonials, stats }: Props) {
   const [activeFilter, setActiveFilter] = useState("all");
 
   const counts = useMemo(() => {
-    const c: Record<string, number> = { all: portfolioProjects.length };
-    for (const p of portfolioProjects) c[p.category] = (c[p.category] ?? 0) + 1;
+    const c: Record<string, number> = { all: projects.length };
+    for (const p of projects) c[p.category] = (c[p.category] ?? 0) + 1;
     return c;
-  }, []);
+  }, [projects]);
 
   const filteredProjects =
     activeFilter === "all"
-      ? portfolioProjects
-      : portfolioProjects.filter((p) => p.category === activeFilter);
+      ? projects
+      : projects.filter((p) => p.category === activeFilter);
 
   return (
     <main className="relative">
@@ -143,14 +142,16 @@ export default function PortfolioClient() {
                     className="glass rounded-2xl overflow-hidden group cursor-pointer h-full border border-white/5 hover:border-beam-400/30 transition-colors"
                   >
                     <div className="relative aspect-[4/3] overflow-hidden">
-                      <Image
-                        src={project.image}
-                        alt={`Custom BILED ${project.title} - Hasil pengerjaan Owlighting Lampung Timur`}
-                        fill
-                        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                        className="object-cover group-hover:scale-110 transition-transform duration-700"
-                        itemProp="image"
-                      />
+                      {project.image_url && (
+                        <Image
+                          src={project.image_url}
+                          alt={`Custom BILED ${project.title} - Hasil pengerjaan Owlighting Lampung Timur`}
+                          fill
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                          className="object-cover group-hover:scale-110 transition-transform duration-700"
+                          itemProp="image"
+                        />
+                      )}
                       <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent" />
                       <div className="absolute top-3 right-3">
                         <Chip tone="beam" size="xs">
@@ -165,9 +166,11 @@ export default function PortfolioClient() {
                       >
                         {project.title}
                       </h3>
-                      <p className="text-sm text-text-secondary leading-relaxed" itemProp="description">
-                        {project.description}
-                      </p>
+                      {project.description && (
+                        <p className="text-sm text-text-secondary leading-relaxed" itemProp="description">
+                          {project.description}
+                        </p>
+                      )}
                     </div>
                   </motion.div>
                 </motion.article>
@@ -188,15 +191,15 @@ export default function PortfolioClient() {
           />
 
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-6">
-            {STATS.map((stat, index) => (
-              <AnimatedSection key={stat.label} delay={index * 0.08}>
+            {stats.map((stat, index) => (
+              <AnimatedSection key={stat.id} delay={index * 0.08}>
                 <motion.div
                   whileHover={{ scale: 1.03, y: -4 }}
                   transition={{ duration: 0.24, ease: [0.32, 0.72, 0, 1] }}
                   className="glass-strong gradient-border-card rounded-2xl p-5 md:p-7 text-center"
                 >
                   <div className="font-editorial-roman text-4xl md:text-6xl font-normal tabular text-white mb-2 leading-none">
-                    {stat.number}
+                    {stat.value}
                   </div>
                   <div className="text-xs md:text-sm text-text-secondary font-medium">
                     {stat.label}
@@ -249,7 +252,7 @@ export default function PortfolioClient() {
                     className="text-text-secondary italic mb-5 leading-relaxed flex-1"
                     itemProp="reviewBody"
                   >
-                    &ldquo;{testimonial.text}&rdquo;
+                    &ldquo;{testimonial.comment}&rdquo;
                   </p>
                   <div
                     itemProp="author"
@@ -260,7 +263,9 @@ export default function PortfolioClient() {
                     <p className="font-semibold text-white text-sm" itemProp="name">
                       {testimonial.name}
                     </p>
-                    <p className="text-xs text-beam-400 mt-0.5">{testimonial.vehicle}</p>
+                    {testimonial.vehicle && (
+                      <p className="text-xs text-beam-400 mt-0.5">{testimonial.vehicle}</p>
+                    )}
                   </div>
                 </motion.article>
               </AnimatedSection>

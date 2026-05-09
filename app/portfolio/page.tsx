@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import PortfolioClient from "./PortfolioClient";
+import { getPortfolioProjects, getTestimonials, getHomepageStats } from "@/lib/api";
 
 export const metadata: Metadata = {
   title: "Portfolio Custom BILED Mobil & Motor | Hasil Pengerjaan Owlighting",
@@ -44,6 +45,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function PortfolioPage() {
-  return <PortfolioClient />;
+export default async function PortfolioPage() {
+  const [projects, testimonials, stats] = await Promise.all([
+    getPortfolioProjects(),
+    getTestimonials(),
+    getHomepageStats(),
+  ]);
+  return (
+    <PortfolioClient
+      projects={projects}
+      testimonials={testimonials}
+      stats={stats}
+    />
+  );
 }

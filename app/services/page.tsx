@@ -1,5 +1,6 @@
 import { Metadata } from "next";
 import ServicesClient from "./ServicesClient";
+import { getServices } from "@/lib/api";
 
 export const metadata: Metadata = {
   title: "Layanan Custom BILED & Retrofit Lampung Timur | Pasang BILED Mobil Motor",
@@ -45,6 +46,7 @@ export const metadata: Metadata = {
   },
 };
 
-export default function ServicesPage() {
-  return <ServicesClient />;
+export default async function ServicesPage() {
+  const services = await getServices();
+  return <ServicesClient services={services} />;
 }

@@ -1,5 +1,10 @@
 import { Metadata } from "next";
 import AboutClient from "./AboutClient";
+import {
+  getCompanyParagraphs,
+  getWhyChooseUs,
+  getFacilities,
+} from "@/lib/api";
 
 export const metadata: Metadata = {
   title: "Tentang Owlighting - Bengkel Spesialis Custom BILED Lampung Timur",
@@ -41,6 +46,17 @@ export const metadata: Metadata = {
   },
 };
 
-export default function AboutPage() {
-  return <AboutClient />;
+export default async function AboutPage() {
+  const [paragraphs, whyChooseUs, facilities] = await Promise.all([
+    getCompanyParagraphs(),
+    getWhyChooseUs(),
+    getFacilities(),
+  ]);
+  return (
+    <AboutClient
+      paragraphs={paragraphs}
+      whyChooseUs={whyChooseUs}
+      facilities={facilities}
+    />
+  );
 }

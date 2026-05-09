@@ -148,3 +148,34 @@ export type SiteSetting = {
   description: string | null;
   updated_at: string;
 };
+
+export type CompanyParagraph = {
+  id: number;
+  body: string;
+  sort_order: number;
+  created_at: string;
+  updated_at: string;
+};
+
+export type WhyChooseItem = {
+  id: number;
+  icon: string | null;
+  title: string;
+  description: string | null;
+  sort_order: number;
+  published: boolean;
+  created_at: string;
+  updated_at: string;
+};
+
+export type Facility = {
+  id: number;
+  title: string;
+  description: string | null;
+  image_url: string | null;
+  tone: "beam" | "halo" | string;
+  sort_order: number;
+  published: boolean;
+  created_at: string;
+  updated_at: string;
+};
