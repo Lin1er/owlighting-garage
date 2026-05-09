@@ -20,18 +20,24 @@ import {
   getPortfolioProjects,
   getTestimonials,
   getGalleryImages,
+  getWhyChooseUs,
 } from "@/lib/api";
 
-// All fetches degrade gracefully to bundled static data when Supabase env vars
-// are missing — see lib/api.ts. Page stays statically renderable in that case.
+/**
+ * Homepage. All sections receive their data via props from this server-side
+ * fetch — no static fallbacks. If Supabase isn't reachable the relevant
+ * section degrades to its empty state.
+ */
 export default async function Home() {
-  const [stats, services, projects, testimonials, gallery] = await Promise.all([
-    getHomepageStats(),
-    getServices(),
-    getPortfolioProjects(),
-    getTestimonials(),
-    getGalleryImages(),
-  ]);
+  const [stats, services, projects, testimonials, gallery, whyChooseUs] =
+    await Promise.all([
+      getHomepageStats(),
+      getServices(),
+      getPortfolioProjects(),
+      getTestimonials(),
+      getGalleryImages(),
+      getWhyChooseUs(),
+    ]);
 
   return (
     <main className="relative">
@@ -47,8 +53,8 @@ export default async function Home() {
       <SafetySection />
       <GallerySection projects={projects} />
       <TestimonialsSection testimonials={testimonials} />
-      <ReservationSection />
-      <SEOContentSection />
+      <ReservationSection services={services} />
+      <SEOContentSection services={services} whyChooseUs={whyChooseUs} />
       <Footer />
       <WhatsAppWidget />
     </main>

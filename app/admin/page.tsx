@@ -24,6 +24,7 @@ type Counts = {
   services: number;
   testimonials: number;
   videos: number;
+  faqs: number;
   reservations: number;
   reservations_new: number;
 };
@@ -34,6 +35,7 @@ const initialCounts: Counts = {
   services: 0,
   testimonials: 0,
   videos: 0,
+  faqs: 0,
   reservations: 0,
   reservations_new: 0,
 };
@@ -58,6 +60,7 @@ export default function AdminDashboard() {
       services,
       testimonials,
       videos,
+      faqs,
       reservations,
       reservationsNew,
       recentReservations,
@@ -67,6 +70,7 @@ export default function AdminDashboard() {
       supabase.from("services").select("*", { count: "exact", head: true }),
       supabase.from("testimonials").select("*", { count: "exact", head: true }),
       supabase.from("tiktok_videos").select("*", { count: "exact", head: true }),
+      supabase.from("faqs").select("*", { count: "exact", head: true }),
       supabase.from("reservations").select("*", { count: "exact", head: true }),
       supabase
         .from("reservations")
@@ -85,6 +89,7 @@ export default function AdminDashboard() {
       services: services.count ?? 0,
       testimonials: testimonials.count ?? 0,
       videos: videos.count ?? 0,
+      faqs: faqs.count ?? 0,
       reservations: reservations.count ?? 0,
       reservations_new: reservationsNew.count ?? 0,
     });

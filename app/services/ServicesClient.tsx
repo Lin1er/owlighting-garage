@@ -6,7 +6,7 @@ import AnimatedSection from "../components/AnimatedSection";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { DynamicIcon } from "../components/DynamicIcon";
-import type { Service } from "@/lib/supabase";
+import type { Service, Faq } from "@/lib/supabase";
 import { SectionHeader } from "../components/ui/SectionHeader";
 import { Button } from "../components/ui/Button";
 import { Chip } from "../components/ui/Chip";
@@ -24,101 +24,24 @@ import {
 } from "react-icons/fa";
 import { contactInfo } from "@/data";
 
-type FAQ = {
-  icon: string;
-  question: string;
-  answer: React.ReactNode;
-};
-
-const FAQS: FAQ[] = [
-  {
-    icon: "FaFire",
-    question: "Apakah Custom BILED Aman? Tidak Akan Terbakar?",
-    answer: (
-      <>
-        Sangat aman jika instalasi dilakukan dengan benar. Di Owlighting, kami menggunakan
-        relay proteksi, fuse, dan kabel proper gauge (sesuai ampere). Semua sambungan custom
-        BILED dilindungi heatshrink waterproof.{" "}
-        <strong className="text-white">5+ tahun beroperasi, 500+ kendaraan, 0 kasus terbakar.</strong>
-      </>
-    ),
-  },
-  {
-    icon: "FaBatteryFull",
-    question: "Apakah Aki Bisa Soak / Tekor Setelah Pasang Custom BILED?",
-    answer: (
-      <>
-        Tidak. Kami pakai sistem relay yang memisahkan beban dari aki langsung. Plus socket &
-        fuse untuk proteksi maksimal. Konsumsi daya custom BILED bahkan lebih rendah dari
-        halogen (35W vs 55W).{" "}
-        <strong className="text-white">Instalasi sesuai SOP keamanan elektrikal otomotif.</strong>
-      </>
-    ),
-  },
-  {
-    icon: "FaBolt",
-    question: "Apa Bedanya Custom BILED di Owlighting dengan Tempat Lain?",
-    answer: (
-      <ul className="space-y-2 list-none">
-        <li>
-          <strong className="text-white">Owlighting:</strong> kabel tembaga murni, relay
-          Bosch/Tyco, ballast branded (Morimoto/AC/Osram), wiring rapih seperti factory
-          install, heatshrink waterproof, garansi instalasi.
-        </li>
-        <li>
-          <strong className="text-danger">Tempat asal-asalan:</strong> kabel asal nyambung,
-          tidak pakai relay/fuse, ballast KW, sambungan lakban, rawan konslet.
-        </li>
-      </ul>
-    ),
-  },
-  {
-    icon: "FaLightbulb",
-    question: "Berapa Lama Garansi Custom BILED di Owlighting?",
-    answer: (
-      <>
-        Garansi 1 tahun untuk komponen custom BILED (ballast, bulb) dan instalasi kelistrikan.
-        Jika ada masalah dalam periode garansi, kami perbaiki atau ganti gratis.{" "}
-        <strong className="text-white">After-sales support siap membantu kapan pun.</strong>
-      </>
-    ),
-  },
-  {
-    icon: "FaCar",
-    question: "Mobil / Motor Saya Bisa Dipasang Custom BILED?",
-    answer: (
-      <>
-        Hampir semua kendaraan bisa dipasang custom BILED — dari mobil Jepang, Eropa, Korea,
-        hingga motor. Kami akan survey headlamp Anda terlebih dahulu untuk menentukan
-        projector custom BILED yang cocok dan bracket yang dibutuhkan.{" "}
-        <strong className="text-white">Konsultasi gratis via WhatsApp.</strong>
-      </>
-    ),
-  },
-  {
-    icon: "FaRuler",
-    question: "Berapa Lama Pengerjaan Pasang Custom BILED?",
-    answer: (
-      <>
-        Retrofit custom BILED standar: 1-2 hari. Custom project (DRL, lazy eyes, dll): 3-5 hari
-        tergantung kompleksitas. Kami tidak buru-buru karena detail dan keamanan adalah
-        prioritas. <strong className="text-white">Quality over speed.</strong>
-      </>
-    ),
-  },
-  {
-    icon: "FaMoneyBillWave",
-    question: "Berapa Harga Pasang Custom BILED di Owlighting?",
-    answer: (
-      <>
-        Harga bervariasi tergantung jenis kendaraan dan projector yang dipilih. Mulai dari Rp
-        1.5 juta untuk motor hingga Rp 3-5 juta untuk mobil. Hubungi via WhatsApp untuk
-        konsultasi & penawaran terbaik.{" "}
-        <strong className="text-white">Konsultasi & survey GRATIS.</strong>
-      </>
-    ),
-  },
-];
+/**
+ * Render a paragraph with markdown-lite **bold** support.
+ * Owners write FAQ answers in /admin/faqs as plain text with **emphasis**;
+ * we transform that into rich JSX without needing a full markdown parser.
+ */
+function renderRichText(text: string): React.ReactNode {
+  const parts = text.split(/(\*\*[^*]+\*\*)/g).filter(Boolean);
+  return parts.map((p, i) => {
+    if (p.startsWith("**") && p.endsWith("**")) {
+      return (
+        <strong key={i} className="text-white">
+          {p.slice(2, -2)}
+        </strong>
+      );
+    }
+    return <span key={i}>{p}</span>;
+  });
+}
 
 const HIGHLIGHTS = [
   {
@@ -140,9 +63,10 @@ const HIGHLIGHTS = [
 
 type Props = {
   services: Service[];
+  faqs: Faq[];
 };
 
-export default function ServicesClient({ services }: Props) {
+export default function ServicesClient({ services, faqs }: Props) {
   const [openFaq, setOpenFaq] = useState<number | null>(0);
 
   return (
@@ -332,74 +256,81 @@ export default function ServicesClient({ services }: Props) {
           />
 
           <div className="space-y-3">
-            {FAQS.map((faq, i) => {
-              const isOpen = openFaq === i;
-              return (
-                <AnimatedSection key={faq.question} delay={i * 0.04}>
-                  <article
-                    className={`glass rounded-2xl border transition-colors overflow-hidden ${
-                      isOpen ? "border-beam-400/30 bg-beam-400/[0.03]" : "border-white/5"
-                    }`}
-                    itemScope
-                    itemType="https://schema.org/Question"
-                  >
-                    <button
-                      type="button"
-                      onClick={() => setOpenFaq(isOpen ? null : i)}
-                      className="w-full px-5 py-4 md:px-6 md:py-5 flex items-center gap-4 text-left"
-                      aria-expanded={isOpen}
+            {faqs.length === 0 ? (
+              <p className="text-sm text-text-tertiary text-center py-8">
+                Belum ada pertanyaan terdaftar. Tambahkan via{" "}
+                <code className="px-1 py-0.5 bg-white/5 rounded text-[11px]">/admin/faqs</code>.
+              </p>
+            ) : (
+              faqs.map((faq, i) => {
+                const isOpen = openFaq === i;
+                return (
+                  <AnimatedSection key={faq.id} delay={i * 0.04}>
+                    <article
+                      className={`glass rounded-2xl border transition-colors overflow-hidden ${
+                        isOpen ? "border-beam-400/30 bg-beam-400/[0.03]" : "border-white/5"
+                      }`}
+                      itemScope
+                      itemType="https://schema.org/Question"
                     >
-                      <div
-                        className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
-                          isOpen ? "bg-beam-400/15" : "bg-white/5"
-                        }`}
+                      <button
+                        type="button"
+                        onClick={() => setOpenFaq(isOpen ? null : i)}
+                        className="w-full px-5 py-4 md:px-6 md:py-5 flex items-center gap-4 text-left"
+                        aria-expanded={isOpen}
                       >
-                        <DynamicIcon
-                          name={faq.icon}
-                          size={16}
-                          className="text-beam-400"
-                        />
-                      </div>
-                      <h3
-                        className="text-base md:text-lg font-bold text-white leading-tight flex-1"
-                        itemProp="name"
-                      >
-                        {faq.question}
-                      </h3>
-                      <motion.span
-                        animate={{ rotate: isOpen ? 180 : 0 }}
-                        transition={{ duration: 0.2 }}
-                        className="text-text-tertiary shrink-0"
-                      >
-                        <FaChevronDown size={14} />
-                      </motion.span>
-                    </button>
-                    <AnimatePresence initial={false}>
-                      {isOpen && (
-                        <motion.div
-                          key="content"
-                          initial={{ height: 0, opacity: 0 }}
-                          animate={{ height: "auto", opacity: 1 }}
-                          exit={{ height: 0, opacity: 0 }}
-                          transition={{ duration: 0.24, ease: [0.32, 0.72, 0, 1] }}
-                          className="overflow-hidden"
-                          itemScope
-                          itemProp="acceptedAnswer"
-                          itemType="https://schema.org/Answer"
+                        <div
+                          className={`w-10 h-10 rounded-lg flex items-center justify-center shrink-0 transition-colors ${
+                            isOpen ? "bg-beam-400/15" : "bg-white/5"
+                          }`}
                         >
-                          <div
-                            className="px-5 pb-5 md:px-6 md:pb-6 pl-[68px] md:pl-[80px] text-sm md:text-base text-text-secondary leading-relaxed"
-                            itemProp="text"
+                          <DynamicIcon
+                            name={faq.icon ?? "FaQuestion"}
+                            size={16}
+                            className="text-beam-400"
+                          />
+                        </div>
+                        <h3
+                          className="text-base md:text-lg font-bold text-white leading-tight flex-1"
+                          itemProp="name"
+                        >
+                          {faq.question}
+                        </h3>
+                        <motion.span
+                          animate={{ rotate: isOpen ? 180 : 0 }}
+                          transition={{ duration: 0.2 }}
+                          className="text-text-tertiary shrink-0"
+                        >
+                          <FaChevronDown size={14} />
+                        </motion.span>
+                      </button>
+                      <AnimatePresence initial={false}>
+                        {isOpen && (
+                          <motion.div
+                            key="content"
+                            initial={{ height: 0, opacity: 0 }}
+                            animate={{ height: "auto", opacity: 1 }}
+                            exit={{ height: 0, opacity: 0 }}
+                            transition={{ duration: 0.24, ease: [0.32, 0.72, 0, 1] }}
+                            className="overflow-hidden"
+                            itemScope
+                            itemProp="acceptedAnswer"
+                            itemType="https://schema.org/Answer"
                           >
-                            {faq.answer}
-                          </div>
-                        </motion.div>
-                      )}
-                    </AnimatePresence>
-                  </article>
-                </AnimatedSection>
-              );
-            })}
+                            <div
+                              className="px-5 pb-5 md:px-6 md:pb-6 pl-[68px] md:pl-[80px] text-sm md:text-base text-text-secondary leading-relaxed"
+                              itemProp="text"
+                            >
+                              {renderRichText(faq.answer)}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </article>
+                  </AnimatedSection>
+                );
+              })
+            )}
           </div>
         </div>
       </section>

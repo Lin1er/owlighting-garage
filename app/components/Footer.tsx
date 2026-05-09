@@ -5,7 +5,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
-import { contactInfo, companyInfo, portfolioProjects } from "@/data";
+import { contactInfo, companyInfo } from "@/data";
+import type { PortfolioProject } from "@/lib/supabase";
+import { supabase, isSupabaseConfigured } from "@/lib/supabase";
 import {
   FaInstagram,
   FaFacebook,
@@ -24,6 +26,7 @@ export default function Footer() {
   const [openStatus, setOpenStatus] = useState(() =>
     getOpenStatus(contactInfo.workingHours),
   );
+  const [recentProjects, setRecentProjects] = useState<PortfolioProject[]>([]);
 
   useEffect(() => {
     const id = setInterval(() => {
@@ -37,6 +40,26 @@ export default function Footer() {
     return () => clearInterval(id);
   }, []);
 
+  // Latest projects load client-side via the Supabase anon key (public read RLS).
+  // Footer is shared across server + client trees, so this avoids forcing every
+  // parent page to fetch and pass the same prop.
+  useEffect(() => {
+    if (!isSupabaseConfigured || !supabase) return;
+    let cancelled = false;
+    void (async () => {
+      const { data } = await supabase
+        .from("portfolio_projects")
+        .select("*")
+        .eq("published", true)
+        .order("sort_order", { ascending: true })
+        .limit(3);
+      if (!cancelled && data) setRecentProjects(data as PortfolioProject[]);
+    })();
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   const scrollToSection = (id: string) => {
     if (pathname !== "/") {
       window.location.href = `/#${id}`;
@@ -46,7 +69,6 @@ export default function Footer() {
     element?.scrollIntoView({ behavior: "smooth" });
   };
 
-  const recentProjects = portfolioProjects.slice(0, 3);
   const navLinks = [
     { href: "/", label: "Beranda" },
     { href: "/about", label: "Tentang" },
@@ -221,13 +243,15 @@ export default function Footer() {
                   className="group flex items-center gap-3 md:bg-white/[0.02] md:border md:border-white/5 md:rounded-lg md:p-2 md:hover:border-beam-400/30 md:hover:bg-beam-400/5 transition-colors"
                 >
                   <div className="relative w-full md:w-12 aspect-square md:aspect-square shrink-0 rounded-md overflow-hidden">
-                    <Image
-                      src={p.image}
-                      alt={p.title}
-                      fill
-                      sizes="(max-width: 768px) 33vw, 48px"
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
+                    {p.image_url && (
+                      <Image
+                        src={p.image_url}
+                        alt={p.title}
+                        fill
+                        sizes="(max-width: 768px) 33vw, 48px"
+                        className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    )}
                   </div>
                   <div className="hidden md:block min-w-0 flex-1">
                     <p className="text-xs text-white truncate font-medium group-hover:text-beam-400 transition-colors">

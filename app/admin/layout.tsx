@@ -11,6 +11,10 @@ import {
   FaSlidersH,
   FaChartBar,
   FaExternalLinkAlt,
+  FaParagraph,
+  FaHandHoldingHeart,
+  FaWarehouse,
+  FaQuestion,
 } from "react-icons/fa";
 import { Geist, Instrument_Serif, JetBrains_Mono } from "next/font/google";
 import "../globals.css";
@@ -58,6 +62,15 @@ const navGroups = [
       { href: "/admin/testimonials", icon: FaStar, label: "Testimonials" },
       { href: "/admin/stats", icon: FaChartBar, label: "Homepage Stats" },
       { href: "/admin/videos", icon: FaVideo, label: "Videos" },
+      { href: "/admin/faqs", icon: FaQuestion, label: "FAQ" },
+    ],
+  },
+  {
+    label: "About Page",
+    items: [
+      { href: "/admin/paragraphs", icon: FaParagraph, label: "Cerita" },
+      { href: "/admin/why-choose", icon: FaHandHoldingHeart, label: "Why Choose Us" },
+      { href: "/admin/facilities", icon: FaWarehouse, label: "Fasilitas" },
     ],
   },
   {

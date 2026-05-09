@@ -2,7 +2,8 @@
 
 import AnimatedSection from "../components/AnimatedSection";
 import { motion } from "framer-motion";
-import { contactInfo, services } from "@/data";
+import { contactInfo } from "@/data";
+import type { Service } from "@/lib/supabase";
 import {
   FaMapMarkerAlt,
   FaPhone,
@@ -62,7 +63,11 @@ function validate(values: ReservationFields) {
   return errors;
 }
 
-export default function ReservationSection() {
+type Props = {
+  services: Service[];
+};
+
+export default function ReservationSection({ services }: Props) {
   const form = useFormState<ReservationFields>(initialValues);
   const toast = useToast();
   const [openStatus, setOpenStatus] = useState(() => getOpenStatus(contactInfo.workingHours));

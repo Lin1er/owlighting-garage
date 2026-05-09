@@ -1,6 +1,6 @@
 import { Metadata } from "next";
 import ServicesClient from "./ServicesClient";
-import { getServices } from "@/lib/api";
+import { getServices, getFaqs } from "@/lib/api";
 
 export const metadata: Metadata = {
   title: "Layanan Custom BILED & Retrofit Lampung Timur | Pasang BILED Mobil Motor",
@@ -47,6 +47,6 @@ export const metadata: Metadata = {
 };
 
 export default async function ServicesPage() {
-  const services = await getServices();
-  return <ServicesClient services={services} />;
+  const [services, faqs] = await Promise.all([getServices(), getFaqs()]);
+  return <ServicesClient services={services} faqs={faqs} />;
 }
