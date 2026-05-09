@@ -55,7 +55,7 @@ CREATE TRIGGER tiktok_videos_set_updated BEFORE UPDATE ON tiktok_videos
 -- ============================================================
 CREATE TABLE portfolio_projects (
   id SERIAL PRIMARY KEY,
-  slug VARCHAR(120),
+  slug VARCHAR(120) UNIQUE,
   title VARCHAR(255) NOT NULL,
   category VARCHAR(100) NOT NULL,
   description TEXT,
@@ -71,7 +71,6 @@ CREATE TABLE portfolio_projects (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
-CREATE UNIQUE INDEX uniq_portfolio_slug ON portfolio_projects(slug) WHERE slug IS NOT NULL;
 CREATE INDEX idx_portfolio_published ON portfolio_projects(published, sort_order);
 CREATE INDEX idx_portfolio_category ON portfolio_projects(category);
 CREATE TRIGGER portfolio_projects_set_updated BEFORE UPDATE ON portfolio_projects
@@ -82,7 +81,7 @@ CREATE TRIGGER portfolio_projects_set_updated BEFORE UPDATE ON portfolio_project
 -- ============================================================
 CREATE TABLE services (
   id SERIAL PRIMARY KEY,
-  slug VARCHAR(120),
+  slug VARCHAR(120) UNIQUE,
   title VARCHAR(255) NOT NULL,
   description TEXT,
   icon VARCHAR(100),
@@ -96,7 +95,6 @@ CREATE TABLE services (
   created_at TIMESTAMP WITH TIME ZONE DEFAULT NOW(),
   updated_at TIMESTAMP WITH TIME ZONE DEFAULT NOW()
 );
-CREATE UNIQUE INDEX uniq_services_slug ON services(slug) WHERE slug IS NOT NULL;
 CREATE INDEX idx_services_active ON services(is_active);
 CREATE TRIGGER services_set_updated BEFORE UPDATE ON services
   FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
